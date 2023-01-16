@@ -1,13 +1,124 @@
-body {
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap");
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+body {
+  background: #f8f9ff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Navbar Style Starts */
+
+nav {
+  background: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0 100px;
+  border: 1px solid #e9eaf3;
+}
+nav .logo {
+  color: #7a8dfd;
+  display: flex;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+nav .logo h3 {
+  margin-left: 10px;
+}
+
+nav form {
+  display: flex;
+  height: 40px;
+  padding: 2px;
+  background: #eef0ff;
+  min-width: 22%;
+  border-radius: 2px;
+}
+nav form .search-data {
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  color: rgb(20, 20, 20);
+  font-size: 17px;
+  border: none;
+  font-weight: 500;
+  background: none;
+}
+nav form button {
+  padding: 0 15px;
+  margin: 2px;
+  color: #fff;
+  font-size: 17px;
+  background: #7a8dfd;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+nav form button:hover {
+  background: #5c6fdc;
+}
+
+@media (max-width: 640px) {
+  nav .logo {
+    color: #7a8dfd;
+    display: none;
+  }
+}
+
+/* Navbar Style Ends */
+
+.top-content {
+  padding: 25px 100px;
+}
+
+.top-buttons {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-btn button {
+  background-color: #ffffff;
+  border: 0.5px solid rgb(238, 238, 238);
+  color: rgb(19, 19, 19);
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-left: 15px;
+}
+
+.progress-btn button:hover {
+  background: #5c6fdc;
+  color: white;
+}
+
+.create-btn {
+  background: #5c6fdc;
+  border: 0.5px solid rgb(238, 238, 238);
+  color: rgb(254, 254, 254);
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.create-btn:hover {
+  background: #4c5fcd;
+  color: white;
 }
