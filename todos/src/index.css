@@ -12,15 +12,14 @@ body {
 }
 
 /* Navbar Style Starts */
-
 nav {
   background: #ffffff;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
-  padding: 0 100px;
+  height: 55px;
+  padding: 0 7.5% 0 6.5%;
   border: 1px solid #e9eaf3;
 }
 nav .logo {
@@ -35,53 +34,34 @@ nav .logo h3 {
   margin-left: 10px;
 }
 
-nav form {
+.searchHeader {
   display: flex;
-  height: 40px;
-  padding: 2px;
-  background: #eef0ff;
-  min-width: 22%;
-  border-radius: 2px;
-}
-nav form .search-data {
-  width: 100%;
-  height: 100%;
-  padding: 0 10px;
-  color: rgb(20, 20, 20);
-  font-size: 17px;
-  border: none;
-  font-weight: 500;
-  background: none;
-}
-nav form button {
-  padding: 0 15px;
-  margin: 2px;
-  color: #fff;
-  font-size: 17px;
-  background: #7a8dfd;
-  border: none;
-  border-radius: 2px;
-  cursor: pointer;
-}
-nav form button:hover {
-  background: #5c6fdc;
 }
 
-@media (max-width: 640px) {
-  nav .logo {
-    color: #7a8dfd;
-    display: none;
-  }
+.searchHeader button {
+  background: #ffffff;
+  border: none;
 }
 
+.searchHeader input {
+  background: #fff;
+  padding: 5px;
+  border: 3px solid #dde2ff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 34px;
+  margin-right: 4px;
+  width: 360px;
+}
 /* Navbar Style Ends */
 
+/* TopButtons Style Starts */
 .top-content {
-  padding: 25px 100px;
+  padding: 3% 7.5% 0 6.5%;
 }
 
 .top-buttons {
-  margin-top: 10px;
+  margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -97,8 +77,9 @@ nav form button:hover {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
-  margin-left: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 12px;
 }
 
 .progress-btn button:hover {
@@ -107,18 +88,31 @@ nav form button:hover {
 }
 
 .create-btn {
-  background: #5c6fdc;
+  background: #7a8dfd;
   border: 0.5px solid rgb(238, 238, 238);
   color: rgb(254, 254, 254);
-  padding: 10px 15px;
+  padding: 7px 15px;
   border-radius: 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  font-weight: 600;
   font-size: 14px;
 }
 
 .create-btn:hover {
   background: #4c5fcd;
   color: white;
+}
+/* TopButtons Style Ends */
+
+/* To make the UI responsive */
+@media (max-width: 640px) {
+  .searchHeader input {
+    width: 200px;
+  }
+  .top-buttons {
+    margin-top: 10px;
+    justify-content: space-between;
+  }
 }

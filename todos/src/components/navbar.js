@@ -1,4 +1,5 @@
-import logo from "../logo.svg";
+import logo from "../icons/logo.svg";
+import search from "../icons/searchIcon.svg";
 
 const Navbar = () => {
   return (
@@ -7,10 +8,12 @@ const Navbar = () => {
         <img src={logo} alt="" />
         <h3>Todos</h3>
       </div>
-      <form action="#">
-        <input type="search" className="search-data" placeholder="Search" />
-        <button type="submit" className="fas fa-search"></button>
-      </form>
+      <div className="searchHeader">
+        <input type="search" placeholder="Search" />
+        <button type="submit">
+          <img src={search}></img>
+        </button>
+      </div>
     </nav>
   );
 };
