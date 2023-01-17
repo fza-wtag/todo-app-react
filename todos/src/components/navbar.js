@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="searchHeader">
         <input type="search" placeholder="Search" />
         <button type="submit">
-          <img src={search}></img>
+          <img src={search} alt="icon"></img>
         </button>
       </div>
     </nav>
