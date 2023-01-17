@@ -5,10 +5,14 @@
   padding: 0;
   outline: none;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: Roboto, sans-serif;
 }
 body {
   background: #f8f9ff;
+}
+
+.todo-container {
+  padding: 2% 7.5% 0 6.5%;
 }
 
 /* Navbar Style Starts */
@@ -107,10 +111,6 @@ nav .logo h3 {
 /* TopButtons Style Ends */
 
 /*  Create Todo Style Starts */
-.todo-container {
-  padding: 2% 7.5% 0 6.5%;
-}
-
 .todo {
   background: #fff;
   border: 1px solid #dde2ff;
@@ -158,12 +158,65 @@ nav .logo h3 {
   font-weight: 600;
 }
 
-.del-btn {
+.icon-btn {
   background: none;
   border: none;
   padding: 0 20px 0 0;
 }
 /* Create Todo Style Ends */
+
+/* Incomplete Todo Style Starts */
+.todo-done-edit-del {
+  display: flex;
+  justify-content: space-between;
+  width: 125px;
+}
+.todo-title {
+  font-size: 24px;
+  color: #32394b;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  outline: none;
+}
+
+.todo-created-at {
+  color: #bbbdd0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  margin-top: 8px;
+}
+/* Incomplete Todo Style Ends */
+
+/* Completed Todo Style Starts */
+.todo-title-done {
+  font-size: 24px;
+  color: #0bc375;
+  text-decoration: line-through;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  outline: none;
+}
+.todo-del-duration {
+  display: flex;
+  justify-content: space-between;
+}
+
+.completed-time {
+  align-items: center;
+  background: #7a8dfd;
+  border-radius: 5px;
+  color: #fff;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 400;
+  height: 24px;
+  justify-content: space-around;
+  min-width: 147px;
+  text-align: center;
+  padding: 5px;
+}
+/* Completed Todo Style Ends */
 
 /* To make the UI responsive */
 @media (max-width: 640px) {
