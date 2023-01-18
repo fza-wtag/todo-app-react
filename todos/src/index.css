@@ -252,6 +252,23 @@ nav .logo h4 {
 }
 /* Load more part Style Ends */
 
+/* Empty Tasks Page Style Starts */
+.no-tasks {
+  text-align: center;
+  margin-top: 130px;
+  margin-bottom: 130px;
+}
+
+.no-tasks p {
+  color: #32394b;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  margin-top: 5px;
+  outline: none;
+}
+/* Empty Tasks Page Style Ends */
+
 /* To make the UI responsive */
 @media (max-width: 640px) {
   .searchHeader input {
