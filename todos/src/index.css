@@ -12,7 +12,7 @@ body {
 }
 
 .todo-container {
-  padding: 2% 7.5% 0 6.5%;
+  padding: 0% 0% 0% 0%;
 }
 
 /* Navbar Style Starts */
@@ -117,8 +117,8 @@ nav .logo h3 {
   border-radius: 5px;
   box-sizing: border-box;
   flex-direction: column;
-  height: 163px;
-  width: 400px;
+  min-height: 163px;
+  min-width: 350px;
   padding: 15px;
   position: relative;
   word-break: break-word;
@@ -217,6 +217,16 @@ nav .logo h3 {
   padding: 5px;
 }
 /* Completed Todo Style Ends */
+
+/* All Todos Style Starts */
+.all-todos {
+  grid-gap: 2.2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  justify-content: space-between;
+  padding: 1.5% 7.5% 1.5% 6.5%;
+}
+/* All Todos Style Ends */
 
 /* To make the UI responsive */
 @media (max-width: 640px) {
