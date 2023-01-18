@@ -3,7 +3,7 @@ import React from "react";
 const TopButtons = () => {
   return (
     <div className="top-content">
-      <h2>Add Tasks</h2>
+      <h1>Add Tasks</h1>
       <div className="top-buttons">
         <button className="create-btn">
           <i class="fa-sharp fa-solid fa-plus"></i> Create
