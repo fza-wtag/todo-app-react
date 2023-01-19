@@ -1,5 +1,6 @@
 import React from 'react'
 import del from "../icons/delete.svg";
+import "../styles/completedTask.css"
 
 const CompletedTask = () => {
   return (

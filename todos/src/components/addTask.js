@@ -1,4 +1,5 @@
 import del from "../icons/delete.svg";
+import "../styles/addTask.css"
 
 const AddTask = () => {
   return (

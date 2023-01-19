@@ -1,7 +1,8 @@
 import React from "react";
-import AddTask from "./addTask";
-import IncompleteTask from "./incompleteTask";
-import CompletedTask from "./completedTask";
+import AddTask from "./AddTask";
+import IncompleteTask from "./IncompleteTask";
+import CompletedTask from "./CompletedTask";
+import "../styles/allTodos.css"
 
 function AllTodos() {
   return (
@@ -17,7 +18,6 @@ function AllTodos() {
       <CompletedTask />
       <CompletedTask />
       <IncompleteTask />
-      <CompletedTask />
       <CompletedTask />
     </div>
   );

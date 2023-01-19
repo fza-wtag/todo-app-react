@@ -1,0 +1,15 @@
+.load-more {
+  display: flex;
+  justify-content: center;
+}
+.btn-load-more {
+  background: #32394b;
+  border: 1px solid #dde2ff;
+  border-radius: 5px;
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  margin: 20px 0;
+  min-height: 36px;
+  min-width: 121px;
+}

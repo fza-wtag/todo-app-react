@@ -1,0 +1,20 @@
+.todo-done-edit-del {
+  display: flex;
+  justify-content: space-between;
+  width: 125px;
+}
+.todo-title {
+  font-size: 24px;
+  color: #32394b;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  outline: none;
+}
+
+.todo-created-at {
+  color: #bbbdd0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  margin-top: 8px;
+}

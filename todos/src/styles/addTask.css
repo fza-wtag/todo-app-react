@@ -1,0 +1,52 @@
+.todo {
+  background: #fff;
+  border: 1px solid #dde2ff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  flex-direction: column;
+  min-height: 163px;
+  min-width: 350px;
+  padding: 15px;
+  position: relative;
+  word-break: break-word;
+}
+
+.todo,
+.todo_add_del {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.todo_add_del {
+  align-items: center;
+  width: 125px;
+}
+
+.edit-text {
+  border: 3px solid #dde2ff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 80px;
+  padding: 5px;
+  width: 100%;
+  resize: none;
+}
+
+.add-task {
+  background: #fff;
+  border: 1px solid #dde2ff;
+  border-radius: 5px;
+  height: 36px;
+  margin-right: 15px;
+  min-width: 51px;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0 20px 0 0;
+}

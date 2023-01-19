@@ -1,0 +1,47 @@
+.top-content {
+  padding: 3% 7.5% 0 6.5%;
+}
+
+.top-buttons {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-btn button {
+  background-color: #ffffff;
+  border: 0.5px solid rgb(238, 238, 238);
+  color: rgb(19, 19, 19);
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 12px;
+}
+
+.progress-btn button:hover {
+  opacity: 0.5;
+}
+
+.create-btn {
+  background: #7a8dfd;
+  border: 0.5px solid rgb(238, 238, 238);
+  color: rgb(254, 254, 254);
+  padding: 7px 15px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.create-btn:hover {
+  background: #4c5fcd;
+  color: white;
+}

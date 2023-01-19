@@ -1,8 +1,9 @@
 import "./App.css";
-import Navbar from "./components/navbar";
-import TopButtons from "./components/topButtons";
-import AllTodos from "./components/allTodos";
-import LoadmoreBtn from "./components/loadmoreBtn";
+import Navbar from "./components/Navbar";
+import TopButtons from "./components/TopButtons";
+import AllTodos from "./components/AllTodos";
+import LoadmoreBtn from "./components/LoadmoreBtn";
+import EmptyTaskList from "./components/EmptyTaskList";
 
 function App() {
   return (

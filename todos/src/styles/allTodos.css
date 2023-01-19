@@ -1,0 +1,7 @@
+.all-todos {
+  grid-gap: 2.2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  justify-content: space-between;
+  padding: 1.5% 7.5% 0% 6.5%;
+}
