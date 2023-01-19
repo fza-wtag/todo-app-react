@@ -88,13 +88,12 @@ nav .logo h4 {
   text-decoration: none;
   display: inline-block;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   margin-left: 12px;
 }
 
 .progress-btn button:hover {
-  background: #5c6fdc;
-  color: white;
+  opacity: 0.5;
 }
 
 .create-btn {
