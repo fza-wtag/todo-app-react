@@ -11,9 +11,9 @@
   display: inline-flex;
   font-size: 14px;
   font-weight: 400;
-  height: 24px;
+  height: 1.7rem;
   justify-content: space-around;
-  min-width: 147px;
+  min-width: 9rem;
   text-align: center;
   padding: 5px;
 }

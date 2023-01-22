@@ -1,7 +1,7 @@
 .todo-done-edit-del {
   display: flex;
   justify-content: space-between;
-  width: 125px;
+  width: 10rem;
 }
 
 
