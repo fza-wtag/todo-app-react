@@ -1,15 +1,15 @@
 import React from "react";
-import "../styles/topButtons.css"
+import "../styles/topContent.css"
 
-const TopButtons = () => {
+const TopContent = () => {
   return (
     <div className="top-content">
       <h1>Add Tasks</h1>
-      <div className="top-buttons">
-        <button className="create-btn">
+      <div className="top-content__buttons">
+        <button className="btn btn__create_button">
           <i class="fa-sharp fa-solid fa-plus"></i> Create
         </button>
-        <div className="progress-btn">
+        <div className="btn__progress_button">
           <button>All</button>
           <button>Incomplete</button>
           <button>Complete</button>
@@ -19,4 +19,4 @@ const TopButtons = () => {
   );
 };
 
-export default TopButtons;
+export default TopContent;

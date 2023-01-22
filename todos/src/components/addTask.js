@@ -14,7 +14,7 @@ const AddTask = () => {
       </div>
       <div className="todo__add_del">
         <button className="btn btn__save_button">Add Task</button>
-        <button className="icon-btn">
+        <button className="todo__icon-btn">
           <img src={del} alt="icon"></img>
         </button>
       </div>
