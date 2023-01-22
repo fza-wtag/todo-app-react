@@ -1,8 +1,8 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import TopButtons from "./components/TopButtons";
-import AllTodos from "./components/AllTodos";
-import LoadmoreBtn from "./components/LoadmoreBtn";
+import Todos from "./components/Todos";
+import LoadMoreBtn from "./components/LoadMoreBtn";
 import EmptyTaskList from "./components/EmptyTaskList";
 
 function App() {
@@ -10,8 +10,8 @@ function App() {
     <div>
       <Navbar />
       <TopButtons />
-      <AllTodos />
-      <LoadmoreBtn />
+      <Todos />
+      <LoadMoreBtn />
     </div>
   );
 }

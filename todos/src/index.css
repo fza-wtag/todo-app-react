@@ -11,6 +11,12 @@ body {
   background: #f8f9ff;
 }
 
+.btn {
+  background: #fff;
+  border: 1px solid #dde2ff;
+  border-radius: 5px;
+}
+
 @media (max-width: 640px) {
   .searchHeader input {
     width: 50%;

@@ -1,13 +1,13 @@
 import React from "react";
 import add from "../icons/addOne.svg";
-import "../styles/emptyTaskList.css"
+import "../styles/emptyTaskList.css";
 
 function EmptyTaskList() {
   return (
-    <div className="no-tasks">
+    <div className="zero-tasks">
       <img src={add} alt="icon"></img>
       <div>
-        <p class="no-task-text">You didn't add any task. Please, add one.</p>
+        <p class="zero-task__text">You didn't add any task. Please, add one.</p>
       </div>
     </div>
   );

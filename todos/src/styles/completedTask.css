@@ -1,17 +1,9 @@
-.todo-title-done {
-  font-size: 24px;
-  color: #0bc375;
-  text-decoration: line-through;
-  font-family: Roboto, sans-serif;
-  font-weight: 700;
-  outline: none;
-}
 .todo-del-duration {
   display: flex;
   justify-content: space-between;
 }
 
-.completed-time {
+.todo__completed-time {
   align-items: center;
   background: #7a8dfd;
   border-radius: 5px;

@@ -2,9 +2,9 @@ import React from "react";
 import AddTask from "./AddTask";
 import IncompleteTask from "./IncompleteTask";
 import CompletedTask from "./CompletedTask";
-import "../styles/allTodos.css"
+import "../styles/todos.css"
 
-function AllTodos() {
+function Todos() {
   return (
     <div className="all-todos">
       <AddTask />
@@ -23,4 +23,4 @@ function AllTodos() {
   );
 }
 
-export default AllTodos;
+export default Todos;

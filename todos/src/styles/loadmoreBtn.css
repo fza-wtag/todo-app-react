@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
 }
-.btn-load-more {
+.load-more__button {
   background: #32394b;
   border: 1px solid #dde2ff;
   border-radius: 5px;

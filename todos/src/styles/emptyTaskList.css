@@ -1,10 +1,10 @@
-.no-tasks {
+.zero-task {
   text-align: center;
   margin-top: 130px;
   margin-bottom: 130px;
 }
 
-.no-tasks p {
+.zero-task__text {
   color: #32394b;
   font-family: Roboto, sans-serif;
   font-weight: 700;

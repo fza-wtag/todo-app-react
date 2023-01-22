@@ -1,12 +1,12 @@
 import React from "react";
 import "../styles/loadmoreBtn.css";
 
-function LoadmoreBtn() {
+function LoadMoreBtn() {
   return (
     <div className="load-more">
-      <button className="btn-load-more">Load More</button>
+      <button className="load-more__button">Load More</button>
     </div>
   );
 }
 
-export default LoadmoreBtn;
+export default LoadMoreBtn;

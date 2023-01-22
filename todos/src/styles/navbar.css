@@ -1,4 +1,4 @@
-nav {
+.navbar {
   background: #ffffff;
   display: flex;
   flex-wrap: wrap;
@@ -8,7 +8,7 @@ nav {
   padding: 0 7.5% 0 6.5%;
   border: 1px solid #e9eaf3;
 }
-nav .logo {
+.navbar__logo {
   color: #7a8dfd;
   display: flex;
   font-size: 30px;
@@ -16,7 +16,7 @@ nav .logo {
   letter-spacing: -1px;
 }
 
-nav .logo h4 {
+.navbar__logo h4 {
   margin-left: 10px;
   font-family: "Roboto";
   font-style: normal;
@@ -26,16 +26,16 @@ nav .logo h4 {
   color: #7a8dfd;
 }
 
-.searchHeader {
+.navbar__search {
   display: flex;
 }
 
-.searchHeader button {
+.navbar__search button {
   background: #ffffff;
   border: none;
 }
 
-.searchHeader input {
+.navbar__search input {
   background: #fff;
   padding: 5px;
   border: 3px solid #dde2ff;
