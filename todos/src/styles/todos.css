@@ -34,6 +34,10 @@
   text-decoration: line-through;
 }
 
+.todo__name--incomple {
+  color: #2e2e2e;
+}
+
 .todo__date {
   color: #bbbdd0;
   font-size: 14px;

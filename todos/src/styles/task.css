@@ -17,3 +17,9 @@
   text-align: center;
   padding: 5px;
 }
+
+.todo-done-edit-del {
+  display: flex;
+  justify-content: space-between;
+  width: 10rem;
+}
