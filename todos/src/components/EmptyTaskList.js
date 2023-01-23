@@ -7,7 +7,7 @@ function EmptyTaskList() {
     <div className="zero-tasks">
       <img src={add} alt="icon"></img>
       <div>
-        <p class="zero-task__text">You didn't add any task. Please, add one.</p>
+        <p className="zero-task__text">You didn't add any task. Please, add one.</p>
       </div>
     </div>
   );

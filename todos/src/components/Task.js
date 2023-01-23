@@ -18,7 +18,7 @@ const Task = (props) => {
           <button className="todo__icon-btn">
             <img src={del} alt="icon"></img>
           </button>
-          <span class="todo__completed-time">Completed in a day</span>
+          <span className="todo__completed-time">Completed in a day</span>
         </div>
         :
         <div className="todo__done-edit-del">
