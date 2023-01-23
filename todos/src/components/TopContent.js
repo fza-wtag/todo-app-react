@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/topContent.css"
+import FilterButtons from "./FilterButtons.js"
 
 const TopContent = () => {
   return (
@@ -9,11 +10,7 @@ const TopContent = () => {
         <button className="btn btn__create_button">
           <i class="fa-sharp fa-solid fa-plus"></i> Create
         </button>
-        <div className="btn__progress_button">
-          <button>All</button>
-          <button>Incomplete</button>
-          <button>Complete</button>
-        </div>
+        <FilterButtons />
       </div>
     </div>
   );
