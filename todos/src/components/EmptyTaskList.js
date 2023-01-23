@@ -1,5 +1,7 @@
 import React from "react";
-import add from "../icons/addOne.svg";
+import add from "icons/addOne.svg";
+
+
 import "../styles/emptyTaskList.css";
 
 function EmptyTaskList() {

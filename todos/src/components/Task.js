@@ -1,8 +1,8 @@
 import React from "react";
-import del from "../icons/delete.svg";
-import done from "../icons/done.svg";
-import edit from "../icons/edit.svg";
-import "../styles/task.css"
+import del from "icons/delete.svg";
+import done from "icons/done.svg";
+import edit from "icons/edit.svg";
+import "styles/task.css"
 
 const Task = (props) => {
   return (

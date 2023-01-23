@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/loadmoreBtn.css";
+import "styles/loadmoreBtn.css";
 
 function LoadMoreBtn() {
   return (

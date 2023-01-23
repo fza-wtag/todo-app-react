@@ -1,5 +1,5 @@
-import del from "../icons/delete.svg";
-import "../styles/addTask.css";
+import del from "icons/delete.svg";
+import "styles/addTask.css";
 
 const AddTask = () => {
   return (
@@ -7,8 +7,6 @@ const AddTask = () => {
       <div>
         <textarea
           className="textarea__edit-text"
-          name=""
-          id=""
           placeholder="Add new task..."
         ></textarea>
       </div>

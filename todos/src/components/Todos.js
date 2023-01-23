@@ -1,7 +1,7 @@
 import React from "react";
-import AddTask from "./AddTask";
-import Task from "./Task";
-import "../styles/todos.css"
+import AddTask from "components/AddTask";
+import Task from "components/Task";
+import "styles/todos.css"
 
 function Todos() {
   return (
