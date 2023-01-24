@@ -1,0 +1,26 @@
+.todo__add_del {
+  align-items: center;
+  width: 7.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.textarea__edit-text {
+  border: 3px solid #dde2ff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 5rem;
+  padding: 5px;
+  width: 100%;
+  resize: none;
+}
+
+.btn__save_button {
+  height: 2.1rem;
+  margin-right: 1rem;
+  min-width: 4rem;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 600;
+}

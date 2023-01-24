@@ -1,0 +1,47 @@
+.navbar {
+  background: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5rem;
+  padding: 0 7.5% 0 6.5%;
+  border: 1px solid #e9eaf3;
+}
+.navbar__logo {
+  color: #7a8dfd;
+  display: flex;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+.navbar__logo h4 {
+  margin-left: 10px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 42px;
+  color: #7a8dfd;
+}
+
+.navbar__search {
+  display: flex;
+}
+
+.navbar__search button {
+  background: #ffffff;
+  border: none;
+}
+
+.navbar__search input {
+  background: #fff;
+  padding: 5px;
+  border: 3px solid #dde2ff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2rem;
+  margin-right: 4px;
+  width: 30rem;
+}

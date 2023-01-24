@@ -1,0 +1,25 @@
+.todo-del-duration {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo__completed-time {
+  align-items: center;
+  background: #7a8dfd;
+  border-radius: 5px;
+  color: #fff;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 400;
+  height: 1.7rem;
+  justify-content: space-around;
+  min-width: 9rem;
+  text-align: center;
+  padding: 5px;
+}
+
+.todo-done-edit-del {
+  display: flex;
+  justify-content: space-between;
+  width: 10rem;
+}

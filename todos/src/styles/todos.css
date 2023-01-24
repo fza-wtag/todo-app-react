@@ -1,0 +1,53 @@
+.all-todos {
+  grid-gap: 2.2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  justify-content: space-between;
+  padding: 1.5% 7.5% 0% 6.5%;
+}
+
+.todo {
+  background: #fff;
+  border: 1px solid #dde2ff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  flex-direction: column;
+  min-height: 10.5rem;
+  min-width: 22rem;
+  padding: 15px;
+  position: relative;
+  word-break: break-word;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.todo__name {
+  font-size: 24px;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  outline: none;
+}
+
+.todo__name--completed {
+  color: #0bc375;
+  text-decoration: line-through;
+}
+
+.todo__name--incomple {
+  color: #2e2e2e;
+}
+
+.todo__date {
+  color: #bbbdd0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.todo__icon-btn {
+  background: none;
+  border: none;
+  padding: 0 20px 0 0;
+}
