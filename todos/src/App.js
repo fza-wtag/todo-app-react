@@ -1,16 +1,17 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import TopContent from "./components/TopContent";
 import Todos from "./components/Todos";
 import LoadMoreBtn from "./components/LoadMoreBtn";
 import EmptyTaskList from "./components/EmptyTaskList";
+import TopContentContext from "./components/TopContent";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <TopContent />
-      <Todos />
+      <TopContentContext>
+        <Todos />
+      </TopContentContext>
       <LoadMoreBtn />
     </div>
   );
