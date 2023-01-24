@@ -5,8 +5,9 @@ import "styles/todos.css";
 import { TopContentContext } from "components/TopContent";
 
 function Todos() {
-  const isAddTaskVisible = useContext(TopContentContext);
-  
+  const { isAddTaskVisible, setIsAddTaskVisible } =
+    useContext(TopContentContext);
+
   return (
     <div className="all-todos">
       {isAddTaskVisible ? <AddTask /> : null}

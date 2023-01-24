@@ -7,10 +7,11 @@ export const TopContentContext = createContext();
 
 const TopContent = (props) => {
   const [isAddTaskVisible, setIsAddTaskVisible] = useState(false);
-  // console.log(isAddTaskVisible);
 
   return (
-    <TopContentContext.Provider value={isAddTaskVisible}>
+    <TopContentContext.Provider
+      value={{ isAddTaskVisible, setIsAddTaskVisible }}
+    >
       <div className="top-content">
         <h1>Add Tasks</h1>
         <div className="top-content__buttons">
