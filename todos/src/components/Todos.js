@@ -12,16 +12,19 @@ function Todos() {
   return (
     <div className="all-todos">
       {isAddTaskVisible ? <AddTask /> : null}
-      {list.map((elem) => {
-        return (
-          <Task
-            myKey={elem.id}
-            name={elem.data}
-            date={elem.date}
-            isCompleted={elem.isCompleted}
-          />
-        );
-      })}
+      {list
+        .slice()
+        .reverse()
+        .map((elem) => {
+          return elem.data ? (
+            <Task
+              myKey={elem.id}
+              name={elem.data}
+              date={elem.date}
+              isCompleted={elem.isCompleted}
+            />
+          ) : null;
+        })}
     </div>
   );
 }

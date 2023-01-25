@@ -24,7 +24,10 @@ const AddTask = () => {
       <div className="todo__add_del">
         <button
           className="btn btn__save_button"
-          onClick={() => dispatch(addTodo(inputData), setInputData(""))}
+          onClick={() => {
+            dispatch(addTodo(inputData), setInputData(""));
+            setIsAddTaskVisible(!isAddTaskVisible);
+          }}
         >
           Add Task
         </button>
