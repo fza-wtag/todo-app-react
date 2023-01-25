@@ -5,7 +5,7 @@ import CompletedTask from "components/CompletedTask"
 
 const Task = (props) => {
   return (
-    <div className="todo">
+    <div className="todo" key= {props.myKey}>
       <div>
         <div>
           <span className={`todo__name ${props.isCompleted ? 'todo__name--completed' : 'todo__name--incomple'}`}>{props.name}</span>
