@@ -2,7 +2,7 @@ import { useContext, useState, useRef, useEffect } from "react";
 import del from "icons/delete.svg";
 import "styles/addTask.css";
 import { TopContentContext } from "components/TopContent";
-import { addTodo } from "actions/index";
+import { addTodo} from "actions/index";
 import { useDispatch } from "react-redux";
 
 const AddTask = () => {
@@ -13,7 +13,6 @@ const AddTask = () => {
     setIsBtnDisabled,
   } = useContext(TopContentContext);
 
-  console.log(isBtnDisabled);
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
@@ -31,13 +30,9 @@ const AddTask = () => {
     }
   };
   const textAreaRef = useRef(null);
-  const handleTextAreaFocus = () => {
-    textAreaRef.current.focus();
-  };
   useEffect(() => {
     textAreaRef.current.focus();
   }, []);
-
 
   return (
     <div className="todo">
