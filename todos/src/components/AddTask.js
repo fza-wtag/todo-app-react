@@ -6,10 +6,30 @@ import { addTodo } from "actions/index";
 import { useDispatch } from "react-redux";
 
 const AddTask = () => {
-  const { isAddTaskVisible, setIsAddTaskVisible } =
-    useContext(TopContentContext);
+  const {
+    isAddTaskVisible,
+    setIsAddTaskVisible,
+    isBtnDisabled,
+    setIsBtnDisabled,
+  } = useContext(TopContentContext);
+
+  console.log(isBtnDisabled);
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
+
+  const addTaskBtnClickJob = () => {
+    setIsAddTaskVisible(!isAddTaskVisible);
+    setIsBtnDisabled(!isBtnDisabled);
+  };
+  const handleKeyUp = (event) => {
+    if (event.keyCode === 13) {
+      //to get the job done with enter button
+      dispatch(addTodo(inputData), setInputData(""));
+      if (inputData !== "") {
+        addTaskBtnClickJob();
+      }
+    }
+  };
 
   return (
     <div className="todo">
@@ -19,21 +39,27 @@ const AddTask = () => {
           placeholder="Add new task..."
           value={inputData}
           onChange={(event) => setInputData(event.target.value)}
+          onKeyUp={handleKeyUp}
         ></textarea>
       </div>
       <div className="todo__add_del">
         <button
           className="btn btn__save_button"
-          onClick={() => {
+          onClick={(event) => {
             dispatch(addTodo(inputData), setInputData(""));
-            setIsAddTaskVisible(!isAddTaskVisible);
+            if (inputData !== "") {
+              addTaskBtnClickJob();
+            }
           }}
         >
           Add Task
         </button>
         <button
           className="todo__icon-btn"
-          onClick={() => setIsAddTaskVisible(!isAddTaskVisible)}
+          onClick={() => {
+            setIsAddTaskVisible(!isAddTaskVisible);
+            setIsBtnDisabled(!isBtnDisabled);
+          }}
         >
           <img src={del} alt="icon"></img>
         </button>
