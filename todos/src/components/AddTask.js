@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import del from "icons/delete.svg";
 import "styles/addTask.css";
 import { TopContentContext } from "components/TopContent";
@@ -30,6 +30,14 @@ const AddTask = () => {
       }
     }
   };
+  const textAreaRef = useRef(null);
+  const handleTextAreaFocus = () => {
+    textAreaRef.current.focus();
+  };
+  useEffect(() => {
+    textAreaRef.current.focus();
+  }, []);
+
 
   return (
     <div className="todo">
@@ -40,6 +48,7 @@ const AddTask = () => {
           value={inputData}
           onChange={(event) => setInputData(event.target.value)}
           onKeyUp={handleKeyUp}
+          ref={textAreaRef}
         ></textarea>
       </div>
       <div className="todo__add_del">
