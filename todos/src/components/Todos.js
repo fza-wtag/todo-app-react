@@ -14,18 +14,17 @@ function Todos() {
     <div>
       <div className="all-todos">
         {isAddTaskVisible ? <AddTask /> : null}
-        {list
-          .map((elem) => {
-            return elem.data ? (
-              <Task
-                key={elem.id}
-                id={elem.id}
-                name={elem.data}
-                date={elem.date}
-                isCompleted={elem.isCompleted}
-              />
-            ) : null;
-          })}
+        {list.map((elem) => {
+          return elem.data ? (
+            <Task
+              key={elem.id}
+              id={elem.id}
+              name={elem.data}
+              date={elem.date}
+              isCompleted={elem.isCompleted}
+            />
+          ) : null;
+        })}
       </div>
       {list.length === 0 && !isAddTaskVisible ? <EmptyTaskList /> : null}
     </div>

@@ -36,6 +36,19 @@ const todoReducers = (state = initialData, action) => {
         list: newList,
       };
 
+    case "UPDATE_COMPLETED":
+      const updatedList = state.list.map((todo) => {
+        if (todo.id === action.taskId) {
+          return { ...todo, isCompleted: action.isCompleted };
+        }
+        return todo;
+      });
+
+      return {
+        ...state,
+        list: updatedList,
+      };
+
     default:
       return state;
   }

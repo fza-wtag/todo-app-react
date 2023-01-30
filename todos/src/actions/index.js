@@ -14,3 +14,11 @@ export const deleteTodo = (id) => {
     id,
   };
 };
+
+export const updateCompleted = (taskId, isCompleted) => {
+  return {
+    type: 'UPDATE_COMPLETED',
+    taskId,
+    isCompleted
+  }
+}
