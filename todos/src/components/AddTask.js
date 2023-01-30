@@ -16,7 +16,7 @@ const AddTask = () => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
-  const addTaskBtnClickJob = () => {
+  const addTaskBtnClick = () => {
     setIsAddTaskVisible(!isAddTaskVisible);
     setIsBtnDisabled(!isBtnDisabled);
   };
@@ -25,7 +25,7 @@ const AddTask = () => {
       //to get the job done with enter button
       dispatch(addTodo(inputData), setInputData(""));
       if (inputData !== "") {
-        addTaskBtnClickJob();
+        addTaskBtnClick();
       }
     }
   };
@@ -52,7 +52,7 @@ const AddTask = () => {
           onClick={(event) => {
             dispatch(addTodo(inputData), setInputData(""));
             if (inputData !== "") {
-              addTaskBtnClickJob();
+              addTaskBtnClick();
             }
           }}
         >
