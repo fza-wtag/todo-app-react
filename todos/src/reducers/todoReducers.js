@@ -23,7 +23,9 @@ const todoReducers = (state = initialData, action) => {
             isCompleted: false,
             date: newDate,
           },
-        ],
+        ]
+          .slice()
+          .reverse(),
       };
     default:
       return state;

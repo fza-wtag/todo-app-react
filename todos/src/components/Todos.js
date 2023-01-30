@@ -15,8 +15,6 @@ function Todos() {
       <div className="all-todos">
         {isAddTaskVisible ? <AddTask /> : null}
         {list
-          .slice()
-          .reverse()
           .map((elem) => {
             return elem.data ? (
               <Task
