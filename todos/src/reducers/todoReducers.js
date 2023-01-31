@@ -5,7 +5,7 @@ const initialData = {
 const todoReducers = (state = initialData, action) => {
   switch (action.type) {
     case "ADD_TODO":
-      const { id, data, date, completedDate } = action.payload;
+      const { id, data, isCompleted, date, completedDate } = action.payload;
       return {
         ...state,
         list: [
@@ -13,7 +13,7 @@ const todoReducers = (state = initialData, action) => {
           {
             id: id,
             data: data,
-            isCompleted: false,
+            isCompleted: isCompleted,
             date: date,
             completedDate: completedDate,
           },
@@ -35,7 +35,7 @@ const todoReducers = (state = initialData, action) => {
           return {
             ...todo,
             isCompleted: action.isCompleted,
-            date: action.date, //eikhane kaj korte hobe
+            date: action.date,
             completedDate: action.completedDate,
           };
         }

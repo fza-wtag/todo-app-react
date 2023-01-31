@@ -4,6 +4,7 @@ export const addTodo = (data) => {
     payload: {
       id: new Date().getTime().toString(),
       data,
+      isCompleted: false,
       date: new Date().toLocaleDateString(),
       completedDate: "Hello",
     },
