@@ -4,6 +4,10 @@ import IncompleteTask from "components/IncompleteTask";
 import CompletedTask from "components/CompletedTask";
 
 const Task = (props) => {
+  //formating the dates as dd.mm.yy
+  const [day, month, year] = props.date.split("/");
+  const date = `${day}.${month}.${year}`;
+  
   return (
     <div className="todo">
       <div>
@@ -18,7 +22,7 @@ const Task = (props) => {
             {props.title}
           </span>
         </div>
-        <span className="todo__date">Created At: {props.date}</span>
+        <span className="todo__date">Created At: {date}</span>
       </div>
       {props.isCompleted ? (
         <CompletedTask
