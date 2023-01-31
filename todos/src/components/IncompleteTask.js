@@ -10,9 +10,8 @@ function IncompleteTask(props) {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(updateCompleted(props.id, true));
+    dispatch(updateCompleted(props.id, true, props.date, props.completedDate));
   };
-
   return (
     <div className="todo__done-edit-del">
       <button className="todo__icon-btn" onClick={handleClick}>

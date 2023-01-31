@@ -10,6 +10,7 @@ function Todos() {
   const { isAddTaskVisible, setIsAddTaskVisible } =
     useContext(TopContentContext);
   const list = useSelector((state) => state.todoReducers.list);
+
   return (
     <div>
       <div className="all-todos">
@@ -19,9 +20,10 @@ function Todos() {
             <Task
               key={elem.id}
               id={elem.id}
-              name={elem.data}
-              date={elem.date}
+              title={elem.data}
               isCompleted={elem.isCompleted}
+              date={elem.date}
+              completedDate={elem.completedDate}
             />
           ) : null;
         })}

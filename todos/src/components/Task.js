@@ -15,15 +15,25 @@ const Task = (props) => {
                 : "todo__name--incomple"
             }`}
           >
-            {props.name}
+            {props.title}
           </span>
         </div>
         <span className="todo__date">Created At: {props.date}</span>
       </div>
       {props.isCompleted ? (
-        <CompletedTask id={props.id} />
+        <CompletedTask
+          id={props.id}
+          date={props.date}
+          isCompleted={props.isCompleted}
+          completedDate={props.completedDate}
+        />
       ) : (
-        <IncompleteTask id={props.id} />
+        <IncompleteTask
+          id={props.id}
+          date={props.date}
+          isCompleted={props.isCompleted}
+          completedDate={props.completedDate}
+        />
       )}
     </div>
   );

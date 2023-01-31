@@ -5,14 +5,7 @@ const initialData = {
 const todoReducers = (state = initialData, action) => {
   switch (action.type) {
     case "ADD_TODO":
-      const { id, data } = action.payload;
-
-      let dateObj = new Date();
-      let month = dateObj.getUTCMonth() + 1; //months from 1-12
-      let day = dateObj.getUTCDate();
-      let year = dateObj.getUTCFullYear();
-      let newDate = `${day}.${month}.${year}`; //formating date as per the design
-
+      const { id, data, date, completedDate } = action.payload;
       return {
         ...state,
         list: [
@@ -21,7 +14,8 @@ const todoReducers = (state = initialData, action) => {
             id: id,
             data: data,
             isCompleted: false,
-            date: newDate,
+            date: date,
+            completedDate: completedDate,
           },
         ]
           .slice()
@@ -30,7 +24,6 @@ const todoReducers = (state = initialData, action) => {
 
     case "DELETE_TODO":
       const newList = state.list.filter((elem) => elem.id !== action.id);
-
       return {
         ...state,
         list: newList,
@@ -38,8 +31,13 @@ const todoReducers = (state = initialData, action) => {
 
     case "UPDATE_COMPLETED":
       const updatedList = state.list.map((todo) => {
-        if (todo.id === action.taskId) {
-          return { ...todo, isCompleted: action.isCompleted };
+        if (todo.id === action.id) {
+          return {
+            ...todo,
+            isCompleted: action.isCompleted,
+            date: action.date, //eikhane kaj korte hobe
+            completedDate: action.completedDate,
+          };
         }
         return todo;
       });

@@ -3,7 +3,9 @@ export const addTodo = (data) => {
     type: "ADD_TODO",
     payload: {
       id: new Date().getTime().toString(),
-      data: data,
+      data,
+      date: new Date().toLocaleDateString(),
+      completedDate: "Hello",
     },
   };
 };
@@ -15,10 +17,12 @@ export const deleteTodo = (id) => {
   };
 };
 
-export const updateCompleted = (taskId, isCompleted) => {
+export const updateCompleted = (id, isCompleted, date, completedDate) => {
   return {
-    type: 'UPDATE_COMPLETED',
-    taskId,
-    isCompleted
-  }
-}
+    type: "UPDATE_COMPLETED",
+    id,
+    isCompleted,
+    date,
+    completedDate: new Date().toLocaleDateString(),
+  };
+};
