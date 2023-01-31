@@ -1,20 +1,26 @@
 import React from "react";
-import "styles/task.css"
-import IncompleteTask from "components/IncompleteTask"
-import CompletedTask from "components/CompletedTask"
+import "styles/task.css";
+import IncompleteTask from "components/IncompleteTask";
+import CompletedTask from "components/CompletedTask";
+import classNames from "classnames";
 
 const Task = (props) => {
   return (
-    <div className="todo" key= {props.myKey}>
+    <div className="todo__wrapper" key={props.myKey}>
       <div>
         <div>
-          <span className={`todo__name ${props.isCompleted ? 'todo__name--completed' : 'todo__name--incomple'}`}>{props.name}</span>
+          <span
+            className={classNames("todo__name", {
+              "todo__name--completed": props.isCompleted,
+              "todo__name--incomple": !props.isCompleted,
+            })}
+          >
+            {props.name}
+          </span>
         </div>
         <span className="todo__date">Created At: {props.date}</span>
       </div>
-      { 
-        props.isCompleted ? <CompletedTask /> : <IncompleteTask />
-      }
+      {props.isCompleted ? <CompletedTask /> : <IncompleteTask />}
     </div>
   );
 };

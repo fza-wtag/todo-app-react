@@ -16,7 +16,7 @@ const AddTask = () => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
-  const addTaskBtnClick = () => {
+  const onCreateTask = () => {
     setIsAddTaskVisible(!isAddTaskVisible);
     setIsBtnDisabled(!isBtnDisabled);
   };
@@ -25,7 +25,7 @@ const AddTask = () => {
       //to get the job done with enter button
       dispatch(addTodo(inputData), setInputData(""));
       if (inputData !== "") {
-        addTaskBtnClick();
+        onCreateTask();
       }
     }
   };
@@ -37,9 +37,8 @@ const AddTask = () => {
     textAreaRef.current.focus();
   }, []);
 
-
   return (
-    <div className="todo">
+    <div className="todo__wrapper">
       <div>
         <textarea
           className="textarea__edit-text"
@@ -56,7 +55,7 @@ const AddTask = () => {
           onClick={(event) => {
             dispatch(addTodo(inputData), setInputData(""));
             if (inputData !== "") {
-              addTaskBtnClick();
+              onCreateTask();
             }
           }}
         >
