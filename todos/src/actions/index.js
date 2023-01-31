@@ -6,7 +6,8 @@ export const addTodo = (data) => {
       data,
       isCompleted: false,
       date: new Date().toLocaleDateString(),
-      completedDate: "Hello",
+      completedDate: null,
+      dateNow: Date.now(),
     },
   };
 };

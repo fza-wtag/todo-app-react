@@ -5,7 +5,9 @@ const initialData = {
 const todoReducers = (state = initialData, action) => {
   switch (action.type) {
     case "ADD_TODO":
-      const { id, data, isCompleted, date, completedDate } = action.payload;
+      const { id, data, isCompleted, date, completedDate, dateNow } =
+        action.payload;
+      console.log(dateNow);
       return {
         ...state,
         list: [
@@ -16,10 +18,9 @@ const todoReducers = (state = initialData, action) => {
             isCompleted: isCompleted,
             date: date,
             completedDate: completedDate,
+            dateNow: dateNow,
           },
-        ]
-          .slice()
-          .reverse(),
+        ].sort((a, b) => b.dateNow - a.dateNow),
       };
 
     case "DELETE_TODO":

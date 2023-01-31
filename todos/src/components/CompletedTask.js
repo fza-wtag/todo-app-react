@@ -5,7 +5,7 @@ import { deleteTodo } from "actions/index";
 
 function CompletedTask(props) {
   const dispatch = useDispatch();
-  
+
   //formating the dates as MM/DD/YY from DD/MM/YY
   const [startingDay, startingMonth, startingYear] = props.date.split("/");
   const startingDate = `${startingMonth}/${startingDay}/${startingYear}`;
@@ -29,12 +29,10 @@ function CompletedTask(props) {
         <img src={del} alt="icon"></img>
       </button>
       {differenceInDays === 0 ? (
-        <span className="todo__completed-time">
-          Completed in a day
-        </span>
+        <span className="todo__completed-time">Completed in a day</span>
       ) : (
         <span className="todo__completed-time">
-          Completed in {differenceInDays} days
+          Completed in {differenceInDays + 1} days
         </span>
       )}
     </div>
