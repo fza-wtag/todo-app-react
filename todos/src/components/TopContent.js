@@ -8,27 +8,27 @@ export const TopContentContext = createContext();
 
 const TopContent = (props) => {
   const [isAddTaskVisible, setIsAddTaskVisible] = useState(false);
-  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+  const [isCreatedBtnDisabled, setIsCreatedBtnDisabled] = useState(false);
 
   return (
     <TopContentContext.Provider
       value={{
         isAddTaskVisible,
         setIsAddTaskVisible,
-        isBtnDisabled,
-        setIsBtnDisabled,
+        isCreatedBtnDisabled,
+        setIsCreatedBtnDisabled,
       }}
     >
       <div className="top-content">
         <h1>Add Tasks</h1>
         <div className="top-content__buttons">
           <button
-            disabled={isBtnDisabled}
+            disabled={isCreatedBtnDisabled}
             className={`btn btn__create_button ${
-              isBtnDisabled ? "btn__create_button--blur" : ""
+              isCreatedBtnDisabled ? "btn__create_button--blur" : ""
             }`}
             onClick={(event) => {
-              setIsBtnDisabled(!isBtnDisabled);
+              setIsCreatedBtnDisabled(!isCreatedBtnDisabled);
               setIsAddTaskVisible(!isAddTaskVisible);
             }}
           >

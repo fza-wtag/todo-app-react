@@ -9,8 +9,8 @@ const AddTask = () => {
   const {
     isAddTaskVisible,
     setIsAddTaskVisible,
-    isBtnDisabled,
-    setIsBtnDisabled,
+    isCreatedBtnDisabled,
+    setIsCreatedBtnDisabled,
   } = useContext(TopContentContext);
 
   const [inputData, setInputData] = useState("");
@@ -18,7 +18,7 @@ const AddTask = () => {
 
   const onCreateTask = () => {
     setIsAddTaskVisible(!isAddTaskVisible);
-    setIsBtnDisabled(!isBtnDisabled);
+    setIsCreatedBtnDisabled(!isCreatedBtnDisabled);
   };
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
@@ -65,7 +65,7 @@ const AddTask = () => {
           className="todo__icon-btn"
           onClick={() => {
             setIsAddTaskVisible(!isAddTaskVisible);
-            setIsBtnDisabled(!isBtnDisabled);
+            setIsCreatedBtnDisabled(!isCreatedBtnDisabled);
           }}
         >
           <img src={del} alt="icon"></img>
