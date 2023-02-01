@@ -7,7 +7,6 @@ const todoReducers = (state = initialData, action) => {
     case "ADD_TODO":
       const { id, data, isCompleted, date, completedDate, dateNow } =
         action.payload;
-      console.log(dateNow);
       return {
         ...state,
         list: [
