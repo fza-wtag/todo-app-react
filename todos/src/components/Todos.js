@@ -1,22 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
 import AddTask from "components/AddTask";
 import Task from "components/Task";
 import "styles/todos.css";
-import { TopContentContext } from "components/TopContent";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "./EmptyTaskList";
 
 function Todos() {
-  useContext(TopContentContext);
   const list = useSelector((state) => state.todoReducers.list);
-  const isAddTaskVisible2 = useSelector(
+  const isAddTaskVisible = useSelector(
     (state) => state.toggleReducers.isAddTaskVisible
   );
+  console.log(isAddTaskVisible);
+  console.log(list);
 
   return (
     <div>
       <div className="all-todos">
-        {isAddTaskVisible2 ? <AddTask /> : null}
+        {isAddTaskVisible ? <AddTask /> : null}
         {list.map((elem) => {
           return elem.data ? (
             <Task
@@ -30,7 +30,7 @@ function Todos() {
           ) : null;
         })}
       </div>
-      {list.length === 0 && !isAddTaskVisible2 ? <EmptyTaskList /> : null}
+      {list.length === 0 && !isAddTaskVisible ? <EmptyTaskList /> : null}
     </div>
   );
 }

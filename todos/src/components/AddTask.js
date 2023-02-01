@@ -1,28 +1,30 @@
-import { useContext, useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import del from "icons/delete.svg";
 import "styles/addTask.css";
-import { TopContentContext } from "components/TopContent";
 import { addTodo } from "actions/index";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { toggleAddTaskVisibility } from "actions/index";
+import {
+  toggleAddTaskVisibility,
+  toggleAddTaskButtonVisibility,
+} from "actions/index";
 
 const AddTask = () => {
-  const {
-    isBtnDisabled,
-    setIsBtnDisabled,
-  } = useContext(TopContentContext);
 
-  const isAddTaskVisible2 = useSelector(
+  const isAddTaskVisible = useSelector(
     (state) => state.toggleReducers.isAddTaskVisible
+  );
+
+  const isCreateBtnDisabled = useSelector(
+    (state) => state.toggleReducers.isCreateBtnDisabled
   );
 
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
   const addTaskBtnClick = () => {
-    setIsBtnDisabled(!isBtnDisabled);
-    dispatch(toggleAddTaskVisibility(!isAddTaskVisible2)); //chnaged here
+    dispatch(toggleAddTaskButtonVisibility(!isCreateBtnDisabled));
+    dispatch(toggleAddTaskVisibility(!isAddTaskVisible)); //chnaged here
   };
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
@@ -65,8 +67,8 @@ const AddTask = () => {
         <button
           className="todo__icon-btn"
           onClick={() => {
-            dispatch(toggleAddTaskVisibility(!isAddTaskVisible2));
-            setIsBtnDisabled(!isBtnDisabled);
+            dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
+            dispatch(toggleAddTaskButtonVisibility(!isCreateBtnDisabled));
           }}
         >
           <img src={del} alt="icon"></img>
