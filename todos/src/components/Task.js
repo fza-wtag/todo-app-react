@@ -4,7 +4,6 @@ import IncompleteTask from "components/IncompleteTask";
 import CompletedTask from "components/CompletedTask";
 
 const Task = (props) => {
-  //formating the dates as dd.mm.yy
   const [day, month, year] = props.date.split("/");
   const date = `${day}.${month}.${year}`;
   
