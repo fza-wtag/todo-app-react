@@ -8,9 +8,9 @@ import { toggleAddTaskVisibility } from "actions/index";
 export const TopContentContext = createContext();
 
 const TopContent = (props) => {
-  const [isAddTaskVisible, setIsAddTaskVisible] = useState(false);
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
-
+  const isAddTaskVisible = false;
+  
   const dispatch = useDispatch();
 
   const handleCreateButtonClick = () => {
@@ -21,8 +21,6 @@ const TopContent = (props) => {
   return (
     <TopContentContext.Provider
       value={{
-        isAddTaskVisible,
-        setIsAddTaskVisible,
         isBtnDisabled,
         setIsBtnDisabled,
       }}

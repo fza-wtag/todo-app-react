@@ -9,8 +9,6 @@ import { toggleAddTaskVisibility } from "actions/index";
 
 const AddTask = () => {
   const {
-    isAddTaskVisible,
-    setIsAddTaskVisible,
     isBtnDisabled,
     setIsBtnDisabled,
   } = useContext(TopContentContext);
