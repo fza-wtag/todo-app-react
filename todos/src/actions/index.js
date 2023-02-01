@@ -28,3 +28,10 @@ export const updateCompleted = (id, isCompleted, date, completedDate) => {
     completedDate: new Date().toLocaleDateString(),
   };
 };
+
+export const toggleAddTaskVisibility = (isAddTaskVisible) => {
+  return {
+    type: "TOGGLE_ADD_TASK_VISIBILITY",
+    isAddTaskVisible,
+  };
+};

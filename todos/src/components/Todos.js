@@ -10,11 +10,14 @@ function Todos() {
   const { isAddTaskVisible, setIsAddTaskVisible } =
     useContext(TopContentContext);
   const list = useSelector((state) => state.todoReducers.list);
+  const isAddTaskVisible2 = useSelector(
+    (state) => state.toggleReducers.isAddTaskVisible
+  );
 
   return (
     <div>
       <div className="all-todos">
-        {isAddTaskVisible ? <AddTask /> : null}
+        {isAddTaskVisible2 ? <AddTask /> : null}
         {list.map((elem) => {
           return elem.data ? (
             <Task
@@ -28,7 +31,7 @@ function Todos() {
           ) : null;
         })}
       </div>
-      {list.length === 0 && !isAddTaskVisible ? <EmptyTaskList /> : null}
+      {list.length === 0 && !isAddTaskVisible2 ? <EmptyTaskList /> : null}
     </div>
   );
 }

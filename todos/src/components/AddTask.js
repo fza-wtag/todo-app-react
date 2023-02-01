@@ -2,8 +2,10 @@ import { useContext, useState, useRef, useEffect } from "react";
 import del from "icons/delete.svg";
 import "styles/addTask.css";
 import { TopContentContext } from "components/TopContent";
-import { addTodo} from "actions/index";
+import { addTodo } from "actions/index";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { toggleAddTaskVisibility } from "actions/index";
 
 const AddTask = () => {
   const {
@@ -13,12 +15,16 @@ const AddTask = () => {
     setIsBtnDisabled,
   } = useContext(TopContentContext);
 
+  const isAddTaskVisible2 = useSelector(
+    (state) => state.toggleReducers.isAddTaskVisible
+  );
+
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
   const addTaskBtnClick = () => {
-    setIsAddTaskVisible(!isAddTaskVisible);
     setIsBtnDisabled(!isBtnDisabled);
+    dispatch(toggleAddTaskVisibility(!isAddTaskVisible2)); //chnaged here
   };
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
@@ -61,7 +67,7 @@ const AddTask = () => {
         <button
           className="todo__icon-btn"
           onClick={() => {
-            setIsAddTaskVisible(!isAddTaskVisible);
+            dispatch(toggleAddTaskVisibility(!isAddTaskVisible2));
             setIsBtnDisabled(!isBtnDisabled);
           }}
         >
