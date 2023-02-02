@@ -2,11 +2,19 @@ import React from "react";
 import "styles/task.css";
 import IncompleteTask from "components/IncompleteTask";
 import CompletedTask from "components/CompletedTask";
+import { useDispatch, useSelector } from "react-redux";
 
 const Task = (props) => {
   //formating the dates as dd.mm.yy
   const [day, month, year] = props.date.split("/");
   const date = `${day}.${month}.${year}`;
+
+  const myList = useSelector((state) => state.todoReducers.list).find(
+    (task) => task.id === props.id
+  );
+  const onEdit = myList.onEdit;
+
+  console.log(onEdit);
 
   return (
     <div className="todo">

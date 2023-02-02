@@ -18,9 +18,6 @@ function IncompleteTask(props) {
     dispatch(editTodo(props.id, props.onEdit));
   };
 
-  // const onEdit = useSelector((state) => state.todoReducers.list[0].onEdit);
-  // console.log(onEdit);
-
   return (
     <div className="todo__done-edit-del">
       <button className="todo__icon-btn" onClick={doneHandleClick}>

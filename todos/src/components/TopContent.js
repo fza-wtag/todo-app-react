@@ -1,12 +1,11 @@
 import React from "react";
 import "styles/topContent.css";
 import FilterButtons from "components/FilterButtons.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
 } from "actions/index";
-import { useSelector } from "react-redux";
 
 const TopContent = (props) => {
   const isAddTaskVisible = useSelector(
