@@ -39,6 +39,13 @@ const AddTask = () => {
     textAreaRef.current.focus();
   }, []);
 
+  const handleAddTaskButtonClick = () => {
+    dispatch(addTodo(inputData), setInputData(""));
+    if (inputData !== "") {
+      handleClick();
+    }
+  };
+
   return (
     <div className="todo">
       <div>
@@ -54,12 +61,7 @@ const AddTask = () => {
       <div className="todo__add_del">
         <button
           className="btn btn__save_button"
-          onClick={(event) => {
-            dispatch(addTodo(inputData), setInputData(""));
-            if (inputData !== "") {
-              handleClick();
-            }
-          }}
+          onClick={handleAddTaskButtonClick}
         >
           Add Task
         </button>
