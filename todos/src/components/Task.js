@@ -15,12 +15,17 @@ const Task = (props) => {
     (task) => task.id === props.id
   );
   const onEdit = myList.onEdit;
-  console.log(onEdit);
 
   return (
     <div>
       {onEdit ? (
-        <EditTask id={props.id} />
+        <EditTask
+          id={props.id}
+          date={props.date}
+          isCompleted={props.isCompleted}
+          completedDate={props.completedDate}
+          onEdit={props.onEdit}
+        />
       ) : (
         <div className="todo">
           <div>

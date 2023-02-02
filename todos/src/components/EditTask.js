@@ -23,7 +23,8 @@ const EditTask = (props) => {
   }, []);
 
   const doneHandleClick = () => {
-    //dispatch(updateCompleted(props.id, true, props.date, props.completedDate));
+    dispatch(updateCompleted(props.id, true, props.date, props.completedDate));
+    console.log("done clicked");
   };
   const deleteHandleClick = () => {
     dispatch(deleteTodo(props.id));
@@ -44,7 +45,7 @@ const EditTask = (props) => {
       <div className="todo__save_done_del">
         <button className="btn btn__save_button">Save</button>
 
-        <button className="todo__icon-btn">
+        <button className="todo__icon-btn" onClick={doneHandleClick}>
           <img src={done} alt="icon"></img>
         </button>
 
