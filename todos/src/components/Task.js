@@ -7,7 +7,7 @@ const Task = (props) => {
   //formating the dates as dd.mm.yy
   const [day, month, year] = props.date.split("/");
   const date = `${day}.${month}.${year}`;
-  
+
   return (
     <div className="todo">
       <div>
@@ -37,6 +37,7 @@ const Task = (props) => {
           date={props.date}
           isCompleted={props.isCompleted}
           completedDate={props.completedDate}
+          onEdit={props.onEdit}
         />
       )}
     </div>

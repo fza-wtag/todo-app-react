@@ -3,7 +3,7 @@ import AddTask from "components/AddTask";
 import Task from "components/Task";
 import "styles/todos.css";
 import { useSelector } from "react-redux";
-import EmptyTaskList from "./EmptyTaskList";
+import EmptyTaskList from "components/EmptyTaskList";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);
@@ -24,6 +24,7 @@ function Todos() {
               isCompleted={elem.isCompleted}
               date={elem.date}
               completedDate={elem.completedDate}
+              onEdit={elem.onEdit}
             />
           ) : null;
         })}

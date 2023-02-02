@@ -8,6 +8,7 @@ export const addTodo = (data) => {
       date: new Date().toLocaleDateString(),
       completedDate: null,
       dateNow: Date.now(),
+      onEdit: false,
     },
   };
 };
@@ -40,5 +41,13 @@ export const toggleAddTaskButtonVisibility = (isCreateButtonDisabled) => {
   return {
     type: "TOGGLE_ADD_TASK_BUTTON_VISIBILITY",
     isCreateButtonDisabled,
+  };
+};
+
+export const editTodo = (id, onEdit) => {
+  return {
+    type: "EDIT_TODO",
+    id,
+    onEdit: !onEdit,
   };
 };
