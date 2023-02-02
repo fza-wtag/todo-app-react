@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import del from "icons/delete.svg";
+import done from "icons/done.svg";
 import "styles/addTask.css";
 import { addTodo } from "actions/index";
 import { useDispatch } from "react-redux";
@@ -21,6 +22,10 @@ const EditTask = () => {
     textAreaRef.current.focus();
   }, []);
 
+  const doneHandleClick = () => {
+    //dispatch(updateCompleted(props.id, true, props.date, props.completedDate));
+  };
+
   return (
     <div className="todo">
       <div>
@@ -33,12 +38,13 @@ const EditTask = () => {
           ref={textAreaRef}
         ></textarea>
       </div>
-      <div className="todo__add_del">
-        <button
-          className="btn btn__save_button"
-        >
-          Save
+      <div className="todo__save_done_del">
+        <button className="btn btn__save_button">Save</button>
+
+        <button className="todo__icon-btn">
+          <img src={done} alt="icon"></img>
         </button>
+
         <button className="todo__icon-btn">
           <img src={del} alt="icon"></img>
         </button>
