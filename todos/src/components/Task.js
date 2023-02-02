@@ -16,12 +16,11 @@ const Task = (props) => {
   );
   const onEdit = myList.onEdit;
   console.log(onEdit);
-  
 
   return (
     <div>
       {onEdit ? (
-        <EditTask />
+        <EditTask id={props.id} />
       ) : (
         <div className="todo">
           <div>

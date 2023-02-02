@@ -4,9 +4,9 @@ import done from "icons/done.svg";
 import "styles/addTask.css";
 import { addTodo } from "actions/index";
 import { useDispatch } from "react-redux";
+import { deleteTodo, updateCompleted, editTodo } from "actions/index";
 
-
-const EditTask = () => {
+const EditTask = (props) => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
   const handleKeyUp = (event) => {
@@ -24,6 +24,9 @@ const EditTask = () => {
 
   const doneHandleClick = () => {
     //dispatch(updateCompleted(props.id, true, props.date, props.completedDate));
+  };
+  const deleteHandleClick = () => {
+    dispatch(deleteTodo(props.id));
   };
 
   return (
@@ -45,7 +48,7 @@ const EditTask = () => {
           <img src={done} alt="icon"></img>
         </button>
 
-        <button className="todo__icon-btn">
+        <button className="todo__icon-btn" onClick={deleteHandleClick}>
           <img src={del} alt="icon"></img>
         </button>
       </div>
