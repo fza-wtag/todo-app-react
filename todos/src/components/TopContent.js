@@ -12,12 +12,12 @@ const TopContent = (props) => {
   const isAddTaskVisible = useSelector(
     (state) => state.toggleReducers.isAddTaskVisible
   );
-  const isCreateBtnDisabled = useSelector(
-    (state) => state.toggleReducers.isCreateBtnDisabled
+  const isCreateButtonDisabled = useSelector(
+    (state) => state.toggleReducers.isCreateButtonDisabled
   );
   const dispatch = useDispatch();
   const handleCreateButtonClick = () => {
-    dispatch(toggleAddTaskButtonVisibility(isCreateBtnDisabled));
+    dispatch(toggleAddTaskButtonVisibility(isCreateButtonDisabled));
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
   };
 
@@ -26,9 +26,9 @@ const TopContent = (props) => {
       <h1>Add Tasks</h1>
       <div className="top-content__buttons">
         <button
-          disabled={isCreateBtnDisabled}
+          disabled={isCreateButtonDisabled}
           className={`btn btn__create_button ${
-            isCreateBtnDisabled ? "btn__create_button--blur" : ""
+            isCreateButtonDisabled ? "btn__create_button--blur" : ""
           }`}
           onClick={handleCreateButtonClick}
         >

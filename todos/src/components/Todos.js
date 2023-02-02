@@ -10,8 +10,6 @@ function Todos() {
   const isAddTaskVisible = useSelector(
     (state) => state.toggleReducers.isAddTaskVisible
   );
-  console.log(isAddTaskVisible);
-  console.log(list);
 
   return (
     <div>

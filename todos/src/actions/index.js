@@ -36,9 +36,9 @@ export const toggleAddTaskVisibility = (isAddTaskVisible) => {
   };
 };
 
-export const toggleAddTaskButtonVisibility = (isCreateBtnDisabled) => {
+export const toggleAddTaskButtonVisibility = (isCreateButtonDisabled) => {
   return {
     type: "TOGGLE_ADD_TASK_BUTTON_VISIBILITY",
-    isCreateBtnDisabled,
+    isCreateButtonDisabled,
   };
 };

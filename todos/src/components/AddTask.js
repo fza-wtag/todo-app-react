@@ -10,28 +10,27 @@ import {
 } from "actions/index";
 
 const AddTask = () => {
-
   const isAddTaskVisible = useSelector(
     (state) => state.toggleReducers.isAddTaskVisible
   );
 
-  const isCreateBtnDisabled = useSelector(
-    (state) => state.toggleReducers.isCreateBtnDisabled
+  const isCreateButtonDisabled = useSelector(
+    (state) => state.toggleReducers.isCreateButtonDisabled
   );
 
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
-  const addTaskBtnClick = () => {
-    dispatch(toggleAddTaskButtonVisibility(!isCreateBtnDisabled));
-    dispatch(toggleAddTaskVisibility(!isAddTaskVisible)); //chnaged here
+  const handleClick = () => {
+    dispatch(toggleAddTaskButtonVisibility(!isCreateButtonDisabled));
+    dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
   };
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
       //to get the job done with enter button
       dispatch(addTodo(inputData), setInputData(""));
       if (inputData !== "") {
-        addTaskBtnClick();
+        handleClick();
       }
     }
   };
@@ -58,19 +57,13 @@ const AddTask = () => {
           onClick={(event) => {
             dispatch(addTodo(inputData), setInputData(""));
             if (inputData !== "") {
-              addTaskBtnClick();
+              handleClick();
             }
           }}
         >
           Add Task
         </button>
-        <button
-          className="todo__icon-btn"
-          onClick={() => {
-            dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
-            dispatch(toggleAddTaskButtonVisibility(!isCreateBtnDisabled));
-          }}
-        >
+        <button className="todo__icon-btn" onClick={handleClick}>
           <img src={del} alt="icon"></img>
         </button>
       </div>
