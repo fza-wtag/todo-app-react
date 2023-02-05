@@ -3,7 +3,7 @@ import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import "styles/addTask.css";
 import { useDispatch } from "react-redux";
-import { deleteTodo, editUpdateCompleted, updateTodo } from "actions/index";
+import {editUpdateCompleted, updateTodo } from "actions/index";
 
 const EditTask = (props) => {
   const [inputData, setInputData] = useState("");
@@ -33,7 +33,7 @@ const EditTask = (props) => {
     console.log("done clicked");
   };
   const deleteHandleClick = () => {
-    dispatch(deleteTodo(props.id));
+    dispatch(updateTodo(props.id, inputData, props.onEdit), setInputData(""));
   };
   const saveHandleClick = () => {
     dispatch(updateTodo(props.id, inputData, props.onEdit), setInputData(""));
