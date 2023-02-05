@@ -3,7 +3,6 @@ import "styles/task.css";
 import IncompleteTask from "components/IncompleteTask";
 import CompletedTask from "components/CompletedTask";
 import classNames from "classnames";
-
 const Task = (props) => {
   return (
     <div className="todo__wrapper" key={props.myKey}>
