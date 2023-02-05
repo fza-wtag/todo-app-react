@@ -26,7 +26,7 @@ export const updateCompleted = (id, isCompleted, date, completedDate) => {
     id,
     isCompleted,
     date,
-    completedDate: new Date().toLocaleDateString(),
+    completedDate,
   };
 };
 
@@ -49,5 +49,16 @@ export const editTodo = (id, onEdit) => {
     type: "EDIT_TODO",
     id,
     onEdit: !onEdit,
+  };
+};
+
+export const editUpdateCompleted = (id, isCompleted, date, completedDate, onEdit) => {
+  return {
+    type: "EDIT_UPDATE_COMPLETED",
+    id,
+    isCompleted,
+    date,
+    completedDate,
+    onEdit,
   };
 };

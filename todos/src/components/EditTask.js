@@ -4,7 +4,7 @@ import done from "icons/done.svg";
 import "styles/addTask.css";
 import { addTodo } from "actions/index";
 import { useDispatch } from "react-redux";
-import { deleteTodo, updateCompleted} from "actions/index";
+import { deleteTodo, editUpdateCompleted } from "actions/index";
 
 const EditTask = (props) => {
   const [inputData, setInputData] = useState("");
@@ -25,7 +25,7 @@ const EditTask = (props) => {
   }, [props.currentData]);
 
   const doneHandleClick = () => {
-    dispatch(updateCompleted(props.id, true, props.date, props.completedDate));
+    dispatch(editUpdateCompleted(props.id, true, props.date, props.completedDate, props.onEdit));
     console.log("done clicked");
   };
   const deleteHandleClick = () => {

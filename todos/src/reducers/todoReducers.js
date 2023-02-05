@@ -37,7 +37,7 @@ const todoReducers = (state = initialData, action) => {
             ...todo,
             isCompleted: action.isCompleted,
             date: action.date,
-            completedDate: action.completedDate,
+            completedDate: new Date().toLocaleDateString(),
           };
         }
         return todo;
@@ -61,6 +61,24 @@ const todoReducers = (state = initialData, action) => {
       return {
         ...state,
         list: updatedList2,
+      };
+    case "EDIT_UPDATE_COMPLETED":
+      const editUdupdatedList = state.list.map((todo) => {
+        if (todo.id === action.id) {
+          return {
+            ...todo,
+            isCompleted: action.isCompleted,
+            date: action.date,
+            completedDate: new Date().toLocaleDateString(),
+            onEdit: !action.onEdit,
+          };
+        }
+        return todo;
+      });
+
+      return {
+        ...state,
+        list: editUdupdatedList,
       };
     default:
       return state;
