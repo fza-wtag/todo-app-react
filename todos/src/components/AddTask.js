@@ -28,7 +28,7 @@ const AddTask = () => {
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
       //to get the job done with enter button
-      dispatch(addTodo(inputData), setInputData(""));
+      dispatch(addTodo(inputData.slice(0, -1)), setInputData(""));
       if (inputData !== "") {
         handleClick();
       }

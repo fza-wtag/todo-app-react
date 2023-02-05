@@ -14,6 +14,8 @@ const Task = (props) => {
   const myList = useSelector((state) => state.todoReducers.list).find(
     (task) => task.id === props.id
   );
+  const currentData = myList.data;
+  console.log(currentData);
   const onEdit = myList.onEdit;
 
   return (
@@ -25,6 +27,7 @@ const Task = (props) => {
           isCompleted={props.isCompleted}
           completedDate={props.completedDate}
           onEdit={props.onEdit}
+          currentData={currentData}
         />
       ) : (
         <div className="todo">
