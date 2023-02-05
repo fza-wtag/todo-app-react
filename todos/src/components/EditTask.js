@@ -2,19 +2,15 @@ import { useState, useRef, useEffect } from "react";
 import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import "styles/addTask.css";
-import { addTodo } from "actions/index";
 import { useDispatch } from "react-redux";
-import { deleteTodo, editUpdateCompleted } from "actions/index";
+import { deleteTodo, editUpdateCompleted, updateTodo } from "actions/index";
 
 const EditTask = (props) => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
-      //to get the job done with enter button
-      dispatch(addTodo(inputData), setInputData(""));
-      if (inputData !== "") {
-      }
+      dispatch(updateTodo(props.id, inputData, props.onEdit), setInputData(""));
     }
   };
   const textAreaRef = useRef(null);
@@ -25,11 +21,22 @@ const EditTask = (props) => {
   }, [props.currentData]);
 
   const doneHandleClick = () => {
-    dispatch(editUpdateCompleted(props.id, true, props.date, props.completedDate, props.onEdit));
+    dispatch(
+      editUpdateCompleted(
+        props.id,
+        true,
+        props.date,
+        props.completedDate,
+        props.onEdit
+      )
+    );
     console.log("done clicked");
   };
   const deleteHandleClick = () => {
     dispatch(deleteTodo(props.id));
+  };
+  const saveHandleClick = () => {
+    dispatch(updateTodo(props.id, inputData, props.onEdit), setInputData(""));
   };
 
   return (
@@ -45,7 +52,9 @@ const EditTask = (props) => {
         ></textarea>
       </div>
       <div className="todo__save_done_del">
-        <button className="btn btn__save_button">Save</button>
+        <button className="btn btn__save_button" onClick={saveHandleClick}>
+          Save
+        </button>
 
         <button className="todo__icon-btn" onClick={doneHandleClick}>
           <img src={done} alt="icon"></img>

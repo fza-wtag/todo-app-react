@@ -1,21 +1,14 @@
 import React from "react";
 import "styles/task.css";
-import IncompleteTask from "components/IncompleteTask";
-import CompletedTask from "components/CompletedTask";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import EditTask from "./EditTask";
-import AddTask from "./AddTask";
+import ShowTask from "./ShowTask";
 
 const Task = (props) => {
-  //formating the dates as dd.mm.yy
-  const [day, month, year] = props.date.split("/");
-  const date = `${day}.${month}.${year}`;
-
   const myList = useSelector((state) => state.todoReducers.list).find(
     (task) => task.id === props.id
   );
   const currentData = myList.data;
-  console.log(currentData);
   const onEdit = myList.onEdit;
 
   return (
@@ -30,38 +23,15 @@ const Task = (props) => {
           currentData={currentData}
         />
       ) : (
-        <div className="todo">
-          <div>
-            <div>
-              <span
-                className={`todo__name ${
-                  props.isCompleted
-                    ? "todo__name--completed"
-                    : "todo__name--incomple"
-                }`}
-              >
-                {props.title}
-              </span>
-            </div>
-            <span className="todo__date">Created At: {date}</span>
-          </div>
-          {props.isCompleted ? (
-            <CompletedTask
-              id={props.id}
-              date={props.date}
-              isCompleted={props.isCompleted}
-              completedDate={props.completedDate}
-            />
-          ) : (
-            <IncompleteTask
-              id={props.id}
-              date={props.date}
-              isCompleted={props.isCompleted}
-              completedDate={props.completedDate}
-              onEdit={props.onEdit}
-            />
-          )}
-        </div>
+        <ShowTask
+          id={props.id}
+          date={props.date}
+          title={props.title}
+          isCompleted={props.isCompleted}
+          completedDate={props.completedDate}
+          onEdit={props.onEdit}
+          currentData={currentData}
+        />
       )}
     </div>
   );

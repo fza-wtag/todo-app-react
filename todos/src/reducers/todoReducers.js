@@ -80,6 +80,21 @@ const todoReducers = (state = initialData, action) => {
         ...state,
         list: editUdupdatedList,
       };
+    case "UPDATE_TODO":
+      const updatedList3 = state.list.map((todo) => {
+        if (todo.id === action.id) {
+          return {
+            ...todo,
+            data: action.data,
+            onEdit: !action.onEdit,
+          };
+        }
+        return todo;
+      });
+      return {
+        ...state,
+        list: updatedList3,
+      };
     default:
       return state;
   }

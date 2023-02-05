@@ -63,7 +63,7 @@ const AddTask = () => {
           className="btn btn__save_button"
           onClick={handleAddTaskButtonClick}
         >
-          Add Task
+          AddTask
         </button>
         <button className="todo__icon-btn" onClick={handleClick}>
           <img src={del} alt="icon"></img>

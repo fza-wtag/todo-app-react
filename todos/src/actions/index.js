@@ -52,13 +52,28 @@ export const editTodo = (id, onEdit) => {
   };
 };
 
-export const editUpdateCompleted = (id, isCompleted, date, completedDate, onEdit) => {
+export const editUpdateCompleted = (
+  id,
+  isCompleted,
+  date,
+  completedDate,
+  onEdit
+) => {
   return {
     type: "EDIT_UPDATE_COMPLETED",
     id,
     isCompleted,
     date,
     completedDate,
+    onEdit,
+  };
+};
+
+export const updateTodo = (id, data, onEdit) => {
+  return {
+    type: "UPDATE_TODO",
+    id,
+    data,
     onEdit,
   };
 };
