@@ -2,7 +2,7 @@ import React from "react";
 import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import edit from "icons/edit.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { deleteTodo, updateCompleted, editTodo } from "actions/index";;
 
 function IncompleteTask(props) {
