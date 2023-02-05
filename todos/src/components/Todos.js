@@ -5,7 +5,6 @@ import "styles/todos.css";
 import { TopContentContext } from "components/TopContent";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "./EmptyTaskList";
-
 function Todos() {
   const { isAddTaskVisible, setIsAddTaskVisible } =
     useContext(TopContentContext);
@@ -17,7 +16,8 @@ function Todos() {
         {list.map((elem) => {
           return elem.data ? (
             <Task
-              myKey={elem.id}
+              key={elem.id}
+              id={elem.id}
               name={elem.data}
               date={elem.date}
               isCompleted={elem.isCompleted}
@@ -29,5 +29,4 @@ function Todos() {
     </div>
   );
 }
-
 export default Todos;
