@@ -14,9 +14,9 @@ function Todos() {
   const currentPage = useSelector(
     (state) => state.currentPageReducer.currentPage
   );
-  const displayedTodoList = list.slice(0, 3 * currentPage);
+  const displayedTodoList = list.slice(0, 4 * currentPage);
   console.log(list.length);
-  
+
   return (
     <div>
       <div className="all-todos">
@@ -38,10 +38,10 @@ function Todos() {
         })}
       </div>
       {list.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
-      {currentPage * 3 < list.length ? (
+      {currentPage * 4 < list.length ? (
         <LoadMoreBtn type={"Load More"} />
       ) : (
-        list.length > 3 && <LoadMoreBtn type={"Show Less"} />
+        list.length > 4 && <LoadMoreBtn type={"Show Less"} />
       )}
     </div>
   );
