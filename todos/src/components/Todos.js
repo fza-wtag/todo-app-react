@@ -17,7 +17,7 @@ function Todos() {
         {list.map((elem) => {
           return elem.data ? (
             <Task
-              myKey={elem.id}
+              id={elem.id}
               name={elem.data}
               date={elem.date}
               isCompleted={elem.isCompleted}
