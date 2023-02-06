@@ -77,3 +77,11 @@ export const updateTodo = (id, data, onEdit) => {
     onEdit,
   };
 };
+
+export const updateCurrentPage = (page) => {
+  return {
+    type: "UPDATE_CURRENT_PAGE",
+    page,
+    
+  };
+};
