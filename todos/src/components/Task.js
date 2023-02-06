@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 const Task = (props) => {
   return (
-    <div className="todo">
+    <div className="todo__wrapper" key={props.myKey}>
       <div>
         <div>
           <span
