@@ -1,4 +1,3 @@
-// filterReducer.js
 const initialState = {
   filter: "all",
 };

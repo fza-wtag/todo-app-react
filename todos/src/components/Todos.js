@@ -21,6 +21,7 @@ function Todos() {
       : filter === "incomplete"
       ? list.filter((todo) => !todo.isCompleted)
       : list.filter((todo) => todo.isCompleted);
+      
   const displayedTodoList = filteredTodos.slice(0, 4 * currentPage);
 
   return (

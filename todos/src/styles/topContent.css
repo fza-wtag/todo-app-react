@@ -24,6 +24,11 @@
   margin-left: 12px;
 }
 
+.btn__progress_button--disable {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .btn__create_button {
   background: #7a8dfd;
   color: rgb(254, 254, 254);
