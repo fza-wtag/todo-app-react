@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 const FilterButtons = () => {
   const dispatch = useDispatch();
   const filter = useSelector((state) => state.filterReducer.filter);
+  const ListLength = useSelector((state) => state.todoReducers.list).length;
 
   const handleAllTodos = () => {
     dispatch(setFilter("all"));
@@ -17,9 +18,17 @@ const FilterButtons = () => {
   };
 
   return (
-    <div className="btn__progress_button">
+    <div
+      className={`btn__progress_button ${
+        ListLength === 0 ? "btn__progress_button--disable" : null
+      }`}
+    >
       <button
-        className={filter === "all" ? "btn__progress_button--disable" : null}
+        className={
+          filter === "all" && ListLength !== 0
+            ? "btn__progress_button--disable"
+            : null
+        }
         onClick={handleAllTodos}
       >
         All
