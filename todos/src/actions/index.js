@@ -99,3 +99,10 @@ export const setIconVisibility = (iconState) => {
     iconState,
   };
 };
+
+export const setSearchValue = (searchValue) => {
+  return {
+    type: "SET_SEARCH_VALUE",
+    searchValue,
+  };
+};

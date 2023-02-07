@@ -2,8 +2,7 @@ import logo from "icons/logo.svg";
 import search from "icons/searchIcon.svg";
 import "styles/navbar.css";
 import { useSelector, useDispatch } from "react-redux";
-import { setIconVisibility } from "actions";
-import { useState } from "react";
+import { setIconVisibility, setSearchValue } from "actions";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -11,9 +10,9 @@ const Navbar = () => {
   const handleSearchIconClick = () => {
     dispatch(setIconVisibility(!searchIconState));
   };
-
-  const [inputData, setInputData] = useState("");
-  console.log(inputData);
+  const handleSearchInput = (event) => {
+    dispatch(setSearchValue(event.target.value));
+  };
 
   return (
     <nav className="navbar">
@@ -26,7 +25,7 @@ const Navbar = () => {
           <input
             type="search"
             placeholder="Search"
-            onChange={(event) => setInputData(event.target.value)}
+            onChange={handleSearchInput}
           />
         )}
         <button type="submit" onClick={handleSearchIconClick}>
