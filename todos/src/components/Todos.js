@@ -4,7 +4,7 @@ import Task from "components/Task";
 import "styles/todos.css";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "components/EmptyTaskList";
-import LoadMoreBtn from "./LoadMoreBtn";
+import LoadMoreBtn from "components/LoadMoreBtn";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);

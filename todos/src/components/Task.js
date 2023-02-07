@@ -1,8 +1,8 @@
 import React from "react";
 import "styles/task.css";
 import { useSelector } from "react-redux";
-import EditTask from "./EditTask";
-import ShowTask from "./ShowTask";
+import EditTask from "components/EditTask";
+import ShowTask from "components/ShowTask";
 
 const Task = (props) => {
   const myList = useSelector((state) => state.todoReducers.list).find(
