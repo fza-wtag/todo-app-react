@@ -15,13 +15,22 @@ function Todos() {
   const currentPage = useSelector(
     (state) => state.currentPageReducer.currentPage
   );
+  const searchValue = useSelector((state) => state.searchReducer.searchValue);
+  console.log(searchValue);
+
   const filteredTodos =
     filter === "all"
       ? list
       : filter === "incomplete"
       ? list.filter((todo) => !todo.isCompleted)
       : list.filter((todo) => todo.isCompleted);
+      
+  const searchedTodos = filteredTodos.filter((elem) =>
+    elem.data.toLowerCase().includes(searchValue.toLowerCase())
+  );
+  
   const displayedTodoList = filteredTodos.slice(0, 4 * currentPage);
+  const displayedSearchedTodoList = searchedTodos.slice(0, 4 * currentPage);
 
   return (
     <div>
