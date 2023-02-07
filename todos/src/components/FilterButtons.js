@@ -9,11 +9,9 @@ const FilterButtons = () => {
   const handleAllTodos = () => {
     dispatch(setFilter("all"));
   };
-
   const handleIncompleteTodos = () => {
     dispatch(setFilter("incomplete"));
   };
-
   const handleCompleteTodos = () => {
     dispatch(setFilter("complete"));
   };

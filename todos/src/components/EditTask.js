@@ -57,11 +57,9 @@ const EditTask = (props) => {
         <button className="btn btn__save_button" onClick={saveHandleClick}>
           Save
         </button>
-
         <button className="todo__icon-btn" onClick={doneHandleClick}>
           <img src={done} alt="icon"></img>
         </button>
-
         <button className="todo__icon-btn" onClick={deleteHandleClick}>
           <img src={del} alt="icon"></img>
         </button>
