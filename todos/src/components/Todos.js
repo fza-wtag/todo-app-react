@@ -15,7 +15,6 @@ function Todos() {
     (state) => state.currentPageReducer.currentPage
   );
   const displayedTodoList = list.slice(0, 4 * currentPage);
-  console.log(list.length);
 
   return (
     <div>

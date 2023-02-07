@@ -30,7 +30,6 @@ const EditTask = (props) => {
         props.onEdit
       )
     );
-    console.log("done clicked");
   };
   const deleteHandleClick = () => {
     dispatch(
