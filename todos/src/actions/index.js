@@ -92,3 +92,10 @@ export const setFilter = (filter) => {
     filter,
   };
 };
+
+export const setIconVisibility = (iconState) => {
+  return {
+    type: "SET_ICON_VISIBIlITY",
+    iconState,
+  };
+};
