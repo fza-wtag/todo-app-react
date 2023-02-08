@@ -5,6 +5,7 @@ import "styles/todos.css";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "components/EmptyTaskList";
 import LoadMoreBtn from "components/LoadMoreBtn";
+import { PER_PAGE } from "constants";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);
@@ -14,7 +15,7 @@ function Todos() {
   const currentPage = useSelector(
     (state) => state.currentPageReducer.currentPage
   );
-  const displayedTodoList = list.slice(0, 4 * currentPage);
+  const displayedTodoList = list.slice(0, PER_PAGE * currentPage);
 
   return (
     <div>
@@ -22,25 +23,23 @@ function Todos() {
         {isAddTaskVisible && <AddTask />}
         {displayedTodoList.map((elem) => {
           return (
-            elem.data && (
-              <Task
-                key={elem.id}
-                id={elem.id}
-                title={elem.data}
-                isCompleted={elem.isCompleted}
-                date={elem.date}
-                completedDate={elem.completedDate}
-                onEdit={elem.onEdit}
-              />
-            )
+            <Task
+              key={elem.id}
+              id={elem.id}
+              title={elem.data}
+              isCompleted={elem.isCompleted}
+              date={elem.date}
+              completedDate={elem.completedDate}
+              onEdit={elem.onEdit}
+            />
           );
         })}
       </div>
       {list.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
-      {currentPage * 4 < list.length ? (
+      {currentPage * PER_PAGE < list.length ? (
         <LoadMoreBtn type={"Load More"} />
       ) : (
-        list.length > 4 && <LoadMoreBtn type={"Show Less"} />
+        list.length > PER_PAGE && <LoadMoreBtn type={"Show Less"} />
       )}
     </div>
   );
