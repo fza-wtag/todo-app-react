@@ -52,7 +52,7 @@ function Todos() {
           );
         })}
       </div>
-      {list.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
+      {displayedTodoList.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
       {searchValue.length === 0 ? (
         currentPage * PER_PAGE < filteredTodos.length ? (
           <LoadMoreBtn type={LOAD_MORE} />
