@@ -26,7 +26,7 @@ export const updateCompleted = (id, isCompleted, date, completedDate) => {
     id,
     isCompleted,
     date,
-    completedDate,
+    completedDate: new Date().toLocaleDateString(),
   };
 };
 
@@ -64,7 +64,7 @@ export const editUpdateCompleted = (
     id,
     isCompleted,
     date,
-    completedDate,
+    completedDate: new Date().toLocaleDateString(),
     onEdit,
   };
 };
