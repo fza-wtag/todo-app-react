@@ -5,6 +5,7 @@ import "styles/todos.css";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "components/EmptyTaskList";
 import LoadMoreBtn from "components/LoadMoreBtn";
+import { LOAD_MORE, SHOW_LESS, PER_PAGE } from "constants";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);
@@ -24,12 +25,13 @@ function Todos() {
       : filter === "incomplete"
       ? list.filter((todo) => !todo.isCompleted)
       : list.filter((todo) => todo.isCompleted);
+
       
   const searchedTodos = filteredTodos.filter((elem) =>
     elem.data.toLowerCase().includes(searchValue.toLowerCase())
   );
   
-  const displayedTodoList = filteredTodos.slice(0, 4 * currentPage);
+  const displayedTodoList = filteredTodos.slice(0, PER_PAGE * currentPage);
   const displayedSearchedTodoList = searchedTodos.slice(0, 4 * currentPage);
 
   return (
@@ -51,10 +53,10 @@ function Todos() {
         })}
       </div>
       {list.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
-      {currentPage * 4 < filteredTodos.length ? (
-        <LoadMoreBtn type={"Load More"} />
+      {currentPage * PER_PAGE < filteredTodos.length ? (
+        <LoadMoreBtn type={LOAD_MORE} />
       ) : (
-        filteredTodos.length > 4 && <LoadMoreBtn type={"Show Less"} />
+        filteredTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
       )}
     </div>
   );

@@ -5,6 +5,7 @@ import currentPageReducer from "reducers/currentPageReducer";
 import filterReducer from "reducers/filterReducer";
 import searchReducer from "./searchReducer";
 
+
 const rootReducer = combineReducers({
   todoReducers,
   toggleReducers,
