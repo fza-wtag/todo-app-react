@@ -17,7 +17,6 @@ function Todos() {
     (state) => state.currentPageReducer.currentPage
   );
   const searchValue = useSelector((state) => state.searchReducer.searchValue);
-  console.log(searchValue);
 
   const filteredTodos =
     filter === "all"
@@ -26,20 +25,21 @@ function Todos() {
       ? list.filter((todo) => !todo.isCompleted)
       : list.filter((todo) => todo.isCompleted);
 
-      
   const searchedTodos = filteredTodos.filter((elem) =>
     elem.data.toLowerCase().includes(searchValue.toLowerCase())
   );
-  
-  const displayedTodoList = filteredTodos.slice(0, PER_PAGE * currentPage);
-  const displayedSearchedTodoList = searchedTodos.slice(0, 4 * currentPage);
+
+  const displayedTodoList = searchedTodos.slice(
+    0,
+    PER_PAGE * currentPage
+  );
 
   return (
     <div>
       <div className="all-todos">
         {isAddTaskVisible && <AddTask />}
         {displayedTodoList.map((elem) => {
-          return elem.data ? (
+          return (
             <Task
               key={elem.id}
               id={elem.id}
@@ -49,14 +49,20 @@ function Todos() {
               completedDate={elem.completedDate}
               onEdit={elem.onEdit}
             />
-          ) : null;
+          );
         })}
       </div>
       {list.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
-      {currentPage * PER_PAGE < filteredTodos.length ? (
+      {searchValue.length === 0 ? (
+        currentPage * PER_PAGE < filteredTodos.length ? (
+          <LoadMoreBtn type={LOAD_MORE} />
+        ) : (
+          filteredTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
+        )
+      ) : currentPage * PER_PAGE < searchedTodos.length ? (
         <LoadMoreBtn type={LOAD_MORE} />
       ) : (
-        filteredTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
+        searchedTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
       )}
     </div>
   );
