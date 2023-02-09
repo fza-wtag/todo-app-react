@@ -25,15 +25,17 @@ function Todos() {
       : filter === "incomplete"
       ? list.filter((todo) => !todo.isCompleted)
       : list.filter((todo) => todo.isCompleted);
-
   const searchedTodos = filteredTodos.filter((elem) =>
     elem.data.toLowerCase().includes(searchValue.toLowerCase())
   );
   const displayedTodoList = searchedTodos.slice(0, PER_PAGE * currentPage);
-
   const loadingState = useSelector(
     (state) => state.laodingReducer.loadingState
   );
+
+  const showEmptyListIcon = displayedTodoList.length === 0 && !isAddTaskVisible;
+  const lessThanfilteredTodos = currentPage * PER_PAGE < filteredTodos.length;
+  const lessThansearchedTodos = currentPage * PER_PAGE < searchedTodos.length;
 
   return (
     <div>
@@ -56,14 +58,14 @@ function Todos() {
       {loadingState && (
         <img className="spinner" src={spinner} alt="Loging"></img>
       )}
-      {displayedTodoList.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
+      {showEmptyListIcon && <EmptyTaskList />}
       {searchValue.length === 0 ? (
-        currentPage * PER_PAGE < filteredTodos.length ? (
+        lessThanfilteredTodos ? (
           <LoadMoreBtn type={LOAD_MORE} />
         ) : (
           filteredTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
         )
-      ) : currentPage * PER_PAGE < searchedTodos.length ? (
+      ) : lessThansearchedTodos ? (
         <LoadMoreBtn type={LOAD_MORE} />
       ) : (
         searchedTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />

@@ -17,34 +17,34 @@ const FilterButtons = () => {
     dispatch(setFilter("complete"));
   };
 
+  const loadingState = useSelector(
+    (state) => state.laodingReducer.loadingState
+  );
+
+  const classNameLogicForMainDiv = `btn__progress_button ${
+    (ListLength === 0 || loadingState) && "btn__progress_button--disable"
+  }`;
+  const classNameLogicForAllButtonDiv = `filter === "all" &&
+          (ListLength !== 0 &&
+          !loadingState) &&
+          "btn__progress_button--disable"`;
+
   return (
-    <div
-      className={`btn__progress_button ${
-        ListLength === 0 ? "btn__progress_button--disable" : null
-      }`}
-    >
+    <div className={classNameLogicForMainDiv}>
       <button
-        className={
-          filter === "all" && ListLength !== 0
-            ? "btn__progress_button--disable"
-            : null
-        }
+        className={classNameLogicForAllButtonDiv}
         onClick={handleAllTodos}
       >
         All
       </button>
       <button
-        className={
-          filter === "incomplete" ? "btn__progress_button--disable" : null
-        }
+        className={filter === "incomplete" && "btn__progress_button--disable"}
         onClick={handleIncompleteTodos}
       >
         Incomplete
       </button>
       <button
-        className={
-          filter === "complete" ? "btn__progress_button--disable" : null
-        }
+        className={filter === "complete" && "btn__progress_button--disable"}
         onClick={handleCompleteTodos}
       >
         Complete

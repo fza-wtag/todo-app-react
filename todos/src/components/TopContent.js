@@ -19,16 +19,19 @@ const TopContent = (props) => {
     dispatch(toggleAddTaskButtonVisibility(isCreateButtonDisabled));
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
   };
+  const loadingState = useSelector(
+    (state) => state.laodingReducer.loadingState
+  );
+  const createButtonClassNameLogic = `btn btn__create_button ${
+    (isCreateButtonDisabled || loadingState) && "btn__create_button--blur"
+  }`;
 
   return (
     <div className="top-content">
       <h1>Add Tasks</h1>
       <div className="top-content__buttons">
         <button
-          disabled={isCreateButtonDisabled}
-          className={`btn btn__create_button ${
-            isCreateButtonDisabled ? "btn__create_button--blur" : ""
-          }`}
+          className={createButtonClassNameLogic}
           onClick={handleCreateButtonClick}
         >
           <i className="fa-sharp fa-solid fa-plus"></i> Create
