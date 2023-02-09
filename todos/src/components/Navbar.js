@@ -4,6 +4,7 @@ import "styles/navbar.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setIconVisibility, setSearchValue, setLoadingState } from "actions";
 import { useCallback } from "react";
+import spinner from "icons/spinner.svg";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -16,14 +17,20 @@ const Navbar = () => {
     dispatch(setSearchValue(event.target.value));
   };
 
+  const loadingState = useSelector(
+    (state) => state.laodingReducer.loadingState
+  );
+
   const debounce = (func) => {
     let timer;
     return function (...args) {
       const context = this;
       if (timer) clearTimeout(timer);
+      dispatch(setLoadingState(true));
       timer = setTimeout(() => {
         timer = null;
         func.apply(context, args);
+        dispatch(setLoadingState(false));
       }, 1000);
     };
   };
@@ -48,6 +55,9 @@ const Navbar = () => {
           <img src={search} alt="icon"></img>
         </button>
       </div>
+      {loadingState && (
+        <img className="spinner" src={spinner} alt="spinner"></img>
+      )}
     </nav>
   );
 };
