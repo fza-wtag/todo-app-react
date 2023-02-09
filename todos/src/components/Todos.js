@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import EmptyTaskList from "components/EmptyTaskList";
 import LoadMoreBtn from "components/LoadMoreBtn";
 import { LOAD_MORE, SHOW_LESS, PER_PAGE } from "constants";
+import spinner from "icons/spinner.svg";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);
@@ -28,15 +29,15 @@ function Todos() {
   const searchedTodos = filteredTodos.filter((elem) =>
     elem.data.toLowerCase().includes(searchValue.toLowerCase())
   );
+  const displayedTodoList = searchedTodos.slice(0, PER_PAGE * currentPage);
 
-  const displayedTodoList = searchedTodos.slice(
-    0,
-    PER_PAGE * currentPage
+  const loadingState = useSelector(
+    (state) => state.laodingReducer.loadingState
   );
 
   return (
     <div>
-      <div className="all-todos">
+      <div className={`all-todos ${loadingState && "all-todos--off"}`}>
         {isAddTaskVisible && <AddTask />}
         {displayedTodoList.map((elem) => {
           return (
@@ -52,6 +53,9 @@ function Todos() {
           );
         })}
       </div>
+      {loadingState && (
+        <img className="spinner" src={spinner} alt="Loging"></img>
+      )}
       {displayedTodoList.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
       {searchValue.length === 0 ? (
         currentPage * PER_PAGE < filteredTodos.length ? (

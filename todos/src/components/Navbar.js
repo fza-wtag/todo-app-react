@@ -26,13 +26,14 @@ const Navbar = () => {
     let timer;
     return function (...args) {
       const context = this;
-      if (timer) clearTimeout(timer);
       dispatch(setLoadingState(true));
+      if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
         timer = null;
         func.apply(context, args);
         dispatch(setLoadingState(false));
       }, 1000);
+      
     };
   };
 
@@ -56,9 +57,6 @@ const Navbar = () => {
           <img src={search} alt="icon"></img>
         </button>
       </div>
-      {loadingState && (
-        <img className="spinner" src={spinner} alt="spinner"></img>
-      )}
     </nav>
   );
 };

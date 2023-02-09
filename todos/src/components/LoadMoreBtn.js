@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateCurrentPage } from "actions";
 import { LOAD_MORE, SHOW_LESS } from "constants";
 
-
 function LoadMoreBtn(props) {
   const dispatch = useDispatch();
   const currentPage = useSelector(
@@ -19,7 +18,11 @@ function LoadMoreBtn(props) {
     dispatch(updateCurrentPage(1));
   };
 
-  return (
+  const loadingState = useSelector(
+    (state) => state.laodingReducer.loadingState
+  );
+
+  return !loadingState && (
     <div className="load-more">
       {props.type === LOAD_MORE && (
         <button className="load-more__button" onClick={handleLoadMore}>
@@ -32,7 +35,7 @@ function LoadMoreBtn(props) {
         </button>
       )}
     </div>
-  );
+  ) 
 }
 
 export default LoadMoreBtn;

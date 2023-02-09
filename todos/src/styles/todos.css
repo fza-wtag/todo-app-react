@@ -51,3 +51,8 @@
   border: none;
   padding: 0 20px 0 0;
 }
+
+.all-todos--off {
+  opacity: 0.5;
+  pointer-events: none;
+}
