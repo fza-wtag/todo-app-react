@@ -15,7 +15,7 @@ function LoadMoreBtn(props) {
     dispatch(updateCurrentPage(currentPage + 1));
   };
 
-  const handleshowLess = () => {
+  const handleShowLess = () => {
     dispatch(updateCurrentPage(1));
   };
 
@@ -27,7 +27,7 @@ function LoadMoreBtn(props) {
         </button>
       )}
       {props.type === SHOW_LESS && (
-        <button className="load-more__button" onClick={handleshowLess}>
+        <button className="load-more__button" onClick={handleShowLess}>
           {props.type}
         </button>
       )}

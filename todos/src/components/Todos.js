@@ -16,6 +16,7 @@ function Todos() {
     (state) => state.currentPageReducer.currentPage
   );
   const displayedTodoList = list.slice(0, PER_PAGE * currentPage);
+  const showEmptyListIcon = list.length === 0 && !isAddTaskVisible;
 
   return (
     <div>
@@ -35,7 +36,7 @@ function Todos() {
           );
         })}
       </div>
-      {list.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
+      {showEmptyListIcon && <EmptyTaskList />}
       {currentPage * PER_PAGE < list.length ? (
         <LoadMoreBtn type={"Load More"} />
       ) : (
