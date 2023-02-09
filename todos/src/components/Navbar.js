@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setIconVisibility, setSearchValue, setLoadingState } from "actions";
 import { useCallback } from "react";
 import spinner from "icons/spinner.svg";
+import "styles/loading.css"
 
 const Navbar = () => {
   const dispatch = useDispatch();
