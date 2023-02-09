@@ -24,15 +24,16 @@ const FilterButtons = () => {
   const classNameLogicForMainDiv = `btn__progress_button ${
     (ListLength === 0 || loadingState) && "btn__progress_button--disable"
   }`;
-  const classNameLogicForAllButtonDiv = `filter === "all" &&
-          (ListLength !== 0 &&
-          !loadingState) &&
-          "btn__progress_button--disable"`;
 
   return (
     <div className={classNameLogicForMainDiv}>
       <button
-        className={classNameLogicForAllButtonDiv}
+        className={
+          filter === "all" &&
+          ListLength !== 0 &&
+          !loadingState &&
+          "btn__progress_button--disable"
+        }
         onClick={handleAllTodos}
       >
         All
