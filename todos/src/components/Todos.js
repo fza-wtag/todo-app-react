@@ -17,6 +17,8 @@ function Todos() {
   );
   const displayedTodoList = list.slice(0, PER_PAGE * currentPage);
   const showEmptyListIcon = list.length === 0 && !isAddTaskVisible;
+  const lessThanListLength = currentPage * PER_PAGE < list.length;
+  const listGreaterThanPerPage = list.length > PER_PAGE;
 
   return (
     <div>
@@ -37,10 +39,10 @@ function Todos() {
         })}
       </div>
       {showEmptyListIcon && <EmptyTaskList />}
-      {currentPage * PER_PAGE < list.length ? (
+      {lessThanListLength ? (
         <LoadMoreBtn type={"Load More"} />
       ) : (
-        list.length > PER_PAGE && <LoadMoreBtn type={"Show Less"} />
+        listGreaterThanPerPage && <LoadMoreBtn type={"Show Less"} />
       )}
     </div>
   );
