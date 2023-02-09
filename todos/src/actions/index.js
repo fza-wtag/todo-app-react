@@ -106,3 +106,10 @@ export const setSearchValue = (searchValue) => {
     searchValue,
   };
 };
+
+export const setLoadingState = (loadingState) => {
+  return {
+    type: "SET_LOADING_STATE",
+    loadingState,
+  };
+};
