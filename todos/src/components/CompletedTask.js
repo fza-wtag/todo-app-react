@@ -2,6 +2,7 @@ import React from "react";
 import del from "icons/delete.svg";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "actions/index";
+import { dangerMessage } from "toast_methods";
 
 function CompletedTask(props) {
   const dispatch = useDispatch();
@@ -18,14 +19,14 @@ function CompletedTask(props) {
   const difference = completedDate - createdDate;
   const differenceInDays = difference / (1000 * 60 * 60 * 24);
 
+  const handleDelete = () => {
+    dispatch(deleteTodo(props.id));
+    dangerMessage("Task deleted successfully ❌");
+  };
+
   return (
     <div className="todo-del-duration">
-      <button
-        className="todo__icon-btn"
-        onClick={(event) => {
-          dispatch(deleteTodo(props.id));
-        }}
-      >
+      <button className="todo__icon-btn" onClick={handleDelete}>
         <img src={del} alt="icon"></img>
       </button>
       {differenceInDays === 0 ? (
