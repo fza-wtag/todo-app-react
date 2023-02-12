@@ -2,7 +2,7 @@ import { toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const commonStyles = {
-  position: "top-center",
+  position: "bottom-right",
   autoClose: 1500,
   hideProgressBar: false,
   closeOnClick: true,
@@ -14,7 +14,6 @@ const commonStyles = {
   style: {
     minHeight: "15px",
     fontSize: "13px",
-    marginTop: "40px",
     maxWidth: "300px",
   },
 };
