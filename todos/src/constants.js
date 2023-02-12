@@ -8,3 +8,4 @@ export const EDIT_CANCEL_MESSAGE = "Task editing got canceled 🙂";
 export const TASK_DELETE_MESSAGE = "Task deleted successfully 🙌";
 export const STATE_CHANGE_MESSAGE = "Task state changed to completed 💪";
 export const EDIT_SUCCESS_MESSAGE = "Task edited successfully  📝";
+export const SEARCH_DATA_MESSAGE= "Search data fetched 🕵️‍♀️"

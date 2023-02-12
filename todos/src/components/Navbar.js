@@ -4,8 +4,9 @@ import "styles/navbar.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setIconVisibility, setSearchValue, setLoadingState } from "actions";
 import { useCallback } from "react";
-import spinner from "icons/spinner.svg";
 import "styles/loading.css"
+import { successMessage } from "toast_methods";
+import { SEARCH_DATA_MESSAGE } from "constants";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -18,10 +19,6 @@ const Navbar = () => {
     dispatch(setSearchValue(event.target.value));
   };
 
-  const loadingState = useSelector(
-    (state) => state.laodingReducer.loadingState
-  );
-
   const debounce = (func) => {
     let timer;
     return function (...args) {
@@ -32,6 +29,7 @@ const Navbar = () => {
         timer = null;
         func.apply(context, args);
         dispatch(setLoadingState(false));
+        successMessage(SEARCH_DATA_MESSAGE)
       }, 1000);
       
     };
