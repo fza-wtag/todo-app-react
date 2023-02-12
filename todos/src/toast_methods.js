@@ -13,8 +13,9 @@ const commonStyles = {
   transition: Zoom,
   style: {
     minHeight: "15px",
-    fontSize: "15px",
+    fontSize: "13px",
     marginTop: "40px",
+    maxWidth: "300px",
   },
 };
 
@@ -22,7 +23,7 @@ export const successMessage = (message) => {
   toast.success(message, commonStyles);
 };
 
-export const errorMessage = (message) => {
+export const dangerMessage = (message) => {
   toast.error(message, commonStyles);
 };
 
