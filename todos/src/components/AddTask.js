@@ -8,6 +8,7 @@ import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
 } from "actions/index";
+import { successMessage } from "toast_methods";
 
 const AddTask = () => {
   const isAddTaskVisible = useSelector(
@@ -29,6 +30,7 @@ const AddTask = () => {
     if (event.keyCode === 13) {
       //to get the job done with enter button
       dispatch(addTodo(inputData.slice(0, -1)), setInputData(""));
+      successMessage("New task added successfully 🚀");
       if (inputData !== "") {
         handleClick();
       }
@@ -41,6 +43,7 @@ const AddTask = () => {
 
   const handleAddTaskButtonClick = () => {
     dispatch(addTodo(inputData), setInputData(""));
+    successMessage("New task added successfully 🚀");
     if (inputData !== "") {
       handleClick();
     }
