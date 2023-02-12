@@ -1,3 +1,10 @@
 export const LOAD_MORE = "Load More";
 export const SHOW_LESS = "Show Less";
 export const PER_PAGE = 4;
+export const TASK_ADDED_MESSAGE = "New task added successfully 🚀";
+export const EMPTY_TITLE_MESSAGE = "Please enter the task name/ title 😅";
+export const CREATE_CANCEL_MESSAGE = "Creating new task got cancelled 🙂";
+export const EDIT_CANCEL_MESSAGE = "Task editing got canceled 🙂";
+export const TASK_DELETE_MESSAGE = "Task deleted successfully 🙌";
+export const STATE_CHANGE_MESSAGE = "Task state changed to completed 💪";
+export const EDIT_SUCCESS_MESSAGE = "Task edited successfully  📝";

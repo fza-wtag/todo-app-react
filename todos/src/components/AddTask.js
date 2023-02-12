@@ -9,6 +9,9 @@ import {
   toggleAddTaskButtonVisibility,
 } from "actions/index";
 import { infoMessage, successMessage, warningMessage } from "toast_methods";
+import { TASK_ADDED_MESSAGE } from "constants";
+import { EMPTY_TITLE_MESSAGE } from "constants";
+import { CREATE_CANCEL_MESSAGE } from "constants";
 
 const AddTask = () => {
   const isAddTaskVisible = useSelector(
@@ -31,7 +34,7 @@ const AddTask = () => {
       //to get the job done with enter button
       dispatch(addTodo(inputData.slice(0, -1)), setInputData(""));
       if (inputData !== "") {
-        successMessage("New task added successfully 🚀");
+        successMessage(TASK_ADDED_MESSAGE);
         handleSateChange();
       }
     }
@@ -42,19 +45,18 @@ const AddTask = () => {
   }, []);
 
   const handleAddTaskButtonClick = () => {
-    dispatch(addTodo(inputData), setInputData(""));
     if (inputData !== "") {
       handleSateChange();
-      successMessage("New task added successfully 🚀");
-    } else{
-      warningMessage("Please enter the task name/ title 😅");
+      successMessage(TASK_ADDED_MESSAGE);
+      dispatch(addTodo(inputData), setInputData(""));
+    } else {
+      warningMessage(EMPTY_TITLE_MESSAGE);
     }
   };
   const handleDelButton = () => {
     handleSateChange();
-    infoMessage("Creating new task got cancelled 🙂")
-
-  } 
+    infoMessage(CREATE_CANCEL_MESSAGE);
+  };
 
   return (
     <div className="todo">

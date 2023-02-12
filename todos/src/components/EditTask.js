@@ -5,6 +5,9 @@ import "styles/addTask.css";
 import { useDispatch } from "react-redux";
 import { editUpdateCompleted, updateTodo } from "actions/index";
 import { successMessage, infoMessage } from "toast_methods";
+import { STATE_CHANGE_MESSAGE } from "constants";
+import { EDIT_CANCEL_MESSAGE } from "constants";
+import { EDIT_SUCCESS_MESSAGE } from "constants";
 
 const EditTask = (props) => {
   const [inputData, setInputData] = useState("");
@@ -31,18 +34,18 @@ const EditTask = (props) => {
         props.onEdit
       )
     );
-    successMessage("Task state changed to completed 🙌")
+    successMessage(STATE_CHANGE_MESSAGE);
   };
   const deleteHandleClick = () => {
     dispatch(
       updateTodo(props.id, props.currentData, props.onEdit),
       setInputData("")
     );
-    infoMessage("Task editing got canceled 🙂");
+    infoMessage(EDIT_CANCEL_MESSAGE);
   };
   const saveHandleClick = () => {
     dispatch(updateTodo(props.id, inputData, props.onEdit), setInputData(""));
-    successMessage("Task edited successfully  📝");
+    successMessage(EDIT_SUCCESS_MESSAGE);
   };
 
   return (

@@ -3,6 +3,7 @@ import del from "icons/delete.svg";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "actions/index";
 import { dangerMessage } from "toast_methods";
+import { TASK_DELETE_MESSAGE } from "constants";
 
 function CompletedTask(props) {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function CompletedTask(props) {
 
   const handleDelete = () => {
     dispatch(deleteTodo(props.id));
-    dangerMessage("Task deleted successfully ❌");
+    dangerMessage(TASK_DELETE_MESSAGE);
   };
 
   return (
