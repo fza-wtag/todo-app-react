@@ -8,10 +8,12 @@ import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
 } from "actions/index";
-import { infoMessage, successMessage, warningMessage } from "toast_methods";
-import { TASK_ADDED_MESSAGE } from "constants";
-import { EMPTY_TITLE_MESSAGE } from "constants";
-import { CREATE_CANCEL_MESSAGE } from "constants";
+import { infoMessage, successMessage, warningMessage } from "toastMethods";
+import {
+  TASK_ADDED_MESSAGE,
+  EMPTY_TITLE_MESSAGE,
+  CREATE_CANCEL_MESSAGE,
+} from "constants";
 
 const AddTask = () => {
   const isAddTaskVisible = useSelector(
@@ -25,7 +27,7 @@ const AddTask = () => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
-  const handleSateChange = () => {
+  const handleStateChange = () => {
     dispatch(toggleAddTaskButtonVisibility(!isCreateButtonDisabled));
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
   };
@@ -35,7 +37,7 @@ const AddTask = () => {
       dispatch(addTodo(inputData.slice(0, -1)), setInputData(""));
       if (inputData !== "") {
         successMessage(TASK_ADDED_MESSAGE);
-        handleSateChange();
+        handleStateChange();
       }
     }
   };
@@ -46,7 +48,7 @@ const AddTask = () => {
 
   const handleAddTaskButtonClick = () => {
     if (inputData !== "") {
-      handleSateChange();
+      handleStateChange();
       successMessage(TASK_ADDED_MESSAGE);
       dispatch(addTodo(inputData), setInputData(""));
     } else {
@@ -54,7 +56,7 @@ const AddTask = () => {
     }
   };
   const handleDelButton = () => {
-    handleSateChange();
+    handleStateChange();
     infoMessage(CREATE_CANCEL_MESSAGE);
   };
 

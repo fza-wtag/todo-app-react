@@ -2,7 +2,7 @@ import React from "react";
 import del from "icons/delete.svg";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "actions/index";
-import { dangerMessage } from "toast_methods";
+import { dangerMessage } from "toastMethods";
 import { TASK_DELETE_MESSAGE } from "constants";
 
 function CompletedTask(props) {

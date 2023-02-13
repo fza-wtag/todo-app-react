@@ -4,9 +4,8 @@ import done from "icons/done.svg";
 import edit from "icons/edit.svg";
 import { useDispatch } from "react-redux";
 import { deleteTodo, updateCompleted, editTodo } from "actions/index";
-import { dangerMessage, successMessage } from "toast_methods";
-import { TASK_DELETE_MESSAGE } from "constants";
-import { STATE_CHANGE_MESSAGE } from "constants";
+import { dangerMessage, successMessage } from "toastMethods";
+import { TASK_DELETE_MESSAGE, STATE_CHANGE_MESSAGE } from "constants";
 
 function IncompleteTask(props) {
   const dispatch = useDispatch();

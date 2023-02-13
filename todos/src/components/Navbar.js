@@ -4,8 +4,8 @@ import "styles/navbar.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setIconVisibility, setSearchValue, setLoadingState } from "actions";
 import { useCallback } from "react";
-import "styles/loading.css"
-import { successMessage } from "toast_methods";
+import "styles/loading.css";
+import { successMessage } from "toastMethods";
 import { SEARCH_DATA_MESSAGE } from "constants";
 
 const Navbar = () => {
@@ -29,9 +29,8 @@ const Navbar = () => {
         timer = null;
         func.apply(context, args);
         dispatch(setLoadingState(false));
-        successMessage(SEARCH_DATA_MESSAGE)
+        successMessage(SEARCH_DATA_MESSAGE);
       }, 1000);
-      
     };
   };
 

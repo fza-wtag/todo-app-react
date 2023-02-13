@@ -1,3 +1,4 @@
+import React from "react";
 import "App.css";
 import Navbar from "components/Navbar";
 import Todos from "components/Todos";
@@ -8,14 +9,14 @@ import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <div>
+    <React.Fragment>
       <Provider store={store}>
         <Navbar />
         <ToastContainer />
         <TopContent />
         <Todos />
       </Provider>
-    </div>
+    </React.Fragment>
   );
 }
 
