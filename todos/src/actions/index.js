@@ -1,16 +1,25 @@
-export const addTodo = (data) => {
-  return {
-    type: "ADD_TODO",
-    payload: {
-      id: new Date().getTime().toString(),
-      data,
-      isCompleted: false,
-      date: new Date().toLocaleDateString(),
-      completedDate: null,
-      dateNow: Date.now(),
-      onEdit: false,
-    },
-  };
+import { addTodoSupabase } from "supabaseData";
+
+export const addTodo = (data) => async (dispatch) => {
+  try {
+    const tableData = await addTodoSupabase(data);
+    console.log(tableData);
+    
+    dispatch({
+      type: "ADD_TODO",
+      payload: {
+        id: new Date().getTime().toString(),
+        data,
+        isCompleted: false,
+        date: new Date().toLocaleDateString(),
+        completedDate: null,
+        dateNow: Date.now(),
+        onEdit: false,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const deleteTodo = (id) => {
@@ -82,7 +91,6 @@ export const updateCurrentPage = (page) => {
   return {
     type: "UPDATE_CURRENT_PAGE",
     page,
-    
   };
 };
 

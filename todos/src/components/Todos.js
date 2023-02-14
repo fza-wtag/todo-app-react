@@ -7,7 +7,6 @@ import EmptyTaskList from "components/EmptyTaskList";
 import LoadMoreBtn from "components/LoadMoreBtn";
 import { LOAD_MORE, SHOW_LESS, PER_PAGE } from "constants";
 import spinner from "icons/spinner.svg";
-import { getCurrentTodos } from "supabaseData.js";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);
@@ -37,8 +36,6 @@ function Todos() {
   const showEmptyListIcon = displayedTodoList.length === 0 && !isAddTaskVisible;
   const lessThanfilteredTodos = currentPage * PER_PAGE < filteredTodos.length;
   const lessThansearchedTodos = currentPage * PER_PAGE < searchedTodos.length;
-
-  getCurrentTodos();
 
   return (
     <div>
