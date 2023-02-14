@@ -1,12 +1,17 @@
-
-
 const initialData = {
   list: [],
 };
 
 const todoReducers = (state = initialData, action) => {
-  console.log(state.list)
+  // console.log(state.list)
   switch (action.type) {
+    case "ADD_INITIAL_DATA":
+      const { payload } = action;
+      return {
+        ...state,
+        list: [...payload].sort((a, b) => b.id - a.id),
+      };
+
     case "ADD_TODO":
       const { id, data, isCompleted, date, completedDate, onEdit } =
         action.payload;

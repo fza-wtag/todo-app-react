@@ -7,7 +7,7 @@ export const addTodo = (data) => async (dispatch) => {
       new Date().toLocaleDateString()
     );
     const tableData = response.data;
-    console.log(tableData);
+    // console.log(tableData);
     dispatch({
       type: "ADD_TODO",
       payload: {
@@ -121,5 +121,13 @@ export const setLoadingState = (loadingState) => {
   return {
     type: "SET_LOADING_STATE",
     loadingState,
+  };
+};
+
+
+export const addInitialData = (data) => {
+  return {
+    type: "ADD_INITIAL_DATA",
+    payload: data,
   };
 };
