@@ -4,10 +4,12 @@ import done from "icons/done.svg";
 import "styles/addTask.css";
 import { useDispatch } from "react-redux";
 import { editUpdateCompleted, updateTodo } from "actions/index";
-import { successMessage, infoMessage } from "toast_methods";
-import { STATE_CHANGE_MESSAGE } from "constants";
-import { EDIT_CANCEL_MESSAGE } from "constants";
-import { EDIT_SUCCESS_MESSAGE } from "constants";
+import { successMessage, infoMessage } from "toastMethods";
+import {
+  STATE_CHANGE_MESSAGE,
+  EDIT_CANCEL_MESSAGE,
+  EDIT_SUCCESS_MESSAGE,
+} from "constants";
 
 const EditTask = (props) => {
   const [inputData, setInputData] = useState("");
