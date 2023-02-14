@@ -6,10 +6,15 @@ const supabase = createClient(
 );
 
 async function getCurrentTodos() {
-  const tableData = await supabase.from("todo_data").select();
+  const tableData = await supabase.from("todo_data2").select();
   const tData = tableData.data;
+  console.log(tData);
 }
 
-export async function addTodoSupabase(data) {
-  return await supabase.from("todo_data").insert({ title: data }).single();
+export async function addTodoSupabase(data, date) {
+  return await supabase
+    .from("todo_data2")
+    .insert({ data: data, date: date })
+    .select()
+    .single();
 }

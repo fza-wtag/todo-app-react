@@ -2,19 +2,21 @@ import { addTodoSupabase } from "supabaseData";
 
 export const addTodo = (data) => async (dispatch) => {
   try {
-    const tableData = await addTodoSupabase(data);
+    const response = await addTodoSupabase(
+      data,
+      new Date().toLocaleDateString()
+    );
+    const tableData = response.data;
     console.log(tableData);
-    
     dispatch({
       type: "ADD_TODO",
       payload: {
-        id: new Date().getTime().toString(),
-        data,
-        isCompleted: false,
-        date: new Date().toLocaleDateString(),
-        completedDate: null,
-        dateNow: Date.now(),
-        onEdit: false,
+        id: tableData.id,
+        data: tableData.data,
+        isCompleted: tableData.isCompleted,
+        date: tableData.date,
+        completedDate: tableData.completedDate,
+        onEdit: tableData.onEdit,
       },
     });
   } catch (error) {

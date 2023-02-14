@@ -1,11 +1,14 @@
+
+
 const initialData = {
   list: [],
 };
 
 const todoReducers = (state = initialData, action) => {
+  console.log(state.list)
   switch (action.type) {
     case "ADD_TODO":
-      const { id, data, isCompleted, date, completedDate, dateNow, onEdit } =
+      const { id, data, isCompleted, date, completedDate, onEdit } =
         action.payload;
       return {
         ...state,
@@ -17,10 +20,9 @@ const todoReducers = (state = initialData, action) => {
             isCompleted: isCompleted,
             date: date,
             completedDate: completedDate,
-            dateNow: dateNow,
             onEdit: onEdit,
           },
-        ].sort((a, b) => b.dateNow - a.dateNow),
+        ].sort((a, b) => b.id - a.id),
       };
 
     case "DELETE_TODO":
