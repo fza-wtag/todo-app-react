@@ -7,28 +7,28 @@ import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { getCurrentTodos } from "supabaseData";
 import { addInitialData } from "actions/index";
-import { setLoadingState } from "actions";
+import { setSplashLoadingState } from "actions";
 import { useSelector } from "react-redux";
 import SplashScreen from "components/SplashScreen";
 
 function App() {
-  const loadingState = useSelector(
-    (state) => state.laodingReducer.loadingState
+  const splashLoadingState = useSelector(
+    (state) => state.laodingReducer.splashLoadingState
   );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
-      dispatch(setLoadingState(true));
+      dispatch(setSplashLoadingState(true));
       const initialData = await getCurrentTodos();
-      dispatch(setLoadingState(false));
+      dispatch(setSplashLoadingState(false));
       dispatch(addInitialData(initialData));
     };
     fetchData();
   }, [dispatch]);
 
-  return loadingState ? (
+  return splashLoadingState ? (
     <SplashScreen />
   ) : (
     <>

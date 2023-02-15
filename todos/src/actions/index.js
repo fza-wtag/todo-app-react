@@ -163,3 +163,10 @@ export const addInitialData = (data) => {
     payload: data,
   };
 };
+
+export const setSplashLoadingState = (splashLoadingState) => {
+  return {
+    type: "SET_SPLASH_LOADING_STATE",
+    splashLoadingState,
+  };
+};

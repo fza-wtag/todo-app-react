@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const commonStyles = {
   position: "top-center",
-  autoClose: 1200,
+  autoClose: 400,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
