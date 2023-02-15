@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
+  setCardLoadingState,
 } from "actions/index";
 import { infoMessage, successMessage, warningMessage } from "toastMethods";
 import {
@@ -24,6 +25,10 @@ const AddTask = () => {
     (state) => state.toggleReducers.isCreateButtonDisabled
   );
 
+  const cardLoadingState = useSelector(
+    (state) => state.laodingReducer.cardLoadingState
+  );
+
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
@@ -31,11 +36,12 @@ const AddTask = () => {
     dispatch(toggleAddTaskButtonVisibility(!isCreateButtonDisabled));
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
   };
+
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
       //to get the job done with enter button
-      dispatch(addTodo(inputData.slice(0, -1)), setInputData(""));
       if (inputData !== "") {
+        dispatch(addTodo(inputData.slice(0, -1)), setInputData(""));
         successMessage(TASK_ADDED_MESSAGE);
         handleStateChange();
       }

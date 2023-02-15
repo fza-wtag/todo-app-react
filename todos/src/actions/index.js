@@ -8,6 +8,7 @@ import {
 
 export const addTodo = (data) => async (dispatch) => {
   try {
+    dispatch(setCardLoadingState(true));
     const response = await addTodoSupabase(
       data,
       new Date().toLocaleDateString()
@@ -26,6 +27,8 @@ export const addTodo = (data) => async (dispatch) => {
     });
   } catch (error) {
     console.error(error);
+  } finally{
+    dispatch(setCardLoadingState(false));
   }
 };
 
@@ -168,5 +171,12 @@ export const setSplashLoadingState = (splashLoadingState) => {
   return {
     type: "SET_SPLASH_LOADING_STATE",
     splashLoadingState,
+  };
+};
+
+export const setCardLoadingState = (cardLoadingState) => {
+  return {
+    type: "SET_CARD_LOADING_STATE",
+    cardLoadingState,
   };
 };

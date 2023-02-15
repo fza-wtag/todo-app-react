@@ -37,6 +37,10 @@ function Todos() {
   const showEmptyListIcon = displayedTodoList.length === 0 && !isAddTaskVisible;
   const lessThanfilteredTodos = currentPage * PER_PAGE < filteredTodos.length;
   const lessThansearchedTodos = currentPage * PER_PAGE < searchedTodos.length;
+  
+  const cardLoadingState = useSelector(
+    (state) => state.laodingReducer.cardLoadingState
+  );
 
   getCurrentTodos();
 
@@ -44,6 +48,7 @@ function Todos() {
     <div>
       <div className={`all-todos ${loadingState && "all-todos--off"}`}>
         {isAddTaskVisible && <AddTask />}
+        {cardLoadingState && <div>Hello</div>}
         {displayedTodoList.map((elem) => {
           return (
             <Task
