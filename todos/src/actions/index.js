@@ -1,4 +1,4 @@
-import { addTodoSupabase } from "supabaseData";
+import { addTodoSupabase, deleteTodoSupabase } from "supabaseData";
 
 export const addTodo = (data) => async (dispatch) => {
   try {
@@ -24,11 +24,18 @@ export const addTodo = (data) => async (dispatch) => {
   }
 };
 
-export const deleteTodo = (id) => {
-  return {
-    type: "DELETE_TODO",
-    id,
-  };
+export const deleteTodo = (id) => async (dispatch) => {
+  try {
+    const response = await deleteTodoSupabase(id);
+    const tableData = response.data;
+    // console.log(tableData);
+    dispatch({
+      type: "DELETE_TODO",
+      id: tableData.id,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const updateCompleted = (id, isCompleted, date, completedDate) => {
@@ -123,7 +130,6 @@ export const setLoadingState = (loadingState) => {
     loadingState,
   };
 };
-
 
 export const addInitialData = (data) => {
   return {

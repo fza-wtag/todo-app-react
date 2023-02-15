@@ -1,7 +1,4 @@
 import { createClient } from "@supabase/supabase-js";
-import { useDispatch } from "react-redux";
-import store from "store";
-import { addInitialData } from "actions";
 
 const supabase = createClient(
   "https://aemdlybecnilhqobaiwn.supabase.co",
@@ -17,6 +14,15 @@ export async function addTodoSupabase(data, date) {
   return await supabase
     .from("todo_data2")
     .insert({ data: data, date: date })
+    .select()
+    .single();
+}
+
+export async function deleteTodoSupabase(id) {
+  return await supabase
+    .from("todo_data2")
+    .delete()
+    .eq("id", id)
     .select()
     .single();
 }
