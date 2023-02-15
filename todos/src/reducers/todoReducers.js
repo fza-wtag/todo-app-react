@@ -44,7 +44,7 @@ const todoReducers = (state = initialData, action) => {
             ...todo,
             isCompleted: action.isCompleted,
             date: action.date,
-            completedDate: new Date().toLocaleDateString(),
+            completedDate: action.completedDate,
           };
         }
         return todo;

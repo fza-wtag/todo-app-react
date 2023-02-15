@@ -26,3 +26,12 @@ export async function deleteTodoSupabase(id) {
     .select()
     .single();
 }
+
+export async function updateStateTodoSupabase(id, isCompleted, completedDate) {
+  return await supabase
+    .from("todo_data2")
+    .update({ isCompleted: isCompleted, completedDate: completedDate })
+    .eq("id", id)
+    .select()
+    .single();
+}

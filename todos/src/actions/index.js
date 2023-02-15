@@ -1,4 +1,8 @@
-import { addTodoSupabase, deleteTodoSupabase } from "supabaseData";
+import {
+  addTodoSupabase,
+  deleteTodoSupabase,
+  updateStateTodoSupabase,
+} from "supabaseData";
 
 export const addTodo = (data) => async (dispatch) => {
   try {
@@ -7,7 +11,6 @@ export const addTodo = (data) => async (dispatch) => {
       new Date().toLocaleDateString()
     );
     const tableData = response.data;
-    // console.log(tableData);
     dispatch({
       type: "ADD_TODO",
       payload: {
@@ -28,7 +31,6 @@ export const deleteTodo = (id) => async (dispatch) => {
   try {
     const response = await deleteTodoSupabase(id);
     const tableData = response.data;
-    // console.log(tableData);
     dispatch({
       type: "DELETE_TODO",
       id: tableData.id,
@@ -38,14 +40,24 @@ export const deleteTodo = (id) => async (dispatch) => {
   }
 };
 
-export const updateCompleted = (id, isCompleted, date, completedDate) => {
-  return {
-    type: "UPDATE_COMPLETED",
-    id,
-    isCompleted,
-    date,
-    completedDate,
-  };
+export const updateCompleted = (id, isCompleted, date) => async (dispatch) => {
+  try {
+    const response = await updateStateTodoSupabase(
+      id,
+      isCompleted,
+      new Date().toLocaleDateString()
+    );
+    const tableData = response.data;
+    dispatch({
+      type: "UPDATE_COMPLETED",
+      id: tableData.id,
+      isCompleted: tableData.isCompleted,
+      date: tableData.date,
+      completedDate: tableData.completedDate,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const toggleAddTaskVisibility = (isAddTaskVisible) => {
