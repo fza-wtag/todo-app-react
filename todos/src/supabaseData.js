@@ -13,7 +13,7 @@ export async function getCurrentTodos() {
 export async function addTodoSupabase(data, date) {
   return await supabase
     .from("todo_data2")
-    .insert({ data: data, date: date })
+    .insert({ data, date })
     .select()
     .single();
 }
@@ -30,7 +30,7 @@ export async function deleteTodoSupabase(id) {
 export async function updateStateTodoSupabase(id, isCompleted, completedDate) {
   return await supabase
     .from("todo_data2")
-    .update({ isCompleted: isCompleted, completedDate: completedDate })
+    .update({ isCompleted, completedDate })
     .eq("id", id)
     .select()
     .single();
@@ -54,9 +54,9 @@ export async function updateStateTodoSupabaseOnEdit(
   return await supabase
     .from("todo_data2")
     .update({
-      isCompleted: isCompleted,
-      completedDate: completedDate,
-      onEdit: onEdit,
+      isCompleted,
+      completedDate,
+      onEdit,
     })
     .eq("id", id)
     .select()
