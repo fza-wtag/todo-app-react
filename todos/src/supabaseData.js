@@ -35,3 +35,30 @@ export async function updateStateTodoSupabase(id, isCompleted, completedDate) {
     .select()
     .single();
 }
+
+export async function updateTodoSupabase(id, data, onEdit) {
+  return await supabase
+    .from("todo_data2")
+    .update({ data, onEdit })
+    .eq("id", id)
+    .select()
+    .single();
+}
+
+export async function updateStateTodoSupabaseOnEdit(
+  id,
+  isCompleted,
+  completedDate,
+  onEdit
+) {
+  return await supabase
+    .from("todo_data2")
+    .update({
+      isCompleted: isCompleted,
+      completedDate: completedDate,
+      onEdit: onEdit,
+    })
+    .eq("id", id)
+    .select()
+    .single();
+}

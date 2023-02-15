@@ -3,7 +3,6 @@ const initialData = {
 };
 
 const todoReducers = (state = initialData, action) => {
-  // console.log(state.list)
   switch (action.type) {
     case "ADD_INITIAL_DATA":
       const { payload } = action;
@@ -76,8 +75,8 @@ const todoReducers = (state = initialData, action) => {
             ...todo,
             isCompleted: action.isCompleted,
             date: action.date,
-            completedDate: new Date().toLocaleDateString(),
-            onEdit: !action.onEdit,
+            completedDate: action.completedDate,
+            onEdit: action.onEdit,
           };
         }
         return todo;
@@ -93,7 +92,7 @@ const todoReducers = (state = initialData, action) => {
           return {
             ...todo,
             data: action.data,
-            onEdit: !action.onEdit,
+            onEdit: action.onEdit,
           };
         }
         return todo;

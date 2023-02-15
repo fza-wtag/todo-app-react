@@ -2,6 +2,8 @@ import {
   addTodoSupabase,
   deleteTodoSupabase,
   updateStateTodoSupabase,
+  updateStateTodoSupabaseOnEdit,
+  updateTodoSupabase,
 } from "supabaseData";
 
 export const addTodo = (data) => async (dispatch) => {
@@ -82,30 +84,42 @@ export const editTodo = (id, onEdit) => {
   };
 };
 
-export const editUpdateCompleted = (
-  id,
-  isCompleted,
-  date,
-  completedDate,
-  onEdit
-) => {
-  return {
-    type: "EDIT_UPDATE_COMPLETED",
-    id,
-    isCompleted,
-    date,
-    completedDate,
-    onEdit,
+export const editUpdateCompleted =
+  (id, isCompleted, date, completedDate, onEdit) => async (dispatch) => {
+    try {
+      const response = await updateStateTodoSupabaseOnEdit(
+        id,
+        isCompleted,
+        new Date().toLocaleDateString(),
+        !onEdit
+      );
+      const tableData = response.data;
+      dispatch({
+        type: "EDIT_UPDATE_COMPLETED",
+        id: tableData.id,
+        isCompleted: tableData.isCompleted,
+        date: tableData.date,
+        completedDate: tableData.completedDate,
+        onEdit: tableData.onEdit,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
-};
 
-export const updateTodo = (id, data, onEdit) => {
-  return {
-    type: "UPDATE_TODO",
-    id,
-    data,
-    onEdit,
-  };
+export const updateTodo = (id, data, onEdit) => async (dispatch) => {
+  try {
+    const response = await updateTodoSupabase(id, data, !onEdit);
+    const tableData = response.data;
+    dispatch({
+      type: "UPDATE_TODO",
+      id: tableData.id,
+      data: tableData.data,
+      onEdit: tableData.onEdit,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const updateCurrentPage = (page) => {
