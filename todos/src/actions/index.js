@@ -124,6 +124,7 @@ export const editUpdateCompleted =
       console.error(error);
     } finally {
       dispatch(setEditCardLoadingState(false));
+      successMessage(STATE_CHANGE_MESSAGE);
     }
   };
 

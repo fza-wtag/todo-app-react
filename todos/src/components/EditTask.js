@@ -54,7 +54,6 @@ const EditTask = (props) => {
         props.onEdit
       )
     );
-    successMessage(STATE_CHANGE_MESSAGE);
   };
   const deleteHandleClick = () => {
     dispatch(editTodo(props.id, props.onEdit), setInputData(""));
