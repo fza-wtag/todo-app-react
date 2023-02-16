@@ -5,6 +5,13 @@ import {
   updateStateTodoSupabaseOnEdit,
   updateTodoSupabase,
 } from "supabaseData";
+import {
+  STATE_CHANGE_MESSAGE,
+  EDIT_CANCEL_MESSAGE,
+  EDIT_SUCCESS_MESSAGE,
+  TASK_ADDED_MESSAGE,
+} from "constants";
+import { successMessage, infoMessage } from "toastMethods";
 
 export const addTodo = (data) => async (dispatch) => {
   try {
@@ -29,6 +36,7 @@ export const addTodo = (data) => async (dispatch) => {
     console.error(error);
   } finally {
     dispatch(setAddCardLoadingState(false));
+    successMessage(TASK_ADDED_MESSAGE);
   }
 };
 

@@ -42,7 +42,6 @@ const AddTask = () => {
       //to get the job done with enter button
       if (inputData !== "") {
         dispatch(addTodo(inputData.slice(0, -1)), setInputData(""));
-        successMessage(TASK_ADDED_MESSAGE);
         handleStateChange();
       }
     }
@@ -54,9 +53,8 @@ const AddTask = () => {
 
   const handleAddTaskButtonClick = () => {
     if (inputData !== "") {
-      handleStateChange();
-      successMessage(TASK_ADDED_MESSAGE);
       dispatch(addTodo(inputData), setInputData(""));
+      handleStateChange();
     } else {
       warningMessage(EMPTY_TITLE_MESSAGE);
     }
@@ -80,7 +78,9 @@ const AddTask = () => {
           className="textarea__edit-text"
           value={inputData}
           onChange={(event) => setInputData(event.target.value)}
-          placeholder={addCardLoadingState ? "Please wait..." : "Add new task..."}
+          placeholder={
+            addCardLoadingState ? "Please wait..." : "Add new task..."
+          }
           onKeyUp={handleKeyUp}
           ref={textAreaRef}
         ></textarea>
