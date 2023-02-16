@@ -17,13 +17,16 @@ const EditTask = (props) => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
+
   const doneHandlerHelper = (data) => {
     if (data !== props.currentData) {
-      dispatch(updateTodo(props.id, data, props.onEdit), setInputData(""));
-      successMessage(EDIT_SUCCESS_MESSAGE);
+      dispatch(
+        updateTodo(props.id, data, props.onEdit, true),
+        setInputData("")
+      );
     } else {
       dispatch(
-        updateTodo(props.id, props.currentData, props.onEdit),
+        updateTodo(props.id, props.currentData, props.onEdit, false),
         setInputData("")
       );
     }
@@ -54,10 +57,7 @@ const EditTask = (props) => {
     successMessage(STATE_CHANGE_MESSAGE);
   };
   const deleteHandleClick = () => {
-    dispatch(
-      editTodo(props.id, props.onEdit),
-      setInputData("")
-    );
+    dispatch(editTodo(props.id, props.onEdit), setInputData(""));
     infoMessage(EDIT_CANCEL_MESSAGE);
   };
   const saveHandleClick = () => {

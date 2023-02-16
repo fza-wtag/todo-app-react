@@ -127,7 +127,7 @@ export const editUpdateCompleted =
     }
   };
 
-export const updateTodo = (id, data, onEdit) => async (dispatch) => {
+export const updateTodo = (id, data, onEdit, Toastflag) => async (dispatch) => {
   try {
     dispatch(setEditCardLoadingState(true));
     const response = await updateTodoSupabase(id, data, !onEdit);
@@ -142,6 +142,7 @@ export const updateTodo = (id, data, onEdit) => async (dispatch) => {
     console.error(error);
   } finally {
     dispatch(setEditCardLoadingState(false));
+    Toastflag && successMessage(EDIT_SUCCESS_MESSAGE);
   }
 };
 
