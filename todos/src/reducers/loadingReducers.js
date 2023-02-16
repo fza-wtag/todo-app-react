@@ -5,18 +5,30 @@ const initialState = {
   editCardLoadingState: false,
   deleteCardLoadingState: false,
   completedCardLoadingState: false,
-  currentSelectedId: "",
+  currentSelectedId: null,
 };
 const laodingReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_LOADING_STATE":
-      return { ...state, loadingState: action.loadingState };
+      return {
+        ...state,
+        loadingState: action.loadingState,
+      };
     case "SET_SPLASH_LOADING_STATE":
-      return { ...state, splashLoadingState: action.splashLoadingState };
+      return {
+        ...state,
+        splashLoadingState: action.splashLoadingState,
+      };
     case "SET_ADD_CARD_LOADING_STATE":
-      return { ...state, addCardLoadingState: action.addCardLoadingState };
+      return {
+        ...state,
+        addCardLoadingState: action.addCardLoadingState,
+      };
     case "SET_EDIT_CARD_LOADING_STATE":
-      return { ...state, editCardLoadingState: action.editCardLoadingState };
+      return {
+        ...state,
+        editCardLoadingState: action.editCardLoadingState,
+      };
     case "SET_DELETE_CARD_LOADING_STATE":
       return {
         ...state,

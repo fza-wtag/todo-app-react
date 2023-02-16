@@ -1,9 +1,9 @@
 const initialState = {
   iconState: "false",
-  searchValue: ""
+  searchValue: "",
 };
 
-const searchReducer = (state = initialState, action) => {
+const searchReducers = (state = initialState, action) => {
   switch (action.type) {
     case "SET_ICON_VISIBIlITY":
       return { ...state, iconState: action.iconState };
@@ -14,4 +14,4 @@ const searchReducer = (state = initialState, action) => {
   }
 };
 
-export default searchReducer;
+export default searchReducers;

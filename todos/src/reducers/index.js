@@ -3,15 +3,15 @@ import { combineReducers } from "redux";
 import toggleReducers from "reducers/toggleReducers";
 import currentPageReducer from "reducers/currentPageReducer";
 import filterReducer from "reducers/filterReducer";
-import searchReducer from "reducers/searchReducer";
-import laodingReducer from "reducers/loadingReducer";
+import searchReducers from "reducers/searchReducers";
+import laodingReducer from "reducers/loadingReducers";
 
 const rootReducer = combineReducers({
   todoReducers,
   toggleReducers,
   currentPageReducer,
   filterReducer,
-  searchReducer,
+  searchReducers,
   laodingReducer,
 });
 

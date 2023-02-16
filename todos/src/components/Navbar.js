@@ -10,7 +10,9 @@ import { SEARCH_DATA_MESSAGE } from "constants";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const searchIconState = useSelector((state) => state.searchReducer.iconState);
+  const searchIconState = useSelector(
+    (state) => state.searchReducers.iconState
+  );
   const handleSearchIconClick = () => {
     dispatch(setIconVisibility(!searchIconState));
   };

@@ -18,7 +18,7 @@ function Todos() {
   const currentPage = useSelector(
     (state) => state.currentPageReducer.currentPage
   );
-  const searchValue = useSelector((state) => state.searchReducer.searchValue);
+  const searchValue = useSelector((state) => state.searchReducers.searchValue);
 
   const filteredTodos =
     filter === "all"
