@@ -15,6 +15,7 @@ import {
   EMPTY_TITLE_MESSAGE,
   CREATE_CANCEL_MESSAGE,
 } from "constants";
+import spinner from "icons/spinner.svg";
 
 const AddTask = () => {
   const isAddTaskVisible = useSelector(
@@ -67,8 +68,11 @@ const AddTask = () => {
   };
 
   return (
-    <div className="todo">
+    <div className={`todo ${cardLoadingState && "todo--off"}`}>
       <div>
+        {cardLoadingState && (
+          <img className="spinner spinner--small" src={spinner} alt="Loging"></img>
+        )}
         <textarea
           className="textarea__edit-text"
           placeholder="Add new task..."
