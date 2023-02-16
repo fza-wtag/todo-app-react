@@ -63,7 +63,7 @@ function Todos() {
         })}
       </div>
       {loadingState && (
-        <img className="spinner" src={spinner} alt="Loging"></img>
+        <img className="spinner" src={spinner} alt="loading.."></img>
       )}
       {showEmptyListIcon && <EmptyTaskList />}
       {searchValue.length === 0 ? (

@@ -4,11 +4,9 @@ import done from "icons/done.svg";
 import "styles/addTask.css";
 import { useDispatch } from "react-redux";
 import { editTodo, editUpdateCompleted, updateTodo } from "actions/index";
-import { successMessage, infoMessage } from "toastMethods";
+import { infoMessage } from "toastMethods";
 import {
-  STATE_CHANGE_MESSAGE,
   EDIT_CANCEL_MESSAGE,
-  EDIT_SUCCESS_MESSAGE,
 } from "constants";
 import { useSelector } from "react-redux";
 import spinner from "icons/spinner.svg";
@@ -16,7 +14,6 @@ import spinner from "icons/spinner.svg";
 const EditTask = (props) => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
-
 
   const doneHandlerHelper = (data) => {
     if (data !== props.currentData) {
@@ -74,7 +71,7 @@ const EditTask = (props) => {
           <img
             className="spinner spinner--small"
             src={spinner}
-            alt="Loging"
+            alt="loading.."
           ></img>
         )}
         <textarea

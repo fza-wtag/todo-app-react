@@ -2,18 +2,13 @@ import { useState, useRef, useEffect } from "react";
 import del from "icons/delete.svg";
 import "styles/addTask.css";
 import { addTodo } from "actions/index";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
 } from "actions/index";
-import { infoMessage, successMessage, warningMessage } from "toastMethods";
-import {
-  TASK_ADDED_MESSAGE,
-  EMPTY_TITLE_MESSAGE,
-  CREATE_CANCEL_MESSAGE,
-} from "constants";
+import { infoMessage, warningMessage } from "toastMethods";
+import { EMPTY_TITLE_MESSAGE, CREATE_CANCEL_MESSAGE } from "constants";
 import spinner from "icons/spinner.svg";
 
 const AddTask = () => {
@@ -71,7 +66,7 @@ const AddTask = () => {
           <img
             className="spinner spinner--small"
             src={spinner}
-            alt="Loging"
+            alt="loading.."
           ></img>
         )}
         <textarea

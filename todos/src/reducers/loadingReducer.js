@@ -5,6 +5,7 @@ const initialState = {
   editCardLoadingState: false,
   deleteCardLoadingState: false,
   completedCardLoadingState: false,
+  currentSelectedId: "",
 };
 const laodingReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -25,6 +26,11 @@ const laodingReducer = (state = initialState, action) => {
       return {
         ...state,
         completedCardLoadingState: action.completedCardLoadingState,
+      };
+    case "SELECTED_CARD_ID":
+      return {
+        ...state,
+        currentSelectedId: action.currentSelectedId,
       };
     default:
       return state;

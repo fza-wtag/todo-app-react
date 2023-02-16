@@ -1,6 +1,7 @@
 import React from "react";
 import IncompleteTask from "components/IncompleteTask";
 import CompletedTask from "components/CompletedTask";
+import spinner from "icons/spinner.svg";
 
 function ShowTask(props) {
   //formating the dates as dd.mm.yy
@@ -9,7 +10,14 @@ function ShowTask(props) {
 
   return (
     <div className="todo">
-      <div>
+      {props.loading && (
+        <img
+          className="spinner spinner--small"
+          src={spinner}
+          alt="loading.."
+        ></img>
+      )}
+      <div className={`${props.loading && "todo--off"}`}>
         <div>
           <span
             className={`todo__name ${

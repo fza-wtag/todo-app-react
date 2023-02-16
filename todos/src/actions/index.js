@@ -7,11 +7,10 @@ import {
 } from "supabaseData";
 import {
   STATE_CHANGE_MESSAGE,
-  EDIT_CANCEL_MESSAGE,
   EDIT_SUCCESS_MESSAGE,
   TASK_ADDED_MESSAGE,
 } from "constants";
-import { successMessage, infoMessage } from "toastMethods";
+import { successMessage } from "toastMethods";
 
 export const addTodo = (data) => async (dispatch) => {
   try {
@@ -76,6 +75,7 @@ export const updateCompleted = (id, isCompleted, date) => async (dispatch) => {
     console.error(error);
   } finally {
     dispatch(setCompletedCardLoadingState(false));
+    successMessage(STATE_CHANGE_MESSAGE);
   }
 };
 
@@ -221,5 +221,12 @@ export const setCompletedCardLoadingState = (completedCardLoadingState) => {
   return {
     type: "SET_COMPLETED_CARD_LOADING_STATE",
     completedCardLoadingState,
+  };
+};
+
+export const selectedCardId = (currentSelectedId) => {
+  return {
+    type: "SELECTED_CARD_ID",
+    currentSelectedId,
   };
 };

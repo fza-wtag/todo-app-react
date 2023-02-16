@@ -2,17 +2,23 @@ import React from "react";
 import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import edit from "icons/edit.svg";
-import { useDispatch } from "react-redux";
-import { deleteTodo, updateCompleted, editTodo } from "actions/index";
-import { dangerMessage, successMessage } from "toastMethods";
-import { TASK_DELETE_MESSAGE, STATE_CHANGE_MESSAGE } from "constants";
+import { useDispatch} from "react-redux";
+import {
+  deleteTodo,
+  updateCompleted,
+  editTodo,
+  selectedCardId,
+} from "actions/index";
+import { dangerMessage } from "toastMethods";
+import { TASK_DELETE_MESSAGE } from "constants";
 
 function IncompleteTask(props) {
   const dispatch = useDispatch();
 
   const doneHandleClick = () => {
+    dispatch(selectedCardId(props.id));
     dispatch(updateCompleted(props.id, true, props.date, props.completedDate));
-    successMessage(STATE_CHANGE_MESSAGE);
+    
   };
   const deleteHandleClick = () => {
     dispatch(deleteTodo(props.id));
