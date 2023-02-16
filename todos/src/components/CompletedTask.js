@@ -1,9 +1,7 @@
 import React from "react";
 import del from "icons/delete.svg";
 import { useDispatch } from "react-redux";
-import { deleteTodo } from "actions/index";
-import { dangerMessage } from "toastMethods";
-import { TASK_DELETE_MESSAGE } from "constants";
+import { deleteTodo, selectedCardId } from "actions/index";
 
 function CompletedTask(props) {
   const dispatch = useDispatch();
@@ -21,8 +19,8 @@ function CompletedTask(props) {
   const differenceInDays = difference / (1000 * 60 * 60 * 24);
 
   const handleDelete = () => {
+    dispatch(selectedCardId(props.id));
     dispatch(deleteTodo(props.id));
-    dangerMessage(TASK_DELETE_MESSAGE);
   };
 
   return (

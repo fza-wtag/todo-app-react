@@ -9,8 +9,9 @@ import {
   STATE_CHANGE_MESSAGE,
   EDIT_SUCCESS_MESSAGE,
   TASK_ADDED_MESSAGE,
+  TASK_DELETE_MESSAGE,
 } from "constants";
-import { successMessage } from "toastMethods";
+import { successMessage, dangerMessage } from "toastMethods";
 
 export const addTodo = (data) => async (dispatch) => {
   try {
@@ -52,6 +53,7 @@ export const deleteTodo = (id) => async (dispatch) => {
     console.error(error);
   } finally {
     dispatch(setDeleteCardLoadingState(false));
+    dangerMessage(TASK_DELETE_MESSAGE);
   }
 };
 

@@ -15,13 +15,19 @@ const Task = (props) => {
     (state) => state.laodingReducer.completedCardLoadingState
   );
 
+  const deleteCardLoadingState = useSelector(
+    (state) => state.laodingReducer.deleteCardLoadingState
+  );
+
   const currentSelectedId = useSelector(
     (state) => state.laodingReducer.currentSelectedId
   );
 
   return (
     <div>
-      {completedCardLoadingState && currentSelectedId === props.id ? (
+      {(completedCardLoadingState ||
+      deleteCardLoadingState) &&
+      currentSelectedId === props.id ? (
         <div>
           <ShowTask
             loading={true}

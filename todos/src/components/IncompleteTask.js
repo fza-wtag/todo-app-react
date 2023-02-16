@@ -9,8 +9,6 @@ import {
   editTodo,
   selectedCardId,
 } from "actions/index";
-import { dangerMessage } from "toastMethods";
-import { TASK_DELETE_MESSAGE } from "constants";
 
 function IncompleteTask(props) {
   const dispatch = useDispatch();
@@ -21,8 +19,9 @@ function IncompleteTask(props) {
     
   };
   const deleteHandleClick = () => {
+    dispatch(selectedCardId(props.id));
     dispatch(deleteTodo(props.id));
-    dangerMessage(TASK_DELETE_MESSAGE);
+    
   };
   const editHandleClick = () => {
     dispatch(editTodo(props.id, props.onEdit));

@@ -33,6 +33,7 @@ function ShowTask(props) {
       </div>
       {props.isCompleted ? (
         <CompletedTask
+          loading={props.loading}
           id={props.id}
           date={props.date}
           isCompleted={props.isCompleted}
@@ -40,6 +41,7 @@ function ShowTask(props) {
         />
       ) : (
         <IncompleteTask
+          loading={props.loading}
           id={props.id}
           date={props.date}
           isCompleted={props.isCompleted}
