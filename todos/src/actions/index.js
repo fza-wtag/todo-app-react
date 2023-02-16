@@ -8,7 +8,7 @@ import {
 
 export const addTodo = (data) => async (dispatch) => {
   try {
-    dispatch(setCardLoadingState(true));
+    dispatch(setAddCardLoadingState(true));
     const response = await addTodoSupabase(
       data,
       new Date().toLocaleDateString()
@@ -27,13 +27,14 @@ export const addTodo = (data) => async (dispatch) => {
     });
   } catch (error) {
     console.error(error);
-  } finally{
-    dispatch(setCardLoadingState(false));
+  } finally {
+    dispatch(setAddCardLoadingState(false));
   }
 };
 
 export const deleteTodo = (id) => async (dispatch) => {
   try {
+    dispatch(setDeleteCardLoadingState(true));
     const response = await deleteTodoSupabase(id);
     const tableData = response.data;
     dispatch({
@@ -42,11 +43,14 @@ export const deleteTodo = (id) => async (dispatch) => {
     });
   } catch (error) {
     console.error(error);
+  } finally {
+    dispatch(setDeleteCardLoadingState(false));
   }
 };
 
 export const updateCompleted = (id, isCompleted, date) => async (dispatch) => {
   try {
+    dispatch(setCompletedCardLoadingState(true));
     const response = await updateStateTodoSupabase(
       id,
       isCompleted,
@@ -62,6 +66,8 @@ export const updateCompleted = (id, isCompleted, date) => async (dispatch) => {
     });
   } catch (error) {
     console.error(error);
+  } finally {
+    dispatch(setCompletedCardLoadingState(false));
   }
 };
 
@@ -90,6 +96,7 @@ export const editTodo = (id, onEdit) => {
 export const editUpdateCompleted =
   (id, isCompleted, date, completedDate, onEdit) => async (dispatch) => {
     try {
+      dispatch(setEditCardLoadingState(true));
       const response = await updateStateTodoSupabaseOnEdit(
         id,
         isCompleted,
@@ -107,11 +114,14 @@ export const editUpdateCompleted =
       });
     } catch (error) {
       console.error(error);
+    } finally {
+      dispatch(setEditCardLoadingState(false));
     }
   };
 
 export const updateTodo = (id, data, onEdit) => async (dispatch) => {
   try {
+    dispatch(setEditCardLoadingState(true));
     const response = await updateTodoSupabase(id, data, !onEdit);
     const tableData = response.data;
     dispatch({
@@ -122,6 +132,8 @@ export const updateTodo = (id, data, onEdit) => async (dispatch) => {
     });
   } catch (error) {
     console.error(error);
+  } finally {
+    dispatch(setEditCardLoadingState(false));
   }
 };
 
@@ -174,9 +186,30 @@ export const setSplashLoadingState = (splashLoadingState) => {
   };
 };
 
-export const setCardLoadingState = (cardLoadingState) => {
+export const setAddCardLoadingState = (addCardLoadingState) => {
   return {
-    type: "SET_CARD_LOADING_STATE",
-    cardLoadingState,
+    type: "SET_ADD_CARD_LOADING_STATE",
+    addCardLoadingState,
+  };
+};
+
+export const setEditCardLoadingState = (editCardLoadingState) => {
+  return {
+    type: "SET_EDIT_CARD_LOADING_STATE",
+    editCardLoadingState,
+  };
+};
+
+export const setDeleteCardLoadingState = (deleteCardLoadingState) => {
+  return {
+    type: "SET_DELETE_CARD_LOADING_STATE",
+    deleteCardLoadingState,
+  };
+};
+
+export const setCompletedCardLoadingState = (completedCardLoadingState) => {
+  return {
+    type: "SET_COMPLETED_CARD_LOADING_STATE",
+    completedCardLoadingState,
   };
 };

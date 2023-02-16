@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
-  setCardLoadingState,
+  setAddCardLoadingState,
 } from "actions/index";
 import { infoMessage, successMessage, warningMessage } from "toastMethods";
 import {
@@ -26,8 +26,8 @@ const AddTask = () => {
     (state) => state.toggleReducers.isCreateButtonDisabled
   );
 
-  const cardLoadingState = useSelector(
-    (state) => state.laodingReducer.cardLoadingState
+  const addCardLoadingState = useSelector(
+    (state) => state.laodingReducer.addCardLoadingState
   );
 
   const [inputData, setInputData] = useState("");
@@ -68,10 +68,14 @@ const AddTask = () => {
   };
 
   return (
-    <div className={`todo ${cardLoadingState && "todo--off"}`}>
+    <div className={`todo ${addCardLoadingState && "todo--off"}`}>
       <div>
-        {cardLoadingState && (
-          <img className="spinner spinner--small" src={spinner} alt="Loging"></img>
+        {addCardLoadingState && (
+          <img
+            className="spinner spinner--small"
+            src={spinner}
+            alt="Loging"
+          ></img>
         )}
         <textarea
           className="textarea__edit-text"

@@ -46,8 +46,15 @@ const EditTask = (props) => {
     infoMessage(EDIT_CANCEL_MESSAGE);
   };
   const saveHandleClick = () => {
-    dispatch(updateTodo(props.id, inputData, props.onEdit), setInputData(""));
-    successMessage(EDIT_SUCCESS_MESSAGE);
+    if (inputData !== props.currentData) {
+      dispatch(updateTodo(props.id, inputData, props.onEdit), setInputData(""));
+      successMessage(EDIT_SUCCESS_MESSAGE);
+    } else {
+      dispatch(
+        updateTodo(props.id, props.currentData, props.onEdit),
+        setInputData("")
+      );
+    }
   };
 
   return (

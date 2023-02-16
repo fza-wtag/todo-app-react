@@ -38,8 +38,8 @@ function Todos() {
   const lessThanfilteredTodos = currentPage * PER_PAGE < filteredTodos.length;
   const lessThansearchedTodos = currentPage * PER_PAGE < searchedTodos.length;
 
-  const cardLoadingState = useSelector(
-    (state) => state.laodingReducer.cardLoadingState
+  const addCardLoadingState = useSelector(
+    (state) => state.laodingReducer.addCardLoadingState
   );
 
   getCurrentTodos();
@@ -47,7 +47,7 @@ function Todos() {
   return (
     <div>
       <div className={`all-todos ${loadingState && "all-todos--off"}`}>
-        {(isAddTaskVisible || cardLoadingState) && <AddTask />}
+        {(isAddTaskVisible || addCardLoadingState) && <AddTask />}
         {displayedTodoList.map((elem) => {
           return (
             <Task
