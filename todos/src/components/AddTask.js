@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
-  setAddCardLoadingState,
 } from "actions/index";
 import { infoMessage, successMessage, warningMessage } from "toastMethods";
 import {
@@ -79,9 +78,9 @@ const AddTask = () => {
         )}
         <textarea
           className="textarea__edit-text"
-          placeholder="Add new task..."
           value={inputData}
           onChange={(event) => setInputData(event.target.value)}
+          placeholder={addCardLoadingState ? "Please wait..." : "Add new task..."}
           onKeyUp={handleKeyUp}
           ref={textAreaRef}
         ></textarea>
