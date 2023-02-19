@@ -24,6 +24,7 @@ function IncompleteTask(props) {
     
   };
   const editHandleClick = () => {
+    dispatch(selectedCardId(props.id));
     dispatch(editTodo(props.id, props.onEdit));
   };
 

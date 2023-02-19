@@ -3,11 +3,14 @@ import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import "styles/addTask.css";
 import { useDispatch } from "react-redux";
-import { editTodo, editUpdateCompleted, updateTodo } from "actions/index";
-import { infoMessage } from "toastMethods";
 import {
-  EDIT_CANCEL_MESSAGE,
-} from "constants";
+  editTodo,
+  editUpdateCompleted,
+  updateTodo,
+  selectedCardId,
+} from "actions/index";
+import { infoMessage } from "toastMethods";
+import { EDIT_CANCEL_MESSAGE } from "constants";
 import { useSelector } from "react-redux";
 import spinner from "icons/spinner.svg";
 
@@ -16,6 +19,7 @@ const EditTask = (props) => {
   const dispatch = useDispatch();
 
   const doneHandlerHelper = (data) => {
+    dispatch(selectedCardId(props.id));
     if (data !== props.currentData) {
       dispatch(
         updateTodo(props.id, data, props.onEdit, true),
@@ -42,6 +46,7 @@ const EditTask = (props) => {
   }, [props.currentData]);
 
   const doneHandleClick = () => {
+    dispatch(selectedCardId(props.id));
     dispatch(
       editUpdateCompleted(
         props.id,
@@ -53,10 +58,12 @@ const EditTask = (props) => {
     );
   };
   const deleteHandleClick = () => {
+    dispatch(selectedCardId(props.id));
     dispatch(editTodo(props.id, props.onEdit), setInputData(""));
     infoMessage(EDIT_CANCEL_MESSAGE);
   };
   const saveHandleClick = () => {
+    dispatch(selectedCardId(props.id));
     doneHandlerHelper(inputData);
   };
 
@@ -64,10 +71,18 @@ const EditTask = (props) => {
     (state) => state.laodingReducer.editCardLoadingState
   );
 
+  const currentSelectedId = useSelector(
+    (state) => state.laodingReducer.currentSelectedId
+  );
+
   return (
-    <div className={`todo ${editCardLoadingState && "todo--off"}`}>
+    <div
+      className={`todo ${
+        currentSelectedId === props.id && editCardLoadingState && "todo--off"
+      }`}
+    >
       <div>
-        {editCardLoadingState && (
+        {currentSelectedId === props.id && editCardLoadingState && (
           <img
             className="spinner spinner--small"
             src={spinner}
