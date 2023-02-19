@@ -45,16 +45,12 @@ const EditTask = (props) => {
     textAreaRef.current.focus();
   }, [props.currentData]);
 
+  const currentDate = new Date().toLocaleDateString();
+
   const doneHandleClick = () => {
     dispatch(selectedCardId(props.id));
     dispatch(
-      editUpdateCompleted(
-        props.id,
-        true,
-        props.date,
-        props.completedDate,
-        props.onEdit
-      )
+      editUpdateCompleted(props.id, true, props.date, currentDate, props.onEdit)
     );
   };
   const deleteHandleClick = () => {
@@ -68,11 +64,11 @@ const EditTask = (props) => {
   };
 
   const editCardLoadingState = useSelector(
-    (state) => state.laodingReducer.editCardLoadingState
+    (state) => state.loadingReducer.editCardLoadingState
   );
 
   const currentSelectedId = useSelector(
-    (state) => state.laodingReducer.currentSelectedId
+    (state) => state.loadingReducer.currentSelectedId
   );
 
   return (

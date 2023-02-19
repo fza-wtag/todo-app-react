@@ -2,7 +2,7 @@ import React from "react";
 import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import edit from "icons/edit.svg";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   deleteTodo,
   updateCompleted,
@@ -12,16 +12,14 @@ import {
 
 function IncompleteTask(props) {
   const dispatch = useDispatch();
-
+  const currentDate = new Date().toLocaleDateString();
   const doneHandleClick = () => {
     dispatch(selectedCardId(props.id));
-    dispatch(updateCompleted(props.id, true, props.date, props.completedDate));
-    
+    dispatch(updateCompleted(props.id, true, props.date, currentDate));
   };
   const deleteHandleClick = () => {
     dispatch(selectedCardId(props.id));
     dispatch(deleteTodo(props.id));
-    
   };
   const editHandleClick = () => {
     dispatch(selectedCardId(props.id));

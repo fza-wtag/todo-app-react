@@ -14,13 +14,10 @@ import {
 } from "constants";
 import { successMessage, dangerMessage } from "toastMethods";
 
-export const addTodo = (data) => async (dispatch) => {
+export const addTodo = (data, date) => async (dispatch) => {
   try {
     dispatch(setAddCardLoadingState(true));
-    const response = await addTodoSupabase(
-      data,
-      new Date().toLocaleDateString()
-    );
+    const response = await addTodoSupabase(data, date);
     const tableData = response.data;
     dispatch({
       type: "ADD_TODO",
@@ -58,29 +55,30 @@ export const deleteTodo = (id) => async (dispatch) => {
   }
 };
 
-export const updateCompleted = (id, isCompleted, date) => async (dispatch) => {
-  try {
-    dispatch(setCompletedCardLoadingState(true));
-    const response = await updateStateTodoSupabase(
-      id,
-      isCompleted,
-      new Date().toLocaleDateString()
-    );
-    const tableData = response.data;
-    dispatch({
-      type: "UPDATE_COMPLETED",
-      id: tableData.id,
-      isCompleted: tableData.isCompleted,
-      date: tableData.date,
-      completedDate: tableData.completedDate,
-    });
-    successMessage(STATE_CHANGE_MESSAGE);
-  } catch (error) {
-    dangerMessage(WENT_WRONG_MESSAGE);
-  } finally {
-    dispatch(setCompletedCardLoadingState(false));
-  }
-};
+export const updateCompleted =
+  (id, isCompleted, date, completedDate) => async (dispatch) => {
+    try {
+      dispatch(setCompletedCardLoadingState(true));
+      const response = await updateStateTodoSupabase(
+        id,
+        isCompleted,
+        completedDate
+      );
+      const tableData = response.data;
+      dispatch({
+        type: "UPDATE_COMPLETED",
+        id: tableData.id,
+        isCompleted: tableData.isCompleted,
+        date: tableData.date,
+        completedDate: tableData.completedDate,
+      });
+      successMessage(STATE_CHANGE_MESSAGE);
+    } catch (error) {
+      dangerMessage(WENT_WRONG_MESSAGE);
+    } finally {
+      dispatch(setCompletedCardLoadingState(false));
+    }
+  };
 
 export const toggleAddTaskVisibility = (isAddTaskVisible) => {
   return {
@@ -111,7 +109,7 @@ export const editUpdateCompleted =
       const response = await updateStateTodoSupabaseOnEdit(
         id,
         isCompleted,
-        new Date().toLocaleDateString(),
+        completedDate,
         !onEdit
       );
       const tableData = response.data;
@@ -123,7 +121,7 @@ export const editUpdateCompleted =
         completedDate: tableData.completedDate,
         onEdit: tableData.onEdit,
       });
-    successMessage(STATE_CHANGE_MESSAGE);
+      successMessage(STATE_CHANGE_MESSAGE);
     } catch (error) {
       dangerMessage(WENT_WRONG_MESSAGE);
     } finally {

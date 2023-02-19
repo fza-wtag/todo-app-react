@@ -21,7 +21,7 @@ const AddTask = () => {
   );
 
   const addCardLoadingState = useSelector(
-    (state) => state.laodingReducer.addCardLoadingState
+    (state) => state.loadingReducer.addCardLoadingState
   );
 
   const [inputData, setInputData] = useState("");
@@ -32,11 +32,15 @@ const AddTask = () => {
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
   };
 
+  const currentDate = new Date().toLocaleDateString();
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
       //to get the job done with enter button
       if (inputData !== "") {
-        dispatch(addTodo(inputData.slice(0, -1)), setInputData(""));
+        dispatch(
+          addTodo(inputData.slice(0, -1), currentDate),
+          setInputData("")
+        );
         handleStateChange();
       }
     }
@@ -48,7 +52,7 @@ const AddTask = () => {
 
   const handleAddTaskButtonClick = () => {
     if (inputData !== "") {
-      dispatch(addTodo(inputData), setInputData(""));
+      dispatch(addTodo(inputData, currentDate), setInputData(""));
       handleStateChange();
     } else {
       warningMessage(EMPTY_TITLE_MESSAGE);

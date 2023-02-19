@@ -4,7 +4,7 @@ import toggleReducers from "reducers/toggleReducers";
 import currentPageReducer from "reducers/currentPageReducer";
 import filterReducer from "reducers/filterReducer";
 import searchReducers from "reducers/searchReducers";
-import laodingReducer from "reducers/loadingReducers";
+import loadingReducer from "reducers/loadingReducers";
 
 const rootReducer = combineReducers({
   todoReducers,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   currentPageReducer,
   filterReducer,
   searchReducers,
-  laodingReducer,
+  loadingReducer,
 });
 
 export default rootReducer;

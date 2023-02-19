@@ -19,23 +19,25 @@ function LoadMoreBtn(props) {
   };
 
   const loadingState = useSelector(
-    (state) => state.laodingReducer.loadingState
+    (state) => state.loadingReducer.loadingState
   );
 
-  return !loadingState && (
-    <div className="load-more">
-      {props.type === LOAD_MORE && (
-        <button className="load-more__button" onClick={handleLoadMore}>
-          {props.type}
-        </button>
-      )}
-      {props.type === SHOW_LESS && (
-        <button className="load-more__button" onClick={handleshowLess}>
-          {props.type}
-        </button>
-      )}
-    </div>
-  ) 
+  return (
+    !loadingState && (
+      <div className="load-more">
+        {props.type === LOAD_MORE && (
+          <button className="load-more__button" onClick={handleLoadMore}>
+            {props.type}
+          </button>
+        )}
+        {props.type === SHOW_LESS && (
+          <button className="load-more__button" onClick={handleshowLess}>
+            {props.type}
+          </button>
+        )}
+      </div>
+    )
+  );
 }
 
 export default LoadMoreBtn;

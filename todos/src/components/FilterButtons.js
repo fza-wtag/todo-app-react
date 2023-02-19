@@ -18,7 +18,7 @@ const FilterButtons = () => {
   };
 
   const loadingState = useSelector(
-    (state) => state.laodingReducer.loadingState
+    (state) => state.loadingReducer.loadingState
   );
 
   const classNameLogicForMainDiv = `btn__progress_button ${

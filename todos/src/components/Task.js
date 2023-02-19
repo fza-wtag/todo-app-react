@@ -12,21 +12,20 @@ const Task = (props) => {
   const onEdit = myList.onEdit;
 
   const completedCardLoadingState = useSelector(
-    (state) => state.laodingReducer.completedCardLoadingState
+    (state) => state.loadingReducer.completedCardLoadingState
   );
 
   const deleteCardLoadingState = useSelector(
-    (state) => state.laodingReducer.deleteCardLoadingState
+    (state) => state.loadingReducer.deleteCardLoadingState
   );
 
   const currentSelectedId = useSelector(
-    (state) => state.laodingReducer.currentSelectedId
+    (state) => state.loadingReducer.currentSelectedId
   );
 
   return (
     <div>
-      {(completedCardLoadingState ||
-      deleteCardLoadingState) &&
+      {(completedCardLoadingState || deleteCardLoadingState) &&
       currentSelectedId === props.id ? (
         <div>
           <ShowTask
