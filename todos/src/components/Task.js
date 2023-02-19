@@ -23,10 +23,12 @@ const Task = (props) => {
     (state) => state.loadingReducer.currentSelectedId
   );
 
+  const isLoading = completedCardLoadingState || deleteCardLoadingState;
+  const isCurrentSelected = currentSelectedId === props.id;
+
   return (
     <div>
-      {(completedCardLoadingState || deleteCardLoadingState) &&
-      currentSelectedId === props.id ? (
+      {isLoading && isCurrentSelected ? (
         <div>
           <ShowTask
             loading={true}

@@ -20,17 +20,16 @@ const EditTask = (props) => {
 
   const doneHandlerHelper = (data) => {
     dispatch(selectedCardId(props.id));
-    if (data !== props.currentData) {
-      dispatch(
-        updateTodo(props.id, data, props.onEdit, true),
-        setInputData("")
-      );
-    } else {
-      dispatch(
-        updateTodo(props.id, props.currentData, props.onEdit, false),
-        setInputData("")
-      );
-    }
+    const isDataSameAsCurrentData = data === props.currentData;
+    dispatch(
+      updateTodo(
+        props.id,
+        isDataSameAsCurrentData ? props.currentData : data,
+        props.onEdit,
+        !isDataSameAsCurrentData
+      ),
+      setInputData("")
+    );
   };
 
   const handleKeyUp = (event) => {
