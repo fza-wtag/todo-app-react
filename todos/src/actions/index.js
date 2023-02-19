@@ -10,6 +10,7 @@ import {
   EDIT_SUCCESS_MESSAGE,
   TASK_ADDED_MESSAGE,
   TASK_DELETE_MESSAGE,
+  WENT_WRONG_MESSAGE,
 } from "constants";
 import { successMessage, dangerMessage } from "toastMethods";
 
@@ -32,11 +33,11 @@ export const addTodo = (data) => async (dispatch) => {
         onEdit: tableData.onEdit,
       },
     });
+    successMessage(TASK_ADDED_MESSAGE);
   } catch (error) {
-    console.error(error);
+    dangerMessage(WENT_WRONG_MESSAGE);
   } finally {
     dispatch(setAddCardLoadingState(false));
-    successMessage(TASK_ADDED_MESSAGE);
   }
 };
 
@@ -49,11 +50,11 @@ export const deleteTodo = (id) => async (dispatch) => {
       type: "DELETE_TODO",
       id: tableData.id,
     });
+    dangerMessage(TASK_DELETE_MESSAGE);
   } catch (error) {
-    console.error(error);
+    dangerMessage(WENT_WRONG_MESSAGE);
   } finally {
     dispatch(setDeleteCardLoadingState(false));
-    dangerMessage(TASK_DELETE_MESSAGE);
   }
 };
 
@@ -73,11 +74,11 @@ export const updateCompleted = (id, isCompleted, date) => async (dispatch) => {
       date: tableData.date,
       completedDate: tableData.completedDate,
     });
+    successMessage(STATE_CHANGE_MESSAGE);
   } catch (error) {
-    console.error(error);
+    dangerMessage(WENT_WRONG_MESSAGE);
   } finally {
     dispatch(setCompletedCardLoadingState(false));
-    successMessage(STATE_CHANGE_MESSAGE);
   }
 };
 
@@ -122,11 +123,11 @@ export const editUpdateCompleted =
         completedDate: tableData.completedDate,
         onEdit: tableData.onEdit,
       });
+    successMessage(STATE_CHANGE_MESSAGE);
     } catch (error) {
-      console.error(error);
+      dangerMessage(WENT_WRONG_MESSAGE);
     } finally {
       dispatch(setEditCardLoadingState(false));
-      successMessage(STATE_CHANGE_MESSAGE);
     }
   };
 
@@ -141,11 +142,11 @@ export const updateTodo = (id, data, onEdit, Toastflag) => async (dispatch) => {
       data: tableData.data,
       onEdit: tableData.onEdit,
     });
+    Toastflag && successMessage(EDIT_SUCCESS_MESSAGE);
   } catch (error) {
-    console.error(error);
+    dangerMessage(WENT_WRONG_MESSAGE);
   } finally {
     dispatch(setEditCardLoadingState(false));
-    Toastflag && successMessage(EDIT_SUCCESS_MESSAGE);
   }
 };
 

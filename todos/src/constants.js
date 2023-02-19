@@ -9,3 +9,4 @@ export const TASK_DELETE_MESSAGE = "Task Deleted";
 export const STATE_CHANGE_MESSAGE = "Task Completed";
 export const EDIT_SUCCESS_MESSAGE = "Task Edited";
 export const SEARCH_DATA_MESSAGE = "Search Data Shown";
+export const WENT_WRONG_MESSAGE = "Something went wrong!";
