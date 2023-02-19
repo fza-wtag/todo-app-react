@@ -3,14 +3,17 @@ import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import "styles/addTask.css";
 import { useDispatch } from "react-redux";
-import { editUpdateCompleted, updateTodo } from "actions/index";
+import { makeCompletedOnEdit, updatedTodo } from "actions/index";
 
 const EditTask = (props) => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
-      dispatch(updateTodo(props.id, inputData, props.onEdit), setInputData(""));
+      dispatch(
+        updatedTodo(props.id, inputData, props.onEdit),
+        setInputData("")
+      );
     }
   };
   const textAreaRef = useRef(null);
@@ -20,9 +23,9 @@ const EditTask = (props) => {
     textAreaRef.current.focus();
   }, [props.currentData]);
 
-  const doneHandleClick = () => {
+  const handleDone = () => {
     dispatch(
-      editUpdateCompleted(
+      makeCompletedOnEdit(
         props.id,
         true,
         props.date,
@@ -31,14 +34,14 @@ const EditTask = (props) => {
       )
     );
   };
-  const deleteHandleClick = () => {
+  const handleDelete = () => {
     dispatch(
-      updateTodo(props.id, props.currentData, props.onEdit),
+      updatedTodo(props.id, props.currentData, props.onEdit),
       setInputData("")
     );
   };
-  const saveHandleClick = () => {
-    dispatch(updateTodo(props.id, inputData, props.onEdit), setInputData(""));
+  const handleSave = () => {
+    dispatch(updatedTodo(props.id, inputData, props.onEdit), setInputData(""));
   };
 
   return (
@@ -54,15 +57,15 @@ const EditTask = (props) => {
         ></textarea>
       </div>
       <div className="todo__save_done_del">
-        <button className="btn btn__save_button" onClick={saveHandleClick}>
+        <button className="btn btn__save_button" onClick={handleSave}>
           Save
         </button>
 
-        <button className="todo__icon-btn" onClick={doneHandleClick}>
+        <button className="todo__icon-btn" onClick={handleDone}>
           <img src={done} alt="icon"></img>
         </button>
 
-        <button className="todo__icon-btn" onClick={deleteHandleClick}>
+        <button className="todo__icon-btn" onClick={handleDelete}>
           <img src={del} alt="icon"></img>
         </button>
       </div>

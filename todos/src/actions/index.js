@@ -20,9 +20,9 @@ export const deleteTodo = (id) => {
   };
 };
 
-export const updateCompleted = (id, isCompleted, date, completedDate) => {
+export const updateAsCompleted = (id, isCompleted, date, completedDate) => {
   return {
-    type: "UPDATE_COMPLETED",
+    type: "UPDATE_AS_COMPLETED",
     id,
     isCompleted,
     date,
@@ -44,15 +44,15 @@ export const toggleAddTaskButtonVisibility = (isCreateButtonDisabled) => {
   };
 };
 
-export const editTodo = (id, onEdit) => {
+export const changeEditState = (id, onEdit) => {
   return {
-    type: "EDIT_TODO",
+    type: "CHANGE_EDIT_STATE",
     id,
     onEdit: !onEdit,
   };
 };
 
-export const editUpdateCompleted = (
+export const makeCompletedOnEdit = (
   id,
   isCompleted,
   date,
@@ -60,7 +60,7 @@ export const editUpdateCompleted = (
   onEdit
 ) => {
   return {
-    type: "EDIT_UPDATE_COMPLETED",
+    type: "MAKE_COMPLETED_ON_EDIT",
     id,
     isCompleted,
     date,
@@ -69,9 +69,9 @@ export const editUpdateCompleted = (
   };
 };
 
-export const updateTodo = (id, data, onEdit) => {
+export const updatedTodo = (id, data, onEdit) => {
   return {
-    type: "UPDATE_TODO",
+    type: "UPDATED_TODO",
     id,
     data,
     onEdit,
