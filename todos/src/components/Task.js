@@ -9,7 +9,7 @@ const Task = ({key, id, title, isCompleted, date, completedDate}) => {
   const formartedDate = `${day}.${month}.${year}`;
 
   return (
-    <div className="todo__wrapper" key={props.myKey}>
+    <div className="todo__wrapper" key={key}>
       <div>
         <div>
           <span
