@@ -2,7 +2,6 @@ import React from "react";
 import "styles/task.css";
 import IncompleteTask from "components/IncompleteTask";
 import CompletedTask from "components/CompletedTask";
-import classNames from "classnames";
 
 const Task = (props) => {
   return (
@@ -10,10 +9,11 @@ const Task = (props) => {
       <div>
         <div>
           <span
-            className={classNames("todo__name", {
-              "todo__name--completed": props.isCompleted,
-              "todo__name--incomple": !props.isCompleted,
-            })}
+            className={`todo__name ${
+              props.isCompleted
+                ? "todo__name--completed"
+                : "todo__name--incomplete"
+            }`}
           >
             {props.name}
           </span>
