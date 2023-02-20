@@ -30,8 +30,8 @@ function Todos() {
   const displayedTodoList = filteredTodos.slice(0, PER_PAGE * currentPage);
   
   const showEmptyListIcon = list.length === 0 && !isAddTaskVisible;
-  const lessThanListLength = currentPage * PER_PAGE < list.length;
-  const listGreaterThanPerPage = list.length > PER_PAGE;
+  const lessThanListLength = currentPage * PER_PAGE < filteredTodos.length;
+  const listGreaterThanPerPage = filteredTodos.length > PER_PAGE;
 
   return (
     <div>
