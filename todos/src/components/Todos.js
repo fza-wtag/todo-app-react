@@ -34,8 +34,8 @@ function Todos() {
   );
 
   const showEmptyListIcon = displayedTodoList.length === 0 && !isAddTaskVisible;
-  const lessThanfilteredTodos = currentPage * PER_PAGE < filteredTodos.length;
-  const lessThansearchedTodos = currentPage * PER_PAGE < searchedTodos.length;
+  const lessThanFilteredTodos = currentPage * PER_PAGE < filteredTodos.length;
+  const lessThanSearchedTodos = currentPage * PER_PAGE < searchedTodos.length;
 
   return (
     <div>
@@ -60,12 +60,12 @@ function Todos() {
       )}
       {showEmptyListIcon && <EmptyTaskList />}
       {searchValue.length === 0 ? (
-        lessThanfilteredTodos ? (
+        lessThanFilteredTodos ? (
           <LoadMoreBtn type={LOAD_MORE} />
         ) : (
           filteredTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
         )
-      ) : lessThansearchedTodos ? (
+      ) : lessThanSearchedTodos ? (
         <LoadMoreBtn type={LOAD_MORE} />
       ) : (
         searchedTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
