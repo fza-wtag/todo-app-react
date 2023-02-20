@@ -53,9 +53,9 @@ function Todos() {
       </div>
       {showEmptyListIcon && <EmptyTaskList />}
       {lessThanListLength ? (
-        <LoadMoreBtn type={"Load More"} />
+        <LoadMoreBtn type={LOAD_MORE} />
       ) : (
-        listGreaterThanPerPage && <LoadMoreBtn type={"Show Less"} />
+        listGreaterThanPerPage && <LoadMoreBtn type={SHOW_LESS} />
       )}
     </div>
   );
