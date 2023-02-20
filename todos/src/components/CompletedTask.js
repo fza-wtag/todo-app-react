@@ -6,6 +6,9 @@ import { parse, differenceInDays } from "date-fns";
 
 function CompletedTask(props) {
   const dispatch = useDispatch();
+  const handleDelete = (event) => {
+    dispatch(deleteTodo(props.id));
+  };
 
   // //Calculating the completation duration in days
   const startingDate = parse(props.date, "dd/MM/yyyy", new Date());
@@ -14,12 +17,7 @@ function CompletedTask(props) {
 
   return (
     <div className="todo-del-duration">
-      <button
-        className="todo__icon-btn"
-        onClick={(event) => {
-          dispatch(deleteTodo(props.id));
-        }}
-      >
+      <button className="todo__icon-btn" onClick={handleDelete}>
         <img src={del} alt="icon"></img>
       </button>
       {differenceInDay === 0 ? (

@@ -9,23 +9,23 @@ const AddTask = () => {
   const {
     isAddTaskVisible,
     setIsAddTaskVisible,
-    isBtnDisabled,
-    setIsBtnDisabled,
+    isCreatedBtnDisabled,
+    setIsCreatedBtnDisabled,
   } = useContext(TopContentContext);
 
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
-  const addTaskBtnClick = () => {
+  const onCreateTask = () => {
     setIsAddTaskVisible(!isAddTaskVisible);
-    setIsBtnDisabled(!isBtnDisabled);
+    setIsCreatedBtnDisabled(!isCreatedBtnDisabled);
   };
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
       //to get the job done with enter button
       dispatch(addTodo(inputData), setInputData(""));
       if (inputData !== "") {
-        addTaskBtnClick();
+        onCreateTask();
       }
     }
   };
@@ -35,7 +35,7 @@ const AddTask = () => {
   }, []);
 
   return (
-    <div className="todo">
+    <div className="todo__wrapper">
       <div>
         <textarea
           className="textarea__edit-text"
@@ -52,7 +52,7 @@ const AddTask = () => {
           onClick={(event) => {
             dispatch(addTodo(inputData), setInputData(""));
             if (inputData !== "") {
-              addTaskBtnClick();
+              onCreateTask();
             }
           }}
         >
@@ -62,7 +62,7 @@ const AddTask = () => {
           className="todo__icon-btn"
           onClick={() => {
             setIsAddTaskVisible(!isAddTaskVisible);
-            setIsBtnDisabled(!isBtnDisabled);
+            setIsCreatedBtnDisabled(!isCreatedBtnDisabled);
           }}
         >
           <img src={del} alt="icon"></img>

@@ -8,6 +8,9 @@ import { updateCompleted } from "actions/index";
 
 function IncompleteTask(props) {
   const dispatch = useDispatch();
+  const handleDelete = (event) => {
+    dispatch(deleteTodo(props.id));
+  };
 
   const handleClick = () => {
     dispatch(updateCompleted(props.id, true, props.date, props.completedDate));
@@ -20,12 +23,7 @@ function IncompleteTask(props) {
       <button className="todo__icon-btn">
         <img src={edit} alt="icon"></img>
       </button>
-      <button
-        className="todo__icon-btn"
-        onClick={(event) => {
-          dispatch(deleteTodo(props.id));
-        }}
-      >
+      <button className="todo__icon-btn" onClick={handleDelete}>
         <img src={del} alt="icon"></img>
       </button>
     </div>

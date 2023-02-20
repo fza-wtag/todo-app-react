@@ -14,7 +14,7 @@ function Todos() {
   return (
     <div>
       <div className="all-todos">
-        {isAddTaskVisible ? <AddTask /> : null}
+        {isAddTaskVisible && <AddTask />}
         {list.map(
           (element) =>
             element.data && (

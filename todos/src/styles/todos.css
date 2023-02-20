@@ -6,7 +6,7 @@
   padding: 1.5% 7.5% 0% 6.5%;
 }
 
-.todo {
+.todo__wrapper {
   background: #fff;
   border: 1px solid #dde2ff;
   border-radius: 5px;
