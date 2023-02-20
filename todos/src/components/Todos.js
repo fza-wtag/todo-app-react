@@ -7,6 +7,7 @@ import EmptyTaskList from "components/EmptyTaskList";
 import LoadMoreBtn from "components/LoadMoreBtn";
 import { LOAD_MORE, SHOW_LESS, PER_PAGE } from "constants";
 import spinner from "icons/spinner.svg";
+import { ALL, INCOMPLETE } from "constants";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);
@@ -17,15 +18,18 @@ function Todos() {
   const currentPage = useSelector(
     (state) => state.currentPageReducer.currentPage
   );
+
   const searchValue = useSelector((state) => state.searchReducer.searchValue);
 
-  const filteredTodos =
-    filter === "all"
-      ? list
-      : filter === "incomplete"
-      ? list.filter((todo) => !todo.isCompleted)
-      : list.filter((todo) => todo.isCompleted);
-  const searchedTodos = filteredTodos.filter((elem) =>
+  let filteredTodos;
+  if (filter === ALL) {
+    filteredTodos = list;
+  } else if (filter === INCOMPLETE) {
+    filteredTodos = list.filter((todo) => !todo.isCompleted);
+  } else {
+    filteredTodos = list.filter((todo) => todo.isCompleted);
+  }
+ const searchedTodos = filteredTodos.filter((elem) =>
     elem.data.toLowerCase().includes(searchValue.toLowerCase())
   );
   const displayedTodoList = searchedTodos.slice(0, PER_PAGE * currentPage);
@@ -34,8 +38,8 @@ function Todos() {
   );
 
   const showEmptyListIcon = displayedTodoList.length === 0 && !isAddTaskVisible;
-  const lessThanfilteredTodos = currentPage * PER_PAGE < filteredTodos.length;
-  const lessThansearchedTodos = currentPage * PER_PAGE < searchedTodos.length;
+  const lessThanFilteredTodos = currentPage * PER_PAGE < filteredTodos.length;
+  const lessThanSearchedTodos = currentPage * PER_PAGE < searchedTodos.length;
 
   return (
     <div>
@@ -60,12 +64,12 @@ function Todos() {
       )}
       {showEmptyListIcon && <EmptyTaskList />}
       {searchValue.length === 0 ? (
-        lessThanfilteredTodos ? (
+        lessThanFilteredTodos ? (
           <LoadMoreBtn type={LOAD_MORE} />
         ) : (
           filteredTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
         )
-      ) : lessThansearchedTodos ? (
+      ) : lessThanSearchedTodos ? (
         <LoadMoreBtn type={LOAD_MORE} />
       ) : (
         searchedTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />

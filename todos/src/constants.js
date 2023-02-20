@@ -9,3 +9,6 @@ export const TASK_DELETE_MESSAGE = "Task Deleted";
 export const CREATE_SUCCESS_MESSAGE = "Task Completed";
 export const EDIT_SUCCESS_MESSAGE = "Task Edited";
 export const SEARCH_DATA_MESSAGE = "Search Data Shown";
+export const ALL = "all";
+export const COMPLETE = "complete";
+export const INCOMPLETE = "incomplete";
