@@ -3,39 +3,40 @@ import "styles/task.css";
 import IncompleteTask from "components/IncompleteTask";
 import CompletedTask from "components/CompletedTask";
 
-const Task = (props) => {
-  const [day, month, year] = props.date.split("/");
-  const date = `${day}.${month}.${year}`;
-  
+const Task = ({key, id, title, isCompleted, date, completedDate}) => {
+
+  const [day, month, year] = date.split("/");
+  const formartedDate = `${day}.${month}.${year}`;
+
   return (
     <div className="todo">
       <div>
         <div>
           <span
             className={`todo__name ${
-              props.isCompleted
+              isCompleted
                 ? "todo__name--completed"
-                : "todo__name--incomple"
+                : "todo__name--incomplete"
             }`}
           >
-            {props.title}
+            {title}
           </span>
         </div>
-        <span className="todo__date">Created At: {date}</span>
+        <span className="todo__date">Created At: {formartedDate}</span>
       </div>
-      {props.isCompleted ? (
+      {isCompleted ? (
         <CompletedTask
-          id={props.id}
-          date={props.date}
-          isCompleted={props.isCompleted}
-          completedDate={props.completedDate}
+          id={id}
+          date={date}
+          isCompleted={isCompleted}
+          completedDate={completedDate}
         />
       ) : (
         <IncompleteTask
-          id={props.id}
-          date={props.date}
-          isCompleted={props.isCompleted}
-          completedDate={props.completedDate}
+          id={id}
+          date={date}
+          isCompleted={isCompleted}
+          completedDate={completedDate}
         />
       )}
     </div>
