@@ -14,9 +14,7 @@ function IncompleteTask(props) {
   const handleDone = () => {
     dispatch(markAsCompleted(props.id, true, props.date, props.completedDate));
   };
-  const handleDelete = () => {
-    dispatch(deleteTodo(props.id));
-  };
+
   const handleEdit = () => {
     dispatch(changeEditState(props.id, props.onEdit));
   };
