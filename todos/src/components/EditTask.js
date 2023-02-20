@@ -45,7 +45,7 @@ const EditTask = (props) => {
   };
 
   return (
-    <div className="todo">
+    <div className="todo__wrapper">
       <div>
         <textarea
           className="textarea__edit-text"

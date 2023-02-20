@@ -7,7 +7,7 @@ function ShowTask(props) {
   const date = `${day}.${month}.${year}`;
 
   return (
-    <div className="todo">
+    <div className="todo__wrapper">
       <div>
         <div>
           <span
