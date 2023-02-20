@@ -1,8 +1,10 @@
+import { v4 as uuidv4 } from "uuid";
+
 export const addTodo = (data) => {
   return {
     type: "ADD_TODO",
     payload: {
-      id: new Date().getTime().toString(),
+      id: uuidv4(),
       data,
       isCompleted: false,
       date: new Date().toLocaleDateString(),
