@@ -5,7 +5,7 @@ import "styles/todos.css";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "components/EmptyTaskList";
 import LoadMoreBtn from "components/LoadMoreBtn";
-import { PER_PAGE } from "constants";
+import { PER_PAGE, LOAD_MORE, SHOW_LESS } from "constants";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);
@@ -40,9 +40,9 @@ function Todos() {
       </div>
       {showEmptyListIcon && <EmptyTaskList />}
       {lessThanListLength ? (
-        <LoadMoreBtn type={"Load More"} />
+        <LoadMoreBtn type={LOAD_MORE} />
       ) : (
-        listGreaterThanPerPage && <LoadMoreBtn type={"Show Less"} />
+        listGreaterThanPerPage && <LoadMoreBtn type={SHOW_LESS} />
       )}
     </div>
   );
