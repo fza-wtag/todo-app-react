@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { editUpdateCompleted, updateTodo } from "actions/index";
 import { successMessage, infoMessage } from "toastMethods";
 import {
-  STATE_CHANGE_MESSAGE,
+  CREATE_SUCCESS_MESSAGE,
   EDIT_CANCEL_MESSAGE,
   EDIT_SUCCESS_MESSAGE,
 } from "constants";
@@ -36,7 +36,7 @@ const EditTask = (props) => {
         props.onEdit
       )
     );
-    successMessage(STATE_CHANGE_MESSAGE);
+    successMessage(CREATE_SUCCESS_MESSAGE);
   };
   const deleteHandleClick = () => {
     dispatch(

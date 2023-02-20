@@ -10,7 +10,7 @@ import {
 } from "actions/index";
 import { infoMessage, successMessage, warningMessage } from "toastMethods";
 import {
-  TASK_ADDED_MESSAGE,
+  ADD_TASK_MESSAGE,
   EMPTY_TITLE_MESSAGE,
   CREATE_CANCEL_MESSAGE,
 } from "constants";
@@ -36,7 +36,7 @@ const AddTask = () => {
       //to get the job done with enter button
       dispatch(addTodo(inputData.slice(0, -1)), setInputData(""));
       if (inputData !== "") {
-        successMessage(TASK_ADDED_MESSAGE);
+        successMessage(ADD_TASK_MESSAGE);
         handleStateChange();
       }
     }
@@ -49,7 +49,7 @@ const AddTask = () => {
   const handleAddTaskButtonClick = () => {
     if (inputData !== "") {
       handleStateChange();
-      successMessage(TASK_ADDED_MESSAGE);
+      successMessage(ADD_TASK_MESSAGE);
       dispatch(addTodo(inputData), setInputData(""));
     } else {
       warningMessage(EMPTY_TITLE_MESSAGE);

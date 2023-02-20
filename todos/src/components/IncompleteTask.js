@@ -5,14 +5,14 @@ import edit from "icons/edit.svg";
 import { useDispatch } from "react-redux";
 import { deleteTodo, updateCompleted, editTodo } from "actions/index";
 import { dangerMessage, successMessage } from "toastMethods";
-import { TASK_DELETE_MESSAGE, STATE_CHANGE_MESSAGE } from "constants";
+import { TASK_DELETE_MESSAGE, CREATE_SUCCESS_MESSAGE } from "constants";
 
 function IncompleteTask(props) {
   const dispatch = useDispatch();
 
   const doneHandleClick = () => {
     dispatch(updateCompleted(props.id, true, props.date, props.completedDate));
-    successMessage(STATE_CHANGE_MESSAGE);
+    successMessage(CREATE_SUCCESS_MESSAGE);
   };
   const deleteHandleClick = () => {
     dispatch(deleteTodo(props.id));
