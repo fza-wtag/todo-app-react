@@ -3,7 +3,7 @@ import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import "styles/addTask.css";
 import { useDispatch } from "react-redux";
-import { makeCompletedOnEdit, updatedTodo } from "actions/index";
+import { markCompletedOnEdit, updatedTodo } from "actions/index";
 
 const EditTask = (props) => {
   const [inputData, setInputData] = useState("");
@@ -25,7 +25,7 @@ const EditTask = (props) => {
 
   const handleDone = () => {
     dispatch(
-      makeCompletedOnEdit(
+      markCompletedOnEdit(
         props.id,
         true,
         props.date,

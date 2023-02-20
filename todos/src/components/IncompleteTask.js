@@ -3,20 +3,18 @@ import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import edit from "icons/edit.svg";
 import { useDispatch } from "react-redux";
-import { deleteTodo, updateAsCompleted, changeEditState } from "actions/index";
+import { deleteTodo, markAsCompleted, changeEditState } from "actions/index";
 
 function IncompleteTask(props) {
   const dispatch = useDispatch();
 
   const handleDone = () => {
-    dispatch(
-      updateAsCompleted(props.id, true, props.date, props.completedDate)
-    );
+    dispatch(markAsCompleted(props.id, true, props.date, props.completedDate));
   };
   const handleDelete = () => {
     dispatch(deleteTodo(props.id));
   };
-  const editHandleClick = () => {
+  const handleEdit = () => {
     dispatch(changeEditState(props.id, props.onEdit));
   };
 
@@ -25,7 +23,7 @@ function IncompleteTask(props) {
       <button className="todo__icon-btn" onClick={handleDone}>
         <img src={done} alt="icon"></img>
       </button>
-      <button className="todo__icon-btn" onClick={editHandleClick}>
+      <button className="todo__icon-btn" onClick={handleEdit}>
         <img src={edit} alt="icon"></img>
       </button>
       <button className="todo__icon-btn" onClick={handleDelete}>

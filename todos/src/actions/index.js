@@ -20,7 +20,7 @@ export const deleteTodo = (id) => {
   };
 };
 
-export const updateAsCompleted = (id, isCompleted, date, completedDate) => {
+export const markAsCompleted = (id, isCompleted, date, completedDate) => {
   return {
     type: "UPDATE_AS_COMPLETED",
     id,
@@ -52,7 +52,7 @@ export const changeEditState = (id, onEdit) => {
   };
 };
 
-export const makeCompletedOnEdit = (
+export const markCompletedOnEdit = (
   id,
   isCompleted,
   date,
