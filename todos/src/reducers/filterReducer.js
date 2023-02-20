@@ -1,5 +1,6 @@
+import { ALL } from "constants";
 const initialState = {
-  filter: "all",
+  filter: ALL,
 };
 
 const filterReducer = (state = initialState, action) => {

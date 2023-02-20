@@ -2,6 +2,8 @@ import React from "react";
 import { setFilter } from "actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
+import { ALL, INCOMPLETE, COMPLETE } from "constants";
+
 
 const FilterButtons = () => {
   const dispatch = useDispatch();
@@ -9,13 +11,13 @@ const FilterButtons = () => {
   const listLength = useSelector((state) => state.todoReducers.list).length;
 
   const handleAllTodos = () => {
-    dispatch(setFilter("all"));
+    dispatch(setFilter(ALL));
   };
   const handleIncompleteTodos = () => {
-    dispatch(setFilter("incomplete"));
+    dispatch(setFilter(INCOMPLETE));
   };
   const handleCompleteTodos = () => {
-    dispatch(setFilter("complete"));
+    dispatch(setFilter(COMPLETE));
   };
 
   const loadingState = useSelector(

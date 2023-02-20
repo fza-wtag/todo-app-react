@@ -14,9 +14,10 @@ function LoadMoreBtn(props) {
     dispatch(updateCurrentPage(currentPage + 1));
   };
 
-  const handleshowLess = () => {
+  const handleShowLess = () => {
     dispatch(updateCurrentPage(1));
   };
+
 
   const loadingState = useSelector(
     (state) => state.laodingReducer.loadingState
@@ -24,13 +25,13 @@ function LoadMoreBtn(props) {
 
   return !loadingState && (
     <div className="load-more">
-      {props.type === LOAD_MORE && (
+      {typeLoadMore && (
         <button className="load-more__button" onClick={handleLoadMore}>
           {props.type}
         </button>
       )}
-      {props.type === SHOW_LESS && (
-        <button className="load-more__button" onClick={handleshowLess}>
+      {typeShowLess && (
+        <button className="load-more__button" onClick={handleShowLess}>
           {props.type}
         </button>
       )}
