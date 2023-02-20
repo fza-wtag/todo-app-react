@@ -7,6 +7,9 @@ import { deleteTodo, markAsCompleted, changeEditState } from "actions/index";
 
 function IncompleteTask(props) {
   const dispatch = useDispatch();
+  const handleDelete = (event) => {
+    dispatch(deleteTodo(props.id));
+  };
 
   const handleDone = () => {
     dispatch(markAsCompleted(props.id, true, props.date, props.completedDate));

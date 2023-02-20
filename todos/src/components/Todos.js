@@ -29,7 +29,7 @@ function Todos() {
           ) : null;
         })}
       </div>
-      {list.length === 0 && !isAddTaskVisible ? <EmptyTaskList /> : null}
+      {list.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
     </div>
   );
 }
