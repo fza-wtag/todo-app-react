@@ -28,6 +28,10 @@ function Todos() {
   }
 
   const displayedTodoList = filteredTodos.slice(0, PER_PAGE * currentPage);
+  
+  const showEmptyListIcon = list.length === 0 && !isAddTaskVisible;
+  const lessThanListLength = currentPage * PER_PAGE < list.length;
+  const listGreaterThanPerPage = list.length > PER_PAGE;
 
   return (
     <div>
@@ -47,11 +51,11 @@ function Todos() {
           ) : null;
         })}
       </div>
-      {list.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
-      {currentPage * PER_PAGE < filteredTodos.length ? (
-        <LoadMoreBtn type={LOAD_MORE} />
+      {showEmptyListIcon && <EmptyTaskList />}
+      {lessThanListLength ? (
+        <LoadMoreBtn type={"Load More"} />
       ) : (
-        filteredTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
+        listGreaterThanPerPage && <LoadMoreBtn type={"Show Less"} />
       )}
     </div>
   );
