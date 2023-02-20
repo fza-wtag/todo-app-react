@@ -38,7 +38,7 @@ function Todos() {
       <div className="all-todos">
         {isAddTaskVisible && <AddTask />}
         {displayedTodoList.map((elem) => {
-          return elem.data ? (
+          return elem.data &&
             <Task
               key={elem.id}
               id={elem.id}
@@ -48,7 +48,6 @@ function Todos() {
               completedDate={elem.completedDate}
               onEdit={elem.onEdit}
             />
-          ) : null;
         })}
       </div>
       {showEmptyListIcon && <EmptyTaskList />}
