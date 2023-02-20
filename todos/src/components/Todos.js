@@ -31,7 +31,7 @@ function Todos() {
   );
   const displayedTodoList = searchedTodos.slice(0, PER_PAGE * currentPage);
   const loadingState = useSelector(
-    (state) => state.loadingReducer.loadingState
+    (state) => state.loadingReducers.loadingState
   );
 
   const showEmptyListIcon = displayedTodoList.length === 0 && !isAddTaskVisible;
@@ -39,7 +39,7 @@ function Todos() {
   const lessThansearchedTodos = currentPage * PER_PAGE < searchedTodos.length;
 
   const addCardLoadingState = useSelector(
-    (state) => state.loadingReducer.addCardLoadingState
+    (state) => state.loadingReducers.addCardLoadingState
   );
 
   getCurrentTodos();

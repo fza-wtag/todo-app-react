@@ -64,11 +64,11 @@ const EditTask = (props) => {
   };
 
   const editCardLoadingState = useSelector(
-    (state) => state.loadingReducer.editCardLoadingState
+    (state) => state.loadingReducers.editCardLoadingState
   );
 
   const currentSelectedId = useSelector(
-    (state) => state.loadingReducer.currentSelectedId
+    (state) => state.loadingReducers.currentSelectedId
   );
 
   return (

@@ -7,7 +7,7 @@ const initialState = {
   completedCardLoadingState: false,
   currentSelectedId: null,
 };
-const loadingReducer = (state = initialState, action) => {
+const loadingReducers = (state = initialState, action) => {
   switch (action.type) {
     case "SET_LOADING_STATE":
       return {
@@ -49,4 +49,4 @@ const loadingReducer = (state = initialState, action) => {
   }
 };
 
-export default loadingReducer;
+export default loadingReducers;

@@ -21,7 +21,7 @@ const AddTask = () => {
   );
 
   const addCardLoadingState = useSelector(
-    (state) => state.loadingReducer.addCardLoadingState
+    (state) => state.loadingReducers.addCardLoadingState
   );
 
   const [inputData, setInputData] = useState("");

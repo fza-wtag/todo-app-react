@@ -20,7 +20,7 @@ const TopContent = (props) => {
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
   };
   const loadingState = useSelector(
-    (state) => state.loadingReducer.loadingState
+    (state) => state.loadingReducers.loadingState
   );
   const createButtonClassNameLogic = `btn btn__create_button ${
     (isCreateButtonDisabled || loadingState) && "btn__create_button--blur"

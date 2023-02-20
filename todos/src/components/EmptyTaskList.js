@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 function EmptyTaskList() {
   const loadingState = useSelector(
-    (state) => state.loadingReducer.loadingState
+    (state) => state.loadingReducers.loadingState
   );
 
   return (

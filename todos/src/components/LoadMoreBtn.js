@@ -19,7 +19,7 @@ function LoadMoreBtn(props) {
   };
 
   const loadingState = useSelector(
-    (state) => state.loadingReducer.loadingState
+    (state) => state.loadingReducers.loadingState
   );
 
   return (

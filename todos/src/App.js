@@ -13,7 +13,7 @@ import SplashScreen from "components/SplashScreen";
 
 function App() {
   const splashLoadingState = useSelector(
-    (state) => state.loadingReducer.splashLoadingState
+    (state) => state.loadingReducers.splashLoadingState
   );
 
   const dispatch = useDispatch();
