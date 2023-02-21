@@ -5,43 +5,36 @@ import "styles/addTask.css";
 import { useDispatch } from "react-redux";
 import { markCompletedOnEdit, updatedTodo } from "actions/index";
 
-const EditTask = (props) => {
+const EditTask = ({
+  id,
+  date,
+  isCompleted,
+  completedDate,
+  onEdit,
+  currentData,
+}) => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
-      dispatch(
-        updatedTodo(props.id, inputData, props.onEdit),
-        setInputData("")
-      );
+      dispatch(updatedTodo(id, inputData, onEdit), setInputData(""));
     }
   };
   const textAreaRef = useRef(null);
 
   useEffect(() => {
-    setInputData(props.currentData);
+    setInputData(currentData);
     textAreaRef.current.focus();
-  }, [props.currentData]);
+  }, [currentData]);
 
   const handleDone = () => {
-    dispatch(
-      markCompletedOnEdit(
-        props.id,
-        true,
-        props.date,
-        props.completedDate,
-        props.onEdit
-      )
-    );
+    dispatch(markCompletedOnEdit(id, true, date, completedDate, onEdit));
   };
   const handleDelete = () => {
-    dispatch(
-      updatedTodo(props.id, props.currentData, props.onEdit),
-      setInputData("")
-    );
+    dispatch(updatedTodo(id, currentData, onEdit), setInputData(""));
   };
   const handleSave = () => {
-    dispatch(updatedTodo(props.id, inputData, props.onEdit), setInputData(""));
+    dispatch(updatedTodo(id, inputData, onEdit), setInputData(""));
   };
 
   return (

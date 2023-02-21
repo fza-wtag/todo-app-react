@@ -1,41 +1,47 @@
 import React from "react";
 import IncompleteTask from "components/IncompleteTask";
 import CompletedTask from "components/CompletedTask";
+import classNames from "classnames";
 
-function ShowTask(props) {
-  const [day, month, year] = props.date.split("/");
-  const date = `${day}.${month}.${year}`;
+function ShowTask({
+  id,
+  date,
+  title,
+  isCompleted,
+  completedDate,
+  onEdit,
+  currentData,
+}) {
+  const [day, month, year] = date.split("/");
+  const formatedDate = `${day}.${month}.${year}`;
 
+  const spanClassName = classNames("todo__name", {
+    "todo__name--completed": isCompleted,
+    "todo__name--incomple": !isCompleted,
+  });
+  
   return (
     <div className="todo__wrapper">
       <div>
         <div>
-          <span
-            className={`todo__name ${
-              props.isCompleted
-                ? "todo__name--completed"
-                : "todo__name--incomple"
-            }`}
-          >
-            {props.title}
-          </span>
+          <span className={spanClassName}>{title}</span>
         </div>
-        <span className="todo__date">Created At: {date} </span>
+        <span className="todo__date">Created At: {formatedDate} </span>
       </div>
-      {props.isCompleted ? (
+      {isCompleted ? (
         <CompletedTask
-          id={props.id}
-          date={props.date}
-          isCompleted={props.isCompleted}
-          completedDate={props.completedDate}
+          id={id}
+          date={date}
+          isCompleted={isCompleted}
+          completedDate={completedDate}
         />
       ) : (
         <IncompleteTask
-          id={props.id}
-          date={props.date}
-          isCompleted={props.isCompleted}
-          completedDate={props.completedDate}
-          onEdit={props.onEdit}
+          id={id}
+          date={date}
+          isCompleted={isCompleted}
+          completedDate={completedDate}
+          onEdit={onEdit}
         />
       )}
     </div>
