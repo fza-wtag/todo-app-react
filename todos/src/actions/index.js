@@ -82,7 +82,6 @@ export const updateCurrentPage = (page) => {
   return {
     type: "UPDATE_CURRENT_PAGE",
     page,
-    
   };
 };
 
