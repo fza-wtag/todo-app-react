@@ -25,7 +25,7 @@
   font-weight: 600;
 }
 
-.todo__save_done_del{
+.todo__save_done_del {
   align-items: center;
   max-width: 10.5rem;
   display: flex;

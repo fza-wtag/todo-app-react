@@ -47,7 +47,7 @@ const AddTask = () => {
   };
 
   return (
-    <div className="todo">
+    <div className="todo__wrapper">
       <div>
         <textarea
           className="textarea__edit-text"
@@ -61,7 +61,7 @@ const AddTask = () => {
       <div className="todo__add_del">
         <button
           className="btn btn__save_button"
-          onClick={handleAddTaskButtonClick}
+onClick={handleAddTaskButtonClick}
         >
           AddTask
         </button>
