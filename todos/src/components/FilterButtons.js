@@ -2,6 +2,7 @@ import React from "react";
 import { setFilter } from "actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { ALL, INCOMPLETE, COMPLETE } from "constants";
+import classNames from "classnames";
 
 const FilterButtons = () => {
   const dispatch = useDispatch();
@@ -18,34 +19,31 @@ const FilterButtons = () => {
     dispatch(setFilter(COMPLETE));
   };
 
+  const mainDivClassName = classNames("btn__progress_button", {
+    "btn__progress_button--disable": listLength === 0,
+  });
+  const AllButtonClassName = classNames("btn__progress_button", {
+    "btn__progress_button--disable": filter === ALL && listLength !== 0,
+  });
+  const IncompleteButtonClassName = classNames("btn__progress_button", {
+    "btn__progress_button--disable": filter === INCOMPLETE,
+  });
+  const CompleteButtonClassName = classNames("btn__progress_button", {
+    "btn__progress_button--disable": filter === COMPLETE,
+  });
+
   return (
-    <div
-      className={`btn__progress_button ${
-        listLength === 0 ? "btn__progress_button--disable" : null
-      }`}
-    >
-      <button
-        className={
-          filter === ALL && listLength !== 0
-            ? "btn__progress_button--disable"
-            : null
-        }
-        onClick={handleAllTodos}
-      >
+    <div className={mainDivClassName}>
+      <button className={AllButtonClassName} onClick={handleAllTodos}>
         All
       </button>
       <button
-        className={
-          filter === INCOMPLETE ? "btn__progress_button--disable" : null
-        }
+        className={IncompleteButtonClassName}
         onClick={handleIncompleteTodos}
       >
         Incomplete
       </button>
-      <button
-        className={filter === COMPLETE ? "btn__progress_button--disable" : null}
-        onClick={handleCompleteTodos}
-      >
+      <button className={CompleteButtonClassName} onClick={handleCompleteTodos}>
         Complete
       </button>
     </div>
