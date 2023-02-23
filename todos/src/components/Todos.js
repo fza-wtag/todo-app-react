@@ -4,7 +4,7 @@ import Task from "components/Task";
 import "styles/todos.css";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "components/EmptyTaskList";
-import LoadMoreBtn from "components/LoadMoreBtn";
+import PaginatorButton from "components/PaginatorButton";
 import { LOAD_MORE, SHOW_LESS, PER_PAGE } from "constants";
 import spinner from "icons/spinner.svg";
 import { ALL, INCOMPLETE } from "constants";
@@ -29,17 +29,26 @@ function Todos() {
   } else {
     filteredTodos = list.filter((todo) => todo.isCompleted);
   }
- const searchedTodos = filteredTodos.filter((elem) =>
+  const searchedTodos = filteredTodos.filter((elem) =>
     elem.data.toLowerCase().includes(searchValue.toLowerCase())
   );
   const displayedTodoList = searchedTodos.slice(0, PER_PAGE * currentPage);
   const loadingState = useSelector(
-    (state) => state.laodingReducer.loadingState
+    (state) => state.loadingReducer.loadingState
   );
 
   const showEmptyListIcon = displayedTodoList.length === 0 && !isAddTaskVisible;
-  const lessThanFilteredTodos = currentPage * PER_PAGE < filteredTodos.length;
-  const lessThanSearchedTodos = currentPage * PER_PAGE < searchedTodos.length;
+
+  let showLoadMore;
+  let showShowLess;
+
+  if (searchValue.length === 0) {
+    showLoadMore = currentPage * PER_PAGE < filteredTodos.length;
+    showShowLess = filteredTodos.length > PER_PAGE;
+  } else {
+    showLoadMore = currentPage * PER_PAGE < searchedTodos.length;
+    showShowLess = searchedTodos.length > PER_PAGE;
+  }
 
   return (
     <div>
@@ -60,19 +69,12 @@ function Todos() {
         })}
       </div>
       {loadingState && (
-        <img className="spinner" src={spinner} alt="Loging"></img>
+        <img className="spinner" src={spinner} alt="Loading.."></img>
       )}
       {showEmptyListIcon && <EmptyTaskList />}
-      {searchValue.length === 0 ? (
-        lessThanFilteredTodos ? (
-          <LoadMoreBtn type={LOAD_MORE} />
-        ) : (
-          filteredTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
-        )
-      ) : lessThanSearchedTodos ? (
-        <LoadMoreBtn type={LOAD_MORE} />
-      ) : (
-        searchedTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
+      {!loadingState && showLoadMore && <PaginatorButton type={LOAD_MORE} />}
+      {!loadingState && !showLoadMore && showShowLess && (
+        <PaginatorButton type={SHOW_LESS} />
       )}
     </div>
   );

@@ -1,10 +1,10 @@
 import React from "react";
-import "styles/loadmoreBtn.css";
+import "styles/paginatorButton.css";
 import { useSelector, useDispatch } from "react-redux";
 import { updateCurrentPage } from "actions";
 import { LOAD_MORE, SHOW_LESS } from "constants";
 
-function LoadMoreBtn(props) {
+function PaginatorButton(props) {
   const dispatch = useDispatch();
 
   const currentPage = useSelector(
@@ -16,7 +16,7 @@ function LoadMoreBtn(props) {
   const handleShowLess = () => {
     dispatch(updateCurrentPage(1));
   };
-  
+
   const typeLoadMore = props.type === LOAD_MORE;
   const typeShowLess = props.type === SHOW_LESS;
 
@@ -36,4 +36,4 @@ function LoadMoreBtn(props) {
   );
 }
 
-export default LoadMoreBtn;
+export default PaginatorButton;

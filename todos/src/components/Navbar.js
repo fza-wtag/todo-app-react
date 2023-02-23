@@ -18,7 +18,7 @@ const Navbar = () => {
     dispatch(setSearchValue(event.target.value));
   };
 
-  const optimizedHandle = useCallback(debounce(handleSearchInput), []);
+  const handleSearch = useCallback(debounce(handleSearchInput));
 
   return (
     <nav className="navbar">
@@ -28,11 +28,7 @@ const Navbar = () => {
       </div>
       <div className="navbar__search">
         {!searchIconState && (
-          <input
-            type="search"
-            placeholder="Search"
-            onChange={optimizedHandle}
-          />
+          <input type="search" placeholder="Search" onChange={handleSearch} />
         )}
         <button type="submit" onClick={handleSearchIconClick}>
           <img src={search} alt="icon"></img>
