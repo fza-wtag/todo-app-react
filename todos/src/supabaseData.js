@@ -1,6 +1,9 @@
-import supabase from "supabase";
+import SupabaseSingleton from "supabase";
 import { WENT_WRONG_MESSAGE } from "constants";
 import { dangerMessage } from "toastMethods";
+
+const supabase = new SupabaseSingleton();
+export default supabase;
 
 export async function getCurrentTodos() {
   const tableData = await supabase.from("todo_data2").select();
@@ -63,7 +66,6 @@ export async function updateTodoSupabase(id, data, onEdit) {
   }
 }
 
-
 export async function updateStateTodoSupabaseOnEdit(
   id,
   isCompleted,
@@ -86,4 +88,3 @@ export async function updateStateTodoSupabaseOnEdit(
     dangerMessage(WENT_WRONG_MESSAGE);
   }
 }
-
