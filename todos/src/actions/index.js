@@ -4,6 +4,7 @@ import {
   updateStateTodoSupabase,
   updateStateTodoSupabaseOnEdit,
   updateTodoSupabase,
+  getCurrentTodos,
 } from "supabaseData";
 import {
   STATE_CHANGE_MESSAGE,
@@ -230,4 +231,11 @@ export const selectedCardId = (currentSelectedId) => {
     type: "SELECTED_CARD_ID",
     currentSelectedId,
   };
+};
+
+export const fetchInitialData = () => async (dispatch) => {
+  dispatch(setSplashLoadingState(true));
+  const initialData = await getCurrentTodos();
+  dispatch(setSplashLoadingState(false));
+  dispatch(addInitialData(initialData));
 };

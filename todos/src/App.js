@@ -5,9 +5,7 @@ import Todos from "components/Todos";
 import TopContent from "components/TopContent";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { getCurrentTodos } from "supabaseData";
-import { addInitialData } from "actions/index";
-import { setSplashLoadingState } from "actions";
+import { fetchInitialData } from "actions/index";
 import { useSelector } from "react-redux";
 import SplashScreen from "components/SplashScreen";
 
@@ -19,13 +17,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      dispatch(setSplashLoadingState(true));
-      const initialData = await getCurrentTodos();
-      dispatch(setSplashLoadingState(false));
-      dispatch(addInitialData(initialData));
-    };
-    fetchData();
+    dispatch(fetchInitialData());
   }, []);
 
   return splashLoadingState ? (
