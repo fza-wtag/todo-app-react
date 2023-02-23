@@ -9,15 +9,18 @@ import { debounce } from "utils";
 const Navbar = () => {
   const dispatch = useDispatch();
   const searchIconState = useSelector((state) => state.searchReducer.iconState);
+  
   const handleSearchIconClick = () => {
     dispatch(setIconVisibility(!searchIconState));
   };
-
+  const handleInputChange = (event) => {
+    dispatch(setLoadingState(true));
+    handleSearch(event);
+  };
   const handleSearchInput = (event) => {
     dispatch(setSearchValue(event.target.value));
     dispatch(setLoadingState(false));
   };
-
   const handleSearch = debounce(handleSearchInput);
 
   return (
@@ -28,7 +31,11 @@ const Navbar = () => {
       </div>
       <div className="navbar__search">
         {!searchIconState && (
-          <input type="search" placeholder="Search" onChange={handleSearch} />
+          <input
+            type="search"
+            placeholder="Search"
+            onChange={handleInputChange}
+          />
         )}
         <button type="submit" onClick={handleSearchIconClick}>
           <img src={search} alt="icon"></img>
