@@ -11,7 +11,6 @@ export const debounce = (func) => {
     timer = setTimeout(() => {
       timer = null;
       func.apply(context, args);
-      store.dispatch(setLoadingState(false));
     }, 1000);
   };
 };

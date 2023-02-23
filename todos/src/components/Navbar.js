@@ -2,8 +2,7 @@ import logo from "icons/logo.svg";
 import search from "icons/searchIcon.svg";
 import "styles/navbar.css";
 import { useSelector, useDispatch } from "react-redux";
-import { setIconVisibility, setSearchValue } from "actions";
-import { useCallback } from "react";
+import { setIconVisibility, setSearchValue, setLoadingState } from "actions";
 import "styles/loading.css";
 import { debounce } from "utils";
 
@@ -16,9 +15,10 @@ const Navbar = () => {
 
   const handleSearchInput = (event) => {
     dispatch(setSearchValue(event.target.value));
+    dispatch(setLoadingState(false));
   };
 
-  const handleSearch = useCallback(debounce(handleSearchInput));
+  const handleSearch = debounce(handleSearchInput);
 
   return (
     <nav className="navbar">
