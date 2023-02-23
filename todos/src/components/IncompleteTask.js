@@ -13,7 +13,7 @@ import {
 function IncompleteTask(props) {
   const dispatch = useDispatch();
   const currentDate = new Date().toLocaleDateString();
-  const doneHandleClick = () => {
+  const handleDone = () => {
     dispatch(selectedCardId(props.id));
     dispatch(updateCompleted(props.id, true, props.date, currentDate));
   };
@@ -28,7 +28,7 @@ function IncompleteTask(props) {
 
   return (
     <div className="todo__done-edit-del">
-      <button className="todo__icon-btn" onClick={doneHandleClick}>
+      <button className="todo__icon-btn" onClick={handleDone}>
         <img src={done} alt="icon"></img>
       </button>
       <button className="todo__icon-btn" onClick={editHandleClick}>

@@ -47,7 +47,7 @@ const EditTask = (props) => {
 
   const currentDate = new Date().toLocaleDateString();
 
-  const doneHandleClick = () => {
+  const handleDone = () => {
     dispatch(selectedCardId(props.id));
     dispatch(
       editUpdateCompleted(props.id, true, props.date, currentDate, props.onEdit)
@@ -58,7 +58,7 @@ const EditTask = (props) => {
     dispatch(editTodo(props.id, props.onEdit), setInputData(""));
     infoMessage(EDIT_CANCEL_MESSAGE);
   };
-  const saveHandleClick = () => {
+  const handleSave = () => {
     dispatch(selectedCardId(props.id));
     doneHandlerHelper(inputData);
   };
@@ -97,10 +97,10 @@ const EditTask = (props) => {
         ></textarea>
       </div>
       <div className="todo__save_done_del">
-        <button className="btn btn__save_button" onClick={saveHandleClick}>
+        <button className="btn btn__save_button" onClick={handleSave}>
           Save
         </button>
-        <button className="todo__icon-btn" onClick={doneHandleClick}>
+        <button className="todo__icon-btn" onClick={handleDone}>
           <img src={done} alt="icon"></img>
         </button>
         <button className="todo__icon-btn" onClick={deleteHandleClick}>

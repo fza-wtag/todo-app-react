@@ -130,7 +130,7 @@ export const editUpdateCompleted =
     }
   };
 
-export const updateTodo = (id, data, onEdit, Toastflag) => async (dispatch) => {
+export const updateTodo = (id, data, onEdit, toastflag) => async (dispatch) => {
   try {
     dispatch(setEditCardLoadingState(true));
     const response = await updateTodoSupabase(id, data, !onEdit);
@@ -141,7 +141,7 @@ export const updateTodo = (id, data, onEdit, Toastflag) => async (dispatch) => {
       data: tableData.data,
       onEdit: tableData.onEdit,
     });
-    Toastflag && successMessage(EDIT_SUCCESS_MESSAGE);
+    toastflag && successMessage(EDIT_SUCCESS_MESSAGE);
   } catch (error) {
     dangerMessage(WENT_WRONG_MESSAGE);
   } finally {
