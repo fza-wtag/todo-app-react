@@ -4,21 +4,15 @@ import { useDispatch } from "react-redux";
 import { deleteTodo } from "actions/index";
 import { dangerMessage } from "toastMethods";
 import { TASK_DELETE_MESSAGE } from "constants";
+import { parse, differenceInDays } from "date-fns";
 
 function CompletedTask(props) {
   const dispatch = useDispatch();
 
-  //formating the dates as MM/DD/YY from DD/MM/YY
-  const [startingDay, startingMonth, startingYear] = props.date.split("/");
-  const startingDate = `${startingMonth}/${startingDay}/${startingYear}`;
-  const [endingDay, endingMonth, endingYear] = props.completedDate.split("/");
-  const endingDate = `${endingMonth}/${endingDay}/${endingYear}`;
-  const createdDate = new Date(startingDate);
-  const completedDate = new Date(endingDate);
-
-  //Calculating the difference
-  const difference = completedDate - createdDate;
-  const differenceInDays = difference / (1000 * 60 * 60 * 24);
+  // //Calculating the completation duration in days
+  const startingDate = parse(props.date, "dd/MM/yyyy", new Date());
+  const endingDate = parse(props.completedDate, "dd/MM/yyyy", new Date());
+  const differenceInDay = differenceInDays(endingDate, startingDate);
 
   const handleDelete = () => {
     dispatch(deleteTodo(props.id));
@@ -30,11 +24,11 @@ function CompletedTask(props) {
       <button className="todo__icon-btn" onClick={handleDelete}>
         <img src={del} alt="icon"></img>
       </button>
-      {differenceInDays === 0 ? (
+      {differenceInDay === 0 ? (
         <span className="todo__completed-time">Completed in a day</span>
       ) : (
         <span className="todo__completed-time">
-          Completed in {differenceInDays + 1} days
+          Completed in {differenceInDay} days
         </span>
       )}
     </div>

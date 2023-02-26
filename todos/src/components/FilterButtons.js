@@ -3,7 +3,7 @@ import { setFilter } from "actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 import { ALL, INCOMPLETE, COMPLETE } from "constants";
-
+import classNames from "classnames";
 
 const FilterButtons = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const FilterButtons = () => {
   };
 
   const loadingState = useSelector(
-    (state) => state.laodingReducer.loadingState
+    (state) => state.loadingReducer.loadingState
   );
 
   const mainDivClassName = classnames("btn__progress_button", {
@@ -37,7 +37,7 @@ const FilterButtons = () => {
   const CompleteButtonClassName = classnames({
     "btn__progress_button--disable": filter === "complete",
   });
-  
+
   return (
     <div className={mainDivClassName}>
       <button className={AllButtonClassName} onClick={handleAllTodos}>

@@ -30,14 +30,14 @@ const todoReducers = (state = initialData, action) => {
         list: newList,
       };
 
-    case "UPDATE_COMPLETED":
-      const updatedList = state.list.map((todo) => {
+    case "UPDATE_AS_COMPLETED":
+      const updatedAsCompletedList = state.list.map((todo) => {
         if (todo.id === action.id) {
           return {
             ...todo,
             isCompleted: action.isCompleted,
             date: action.date,
-            completedDate: new Date().toLocaleDateString(),
+            completedDate: action.completedDate,
           };
         }
         return todo;
@@ -45,10 +45,10 @@ const todoReducers = (state = initialData, action) => {
 
       return {
         ...state,
-        list: updatedList,
+        list: updatedAsCompletedList,
       };
-    case "EDIT_TODO":
-      const updatedList2 = state.list.map((todo) => {
+    case "CHANGE_EDIT_STATE":
+      const changedStateList = state.list.map((todo) => {
         if (todo.id === action.id) {
           return {
             ...todo,
@@ -60,28 +60,11 @@ const todoReducers = (state = initialData, action) => {
 
       return {
         ...state,
-        list: updatedList2,
+        list: changedStateList,
       };
-    case "EDIT_UPDATE_COMPLETED":
-      const editUdupdatedList = state.list.map((todo) => {
-        if (todo.id === action.id) {
-          return {
-            ...todo,
-            isCompleted: action.isCompleted,
-            date: action.date,
-            completedDate: new Date().toLocaleDateString(),
-            onEdit: !action.onEdit,
-          };
-        }
-        return todo;
-      });
 
-      return {
-        ...state,
-        list: editUdupdatedList,
-      };
-    case "UPDATE_TODO":
-      const updatedList3 = state.list.map((todo) => {
+    case "UPDATED_TODO":
+      const updatedList = state.list.map((todo) => {
         if (todo.id === action.id) {
           return {
             ...todo,
@@ -93,8 +76,28 @@ const todoReducers = (state = initialData, action) => {
       });
       return {
         ...state,
-        list: updatedList3,
+        list: updatedList,
       };
+
+    case "MAKE_COMPLETED_ON_EDIT":
+      const completedTodoList = state.list.map((todo) => {
+        if (todo.id === action.id) {
+          return {
+            ...todo,
+            isCompleted: action.isCompleted,
+            date: action.date,
+            completedDate: action.completedDate,
+            onEdit: !action.onEdit,
+          };
+        }
+        return todo;
+      });
+
+      return {
+        ...state,
+        list: completedTodoList,
+      };
+
     default:
       return state;
   }

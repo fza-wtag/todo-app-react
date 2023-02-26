@@ -1,7 +1,7 @@
 const initialState = {
   loadingState: false,
 };
-const laodingReducer = (state = initialState, action) => {
+const loadingReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_LOADING_STATE":
       return { ...state, loadingState: action.loadingState };
@@ -10,4 +10,4 @@ const laodingReducer = (state = initialState, action) => {
   }
 };
 
-export default laodingReducer;
+export default loadingReducer;
