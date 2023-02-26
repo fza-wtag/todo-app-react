@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateCurrentPage } from "actions";
 import { LOAD_MORE, SHOW_LESS } from "constants";
 
-function PaginatorButton(props) {
+function PaginatorButton({type}) {
   const dispatch = useDispatch();
 
   const currentPage = useSelector(
@@ -17,19 +17,19 @@ function PaginatorButton(props) {
     dispatch(updateCurrentPage(1));
   };
 
-  const typeLoadMore = props.type === LOAD_MORE;
-  const typeShowLess = props.type === SHOW_LESS;
+  const typeLoadMore = type === LOAD_MORE;
+  const typeShowLess = type === SHOW_LESS;
 
   return (
     <div className="load-more">
       {typeLoadMore && (
         <button className="load-more__button" onClick={handleLoadMore}>
-          {props.type}
+          {type}
         </button>
       )}
       {typeShowLess && (
         <button className="load-more__button" onClick={handleShowLess}>
-          {props.type}
+          {type}
         </button>
       )}
     </div>

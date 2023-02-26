@@ -5,9 +5,8 @@ import "styles/todos.css";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "components/EmptyTaskList";
 import PaginatorButton from "components/PaginatorButton";
-import { LOAD_MORE, SHOW_LESS, PER_PAGE } from "constants";
+import { LOAD_MORE, SHOW_LESS, PER_PAGE, ALL, INCOMPLETE } from "constants";
 import spinner from "icons/spinner.svg";
-import { ALL, INCOMPLETE } from "constants";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);

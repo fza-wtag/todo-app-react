@@ -3,6 +3,7 @@ import { setFilter } from "actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 import { ALL, INCOMPLETE, COMPLETE } from "constants";
+import classNames from "classnames";
 
 const FilterButtons = () => {
   const dispatch = useDispatch();

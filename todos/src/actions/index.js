@@ -1,8 +1,10 @@
+import { v4 as uuidv4 } from "uuid";
+
 export const addTodo = (data) => {
   return {
     type: "ADD_TODO",
     payload: {
-      id: new Date().getTime().toString(),
+      id: uuidv4(),
       data,
       isCompleted: false,
       date: new Date().toLocaleDateString(),
@@ -20,13 +22,13 @@ export const deleteTodo = (id) => {
   };
 };
 
-export const updateCompleted = (id, isCompleted, date, completedDate) => {
+export const markAsCompleted = (id, isCompleted, date, completedDate) => {
   return {
-    type: "UPDATE_COMPLETED",
+    type: "UPDATE_AS_COMPLETED",
     id,
     isCompleted,
     date,
-    completedDate,
+    completedDate: new Date().toLocaleDateString(),
   };
 };
 
@@ -44,15 +46,15 @@ export const toggleAddTaskButtonVisibility = (isCreateButtonDisabled) => {
   };
 };
 
-export const editTodo = (id, onEdit) => {
+export const changeEditState = (id, onEdit) => {
   return {
-    type: "EDIT_TODO",
+    type: "CHANGE_EDIT_STATE",
     id,
     onEdit: !onEdit,
   };
 };
 
-export const editUpdateCompleted = (
+export const markCompletedOnEdit = (
   id,
   isCompleted,
   date,
@@ -60,18 +62,18 @@ export const editUpdateCompleted = (
   onEdit
 ) => {
   return {
-    type: "EDIT_UPDATE_COMPLETED",
+    type: "MAKE_COMPLETED_ON_EDIT",
     id,
     isCompleted,
     date,
-    completedDate,
+    completedDate: new Date().toLocaleDateString(),
     onEdit,
   };
 };
 
-export const updateTodo = (id, data, onEdit) => {
+export const updatedTodo = (id, data, onEdit) => {
   return {
-    type: "UPDATE_TODO",
+    type: "UPDATED_TODO",
     id,
     data,
     onEdit,
@@ -82,7 +84,6 @@ export const updateCurrentPage = (page) => {
   return {
     type: "UPDATE_CURRENT_PAGE",
     page,
-    
   };
 };
 
