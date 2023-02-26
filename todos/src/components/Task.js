@@ -29,7 +29,6 @@ const Task = (props) => {
   return (
     <div>
       {isLoading && isCurrentSelected ? (
-        <div>
           <ShowTask
             loading={true}
             id={props.id}
@@ -40,7 +39,6 @@ const Task = (props) => {
             onEdit={props.onEdit}
             currentData={currentData}
           />
-        </div>
       ) : onEdit ? (
         <EditTask
           id={props.id}

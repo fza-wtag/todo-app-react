@@ -1,13 +1,10 @@
-import SupabaseSingleton from "supabase";
 import { WENT_WRONG_MESSAGE } from "constants";
 import { dangerMessage } from "toastMethods";
-
-const supabase = new SupabaseSingleton();
-export default supabase;
+import supabase from "supabase";
 
 export async function getCurrentTodos() {
-  const tableData = await supabase.from("todo_data2").select();
-  return tableData.data;
+  const { data } = await supabase.from("todo_data2").select();
+  return data;
 }
 
 export async function addTodoSupabase(data, date) {

@@ -18,8 +18,7 @@ import { successMessage, dangerMessage } from "toastMethods";
 export const addTodo = (data, date) => async (dispatch) => {
   try {
     dispatch(setAddCardLoadingState(true));
-    const response = await addTodoSupabase(data, date);
-    const tableData = response.data;
+    const { data: tableData } = await addTodoSupabase(data, date);
     dispatch({
       type: "ADD_TODO",
       payload: {
@@ -42,8 +41,7 @@ export const addTodo = (data, date) => async (dispatch) => {
 export const deleteTodo = (id) => async (dispatch) => {
   try {
     dispatch(setDeleteCardLoadingState(true));
-    const response = await deleteTodoSupabase(id);
-    const tableData = response.data;
+    const { data: tableData } = await deleteTodoSupabase(id);
     dispatch({
       type: "DELETE_TODO",
       id: tableData.id,
@@ -59,13 +57,11 @@ export const deleteTodo = (id) => async (dispatch) => {
 export const updateCompleted =
   (id, isCompleted, date, completedDate) => async (dispatch) => {
     try {
-      dispatch(setCompletedCardLoadingState(true));
-      const response = await updateStateTodoSupabase(
+      const { data: tableData } = await updateStateTodoSupabase(
         id,
         isCompleted,
         completedDate
       );
-      const tableData = response.data;
       dispatch({
         type: "UPDATE_COMPLETED",
         id: tableData.id,
@@ -107,13 +103,12 @@ export const editUpdateCompleted =
   (id, isCompleted, date, completedDate, onEdit) => async (dispatch) => {
     try {
       dispatch(setEditCardLoadingState(true));
-      const response = await updateStateTodoSupabaseOnEdit(
+      const { data: tableData } = await updateStateTodoSupabaseOnEdit(
         id,
         isCompleted,
         completedDate,
         !onEdit
       );
-      const tableData = response.data;
       dispatch({
         type: "EDIT_UPDATE_COMPLETED",
         id: tableData.id,
@@ -133,8 +128,7 @@ export const editUpdateCompleted =
 export const updateTodo = (id, data, onEdit, toastflag) => async (dispatch) => {
   try {
     dispatch(setEditCardLoadingState(true));
-    const response = await updateTodoSupabase(id, data, !onEdit);
-    const tableData = response.data;
+    const { data: tableData } = await updateTodoSupabase(id, data, !onEdit);
     dispatch({
       type: "UPDATE_TODO",
       id: tableData.id,

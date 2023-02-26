@@ -23,14 +23,12 @@ function App() {
   return splashLoadingState ? (
     <SplashScreen />
   ) : (
-    <>
       <Fragment>
         <Navbar />
         <ToastContainer />
         <TopContent />
         <Todos />
       </Fragment>
-    </>
   );
 }
 

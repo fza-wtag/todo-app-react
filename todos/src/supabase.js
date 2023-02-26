@@ -14,4 +14,6 @@ class SupabaseSingleton {
   }
 }
 
-export default SupabaseSingleton;
+const supabase = new SupabaseSingleton();
+
+export default supabase;

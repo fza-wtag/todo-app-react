@@ -4,7 +4,6 @@ import CompletedTask from "components/CompletedTask";
 import spinner from "icons/spinner.svg";
 
 function ShowTask(props) {
-  //formating the dates as dd.mm.yy
   const [day, month, year] = props.date.split("/");
   const date = `${day}.${month}.${year}`;
 
