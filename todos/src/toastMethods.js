@@ -14,7 +14,6 @@ const commonStyles = {
   style: {
     minHeight: "15px",
     fontSize: "13px",
-    maxWidth: "300px",
   },
 };
 
