@@ -4,12 +4,12 @@ import { useSelector } from "react-redux";
 import EditTask from "components/EditTask";
 import ShowTask from "components/ShowTask";
 
-const Task = (props) => {
+const Task = ({ key, id, title, isCompleted, date, completedDate, onEdit }) => {
   const myList = useSelector((state) => state.todoReducers.list).find(
-    (task) => task.id === props.id
+    (task) => task.id === id
   );
   const currentData = myList.data;
-  const onEdit = myList.onEdit;
+  const currentOnEdit = myList.onEdit;
 
   const completedCardLoadingState = useSelector(
     (state) => state.loadingReducers.completedCardLoadingState
@@ -24,39 +24,39 @@ const Task = (props) => {
   );
 
   const isLoading = completedCardLoadingState || deleteCardLoadingState;
-  const isCurrentSelected = currentSelectedId === props.id;
+  const isCurrentSelected = currentSelectedId === id;
 
   return (
     <div>
       {isLoading && isCurrentSelected ? (
-          <ShowTask
-            loading={true}
-            id={props.id}
-            date={props.date}
-            title={props.title}
-            isCompleted={props.isCompleted}
-            completedDate={props.completedDate}
-            onEdit={props.onEdit}
-            currentData={currentData}
-          />
-      ) : onEdit ? (
+        <ShowTask
+          loading={true}
+          id={id}
+          date={date}
+          title={title}
+          isCompleted={isCompleted}
+          completedDate={completedDate}
+          onEdit={onEdit}
+          currentData={currentData}
+        />
+      ) : currentOnEdit ? (
         <EditTask
-          id={props.id}
-          date={props.date}
-          isCompleted={props.isCompleted}
-          completedDate={props.completedDate}
-          onEdit={props.onEdit}
+          id={id}
+          date={date}
+          isCompleted={isCompleted}
+          completedDate={completedDate}
+          onEdit={onEdit}
           currentData={currentData}
         />
       ) : (
         <ShowTask
           loading={false}
-          id={props.id}
-          date={props.date}
-          title={props.title}
-          isCompleted={props.isCompleted}
-          completedDate={props.completedDate}
-          onEdit={props.onEdit}
+          id={id}
+          date={date}
+          title={title}
+          isCompleted={isCompleted}
+          completedDate={completedDate}
+          onEdit={onEdit}
           currentData={currentData}
         />
       )}

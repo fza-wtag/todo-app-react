@@ -7,7 +7,7 @@ import {
   toggleAddTaskButtonVisibility,
 } from "actions/index";
 
-const TopContent = (props) => {
+const TopContent = () => {
   const isAddTaskVisible = useSelector(
     (state) => state.toggleReducers.isAddTaskVisible
   );

@@ -10,21 +10,28 @@ import {
   selectedCardId,
 } from "actions/index";
 
-function IncompleteTask(props) {
+function IncompleteTask({
+  loading,
+  id,
+  date,
+  isCompleted,
+  completedDate,
+  onEdit,
+}) {
   const dispatch = useDispatch();
   const currentDate = new Date().toLocaleDateString();
 
   const handleDone = () => {
-    dispatch(selectedCardId(props.id));
-    dispatch(markAsCompleted(props.id, true, props.date, currentDate));
+    dispatch(selectedCardId(id));
+    dispatch(markAsCompleted(id, true, date, currentDate));
   };
   const handleDelete = () => {
-    dispatch(selectedCardId(props.id));
-    dispatch(deleteTodo(props.id));
+    dispatch(selectedCardId(id));
+    dispatch(deleteTodo(id));
   };
   const handleEdit = () => {
-    dispatch(selectedCardId(props.id));
-    dispatch(changeEditState(props.id, props.onEdit));
+    dispatch(selectedCardId(id));
+    dispatch(changeEditState(id, onEdit));
   };
 
   return (

@@ -4,17 +4,17 @@ import { useDispatch } from "react-redux";
 import { deleteTodo, selectedCardId } from "actions/index";
 import { parse, differenceInDays } from "date-fns";
 
-function CompletedTask(props) {
+function CompletedTask({ loading, id, date, isCompleted, completedDate }) {
   const dispatch = useDispatch();
 
   // //Calculating the completation duration in days
-  const startingDate = parse(props.date, "dd/MM/yyyy", new Date());
-  const endingDate = parse(props.completedDate, "dd/MM/yyyy", new Date());
+  const startingDate = parse(date, "dd/MM/yyyy", new Date());
+  const endingDate = parse(completedDate, "dd/MM/yyyy", new Date());
   const differenceInDay = differenceInDays(endingDate, startingDate);
 
   const handleDelete = () => {
-    dispatch(selectedCardId(props.id));
-    dispatch(deleteTodo(props.id));
+    dispatch(selectedCardId(id));
+    dispatch(deleteTodo(id));
   };
 
   return (
