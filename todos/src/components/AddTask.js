@@ -8,10 +8,7 @@ import {
   toggleAddTaskButtonVisibility,
 } from "actions/index";
 import { infoMessage, warningMessage } from "toastMethods";
-import {
-  EMPTY_TITLE_MESSAGE,
-  CREATE_CANCEL_MESSAGE,
-} from "constants";
+import { EMPTY_TITLE_MESSAGE, CREATE_CANCEL_MESSAGE } from "constants";
 import spinner from "icons/spinner.svg";
 
 const AddTask = () => {
@@ -34,17 +31,18 @@ const AddTask = () => {
     dispatch(toggleAddTaskButtonVisibility(!isCreateButtonDisabled));
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
   };
-
   const currentDate = new Date().toLocaleDateString();
+
   const handleKeyUp = (event) => {
-    if (event.keyCode === 13) {
-      //to get the job done with enter button
-      if (inputData !== "") {
-        dispatch(
-          addTodo(inputData.slice(0, -1), currentDate),
-          setInputData("")
-        );
+    event.preventDefault();
+    if (event.key === "Enter") {
+      if (inputData.trim() !== "") {
+        dispatch(addTodo(inputData.trim(), currentDate));
+        setInputData("");
         handleStateChange();
+      } else {
+        warningMessage(EMPTY_TITLE_MESSAGE);
+        setInputData("");
       }
     }
   };
