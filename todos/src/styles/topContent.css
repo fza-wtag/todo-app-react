@@ -33,7 +33,7 @@
 @media only screen and (max-width: 576px) {
   .btn__progress_button button {
     margin-top: 10px;
-    margin-left: 12px;
+    margin-left: 5px;
     margin-bottom: 10px;
   }
 }

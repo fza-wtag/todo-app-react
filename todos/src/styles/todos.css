@@ -1,8 +1,7 @@
 .all-todos {
-  grid-gap: 2.2rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  justify-content: space-between;
+  grid-gap: 2.2rem;
   padding: 1.5% 7.5% 0% 6.5%;
 }
 
@@ -13,7 +12,7 @@
   box-sizing: border-box;
   flex-direction: column;
   min-height: 10.5rem;
-  min-width: 22rem;
+  min-width: 5rem;
   padding: 15px;
   position: relative;
   word-break: break-word;
@@ -55,4 +54,17 @@
 .all-todos--off {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.spinner {
+  display: block;
+  margin: 0 auto;
+  max-width: 5rem;
+  height: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .all-todos {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
 }
