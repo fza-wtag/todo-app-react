@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 2.2rem;
-  padding: 1.5% 7.5% 0% 6.5%;
+  padding: 1.5% 6.5% 0% 6.5%;
 }
 
 .todo__wrapper {

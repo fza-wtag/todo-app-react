@@ -1,7 +1,9 @@
 .zero-task {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  margin-top: 130px;
-  margin-bottom: 130px;
 }
 
 .zero-task__text {
