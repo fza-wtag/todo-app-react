@@ -7,8 +7,12 @@ import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
 } from "actions/index";
-import { infoMessage, warningMessage } from "toastMethods";
-import { EMPTY_TITLE_MESSAGE, CREATE_CANCEL_MESSAGE } from "constants";
+import { infoMessage, successMessage, warningMessage } from "toastMethods";
+import {
+  ADD_TASK_MESSAGE,
+  EMPTY_TITLE_MESSAGE,
+  CREATE_CANCEL_MESSAGE,
+} from "constants";
 import spinner from "icons/spinner.svg";
 
 const AddTask = () => {
@@ -64,7 +68,7 @@ const AddTask = () => {
   };
 
   return (
-    <div className={`todo ${addCardLoadingState && "todo--off"}`}>
+    <div className={`todo__wrapper ${addCardLoadingState && "todo--off"}`}>
       <div>
         {addCardLoadingState && (
           <img

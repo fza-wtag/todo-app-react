@@ -2,34 +2,34 @@ import { useState, useRef, useEffect } from "react";
 import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import "styles/addTask.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  editTodo,
-  editUpdateCompleted,
+  changeEditState,
+  markCompletedOnEdit,
   updateTodo,
   selectedCardId,
 } from "actions/index";
+import spinner from "icons/spinner.svg";
 import { infoMessage } from "toastMethods";
 import { EDIT_CANCEL_MESSAGE } from "constants";
-import { useSelector } from "react-redux";
-import spinner from "icons/spinner.svg";
 
-const EditTask = (props) => {
+const EditTask = ({
+  id,
+  date,
+  isCompleted,
+  completedDate,
+  onEdit,
+  currentData,
+}) => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
   const doneHandlerHelper = (data) => {
-    dispatch(selectedCardId(props.id));
-    if (data !== props.currentData) {
-      dispatch(
-        updateTodo(props.id, data, props.onEdit, true),
-        setInputData("")
-      );
+    dispatch(selectedCardId(id));
+    if (data !== currentData) {
+      dispatch(updateTodo(id, data, onEdit, true), setInputData(""));
     } else {
-      dispatch(
-        updateTodo(props.id, props.currentData, props.onEdit, false),
-        setInputData("")
-      );
+      dispatch(updateTodo(id, currentData, onEdit, false), setInputData(""));
     }
   };
 
@@ -41,44 +41,41 @@ const EditTask = (props) => {
   const textAreaRef = useRef(null);
 
   useEffect(() => {
-    setInputData(props.currentData);
+    setInputData(currentData);
     textAreaRef.current.focus();
-  }, [props.currentData]);
+  }, [currentData]);
 
   const currentDate = new Date().toLocaleDateString();
 
   const handleDone = () => {
-    dispatch(selectedCardId(props.id));
-    dispatch(
-      editUpdateCompleted(props.id, true, props.date, currentDate, props.onEdit)
-    );
+    dispatch(selectedCardId(id));
+    dispatch(markCompletedOnEdit(id, true, date, currentDate, onEdit));
   };
-  const deleteHandleClick = () => {
-    dispatch(selectedCardId(props.id));
-    dispatch(editTodo(props.id, props.onEdit), setInputData(""));
+  const handleDelete = () => {
+    dispatch(selectedCardId(id));
+    dispatch(changeEditState(id, onEdit), setInputData(""));
     infoMessage(EDIT_CANCEL_MESSAGE);
   };
   const handleSave = () => {
-    dispatch(selectedCardId(props.id));
+    dispatch(selectedCardId(id));
     doneHandlerHelper(inputData);
   };
 
   const editCardLoadingState = useSelector(
     (state) => state.loadingReducers.editCardLoadingState
   );
-
   const currentSelectedId = useSelector(
     (state) => state.loadingReducers.currentSelectedId
   );
 
   return (
     <div
-      className={`todo ${
-        currentSelectedId === props.id && editCardLoadingState && "todo--off"
+      className={`todo__wrapper ${
+        currentSelectedId === id && editCardLoadingState && "todo--off"
       }`}
     >
       <div>
-        {currentSelectedId === props.id && editCardLoadingState && (
+        {currentSelectedId === id && editCardLoadingState && (
           <img
             className="spinner spinner--small"
             src={spinner}
@@ -103,7 +100,8 @@ const EditTask = (props) => {
         <button className="todo__icon-btn" onClick={handleDone}>
           <img src={done} alt="icon"></img>
         </button>
-        <button className="todo__icon-btn" onClick={deleteHandleClick}>
+
+        <button className="todo__icon-btn" onClick={handleDelete}>
           <img src={del} alt="icon"></img>
         </button>
       </div>

@@ -1,6 +1,6 @@
 const initialState = {
-  iconState: "false",
-  searchValue: "",
+  iconState: false,
+  searchValue: ""
 };
 
 const searchReducers = (state = initialState, action) => {

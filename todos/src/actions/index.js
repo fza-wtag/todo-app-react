@@ -9,7 +9,7 @@ import {
 import {
   STATE_CHANGE_MESSAGE,
   EDIT_SUCCESS_MESSAGE,
-  TASK_ADDED_MESSAGE,
+  ADD_TASK_MESSAGE,
   TASK_DELETE_MESSAGE,
   WENT_WRONG_MESSAGE,
 } from "constants";
@@ -30,7 +30,7 @@ export const addTodo = (data, date) => async (dispatch) => {
         onEdit: tableData.onEdit,
       },
     });
-    successMessage(TASK_ADDED_MESSAGE);
+    successMessage(ADD_TASK_MESSAGE);
   } catch (error) {
     dangerMessage(WENT_WRONG_MESSAGE);
   } finally {
@@ -54,16 +54,17 @@ export const deleteTodo = (id) => async (dispatch) => {
   }
 };
 
-export const updateCompleted =
+export const markAsCompleted =
   (id, isCompleted, date, completedDate) => async (dispatch) => {
     try {
+      dispatch(setCompletedCardLoadingState(true));
       const { data: tableData } = await updateStateTodoSupabase(
         id,
         isCompleted,
         completedDate
       );
       dispatch({
-        type: "UPDATE_COMPLETED",
+        type: "MARK_AS_COMPLETED",
         id: tableData.id,
         isCompleted: tableData.isCompleted,
         date: tableData.date,
@@ -91,15 +92,15 @@ export const toggleAddTaskButtonVisibility = (isCreateButtonDisabled) => {
   };
 };
 
-export const editTodo = (id, onEdit) => {
+export const changeEditState = (id, onEdit) => {
   return {
-    type: "EDIT_TODO",
+    type: "CHANGE_EDIT_STATE",
     id,
     onEdit: !onEdit,
   };
 };
 
-export const editUpdateCompleted =
+export const markCompletedOnEdit =
   (id, isCompleted, date, completedDate, onEdit) => async (dispatch) => {
     try {
       dispatch(setEditCardLoadingState(true));
@@ -107,10 +108,10 @@ export const editUpdateCompleted =
         id,
         isCompleted,
         completedDate,
-        !onEdit
+        onEdit
       );
       dispatch({
-        type: "EDIT_UPDATE_COMPLETED",
+        type: "MARK_COMPLETED_ON_EDIT",
         id: tableData.id,
         isCompleted: tableData.isCompleted,
         date: tableData.date,
@@ -128,7 +129,7 @@ export const editUpdateCompleted =
 export const updateTodo = (id, data, onEdit, toastflag) => async (dispatch) => {
   try {
     dispatch(setEditCardLoadingState(true));
-    const { data: tableData } = await updateTodoSupabase(id, data, !onEdit);
+    const { data: tableData } = await updateTodoSupabase(id, data, onEdit);
     dispatch({
       type: "UPDATE_TODO",
       id: tableData.id,
