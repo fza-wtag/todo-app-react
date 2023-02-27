@@ -49,11 +49,11 @@ export async function updateStateTodoSupabase(id, isCompleted, completedDate) {
   }
 }
 
-export async function updateTodoSupabase(id, data, onEdit) {
+export async function updateTodoSupabase(id, data) {
   try {
     const response = await supabase
       .from("todo_data2")
-      .update({ data, onEdit })
+      .update({ data })
       .eq("id", id)
       .select()
       .single();
@@ -66,8 +66,7 @@ export async function updateTodoSupabase(id, data, onEdit) {
 export async function updateStateTodoSupabaseOnEdit(
   id,
   isCompleted,
-  completedDate,
-  onEdit
+  completedDate
 ) {
   try {
     const response = await supabase
@@ -75,7 +74,6 @@ export async function updateStateTodoSupabaseOnEdit(
       .update({
         isCompleted,
         completedDate,
-        onEdit,
       })
       .eq("id", id)
       .select()

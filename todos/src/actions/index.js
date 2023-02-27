@@ -107,8 +107,7 @@ export const markCompletedOnEdit =
       const { data: tableData } = await updateStateTodoSupabaseOnEdit(
         id,
         isCompleted,
-        completedDate,
-        onEdit
+        completedDate
       );
       dispatch({
         type: "MARK_COMPLETED_ON_EDIT",
@@ -116,7 +115,7 @@ export const markCompletedOnEdit =
         isCompleted: tableData.isCompleted,
         date: tableData.date,
         completedDate: tableData.completedDate,
-        onEdit: tableData.onEdit,
+        onEdit: onEdit,
       });
       successMessage(STATE_CHANGE_MESSAGE);
     } catch (error) {
@@ -129,12 +128,12 @@ export const markCompletedOnEdit =
 export const updateTodo = (id, data, onEdit, toastflag) => async (dispatch) => {
   try {
     dispatch(setEditCardLoadingState(true));
-    const { data: tableData } = await updateTodoSupabase(id, data, onEdit);
+    const { data: tableData } = await updateTodoSupabase(id, data);
     dispatch({
       type: "UPDATE_TODO",
       id: tableData.id,
       data: tableData.data,
-      onEdit: tableData.onEdit,
+      onEdit: onEdit,
     });
     toastflag && successMessage(EDIT_SUCCESS_MESSAGE);
   } catch (error) {
