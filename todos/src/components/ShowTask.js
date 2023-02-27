@@ -2,50 +2,57 @@ import React from "react";
 import IncompleteTask from "components/IncompleteTask";
 import CompletedTask from "components/CompletedTask";
 import spinner from "icons/spinner.svg";
+import classNames from "classnames";
 
-function ShowTask(props) {
-  const [day, month, year] = props.date.split("/");
-  const date = `${day}.${month}.${year}`;
+function ShowTask({
+  loading,
+  id,
+  date,
+  title,
+  isCompleted,
+  completedDate,
+  onEdit,
+  currentData,
+}) {
+  const [day, month, year] = date.split("/");
+  const formatedDate = `${day}.${month}.${year}`;
+
+  const spanClassName = classNames("todo__name", {
+    "todo__name--completed": isCompleted,
+    "todo__name--incomple": !isCompleted,
+  });
 
   return (
-    <div className="todo">
-      {props.loading && (
+    <div className="todo__wrapper">
+      {loading && (
         <img
           className="spinner spinner--small"
           src={spinner}
           alt="loading.."
         ></img>
       )}
-      <div className={`${props.loading && "todo--off"}`}>
+      <div className={`${loading && "todo--off"}`}>
         <div>
-          <span
-            className={`todo__name ${
-              props.isCompleted
-                ? "todo__name--completed"
-                : "todo__name--incomple"
-            }`}
-          >
-            {props.title}
-          </span>
+          <span className={spanClassName}>{title}</span>
         </div>
-        <span className="todo__date">Created At: {date} </span>
+        <span className="todo__date">Created At: {formatedDate} </span>
       </div>
-      {props.isCompleted ? (
+      {isCompleted ? (
         <CompletedTask
-          loading={props.loading}
-          id={props.id}
-          date={props.date}
-          isCompleted={props.isCompleted}
-          completedDate={props.completedDate}
+          loading={loading}
+          id={id}
+          date={date}
+          isCompleted={isCompleted}
+          completedDate={completedDate}
         />
       ) : (
         <IncompleteTask
-          loading={props.loading}
-          id={props.id}
-          date={props.date}
-          isCompleted={props.isCompleted}
-          completedDate={props.completedDate}
-          onEdit={props.onEdit}
+          loading={loading}
+          id={id}
+          date={date}
+          isCompleted={isCompleted}
+          completedDate={completedDate}
+          onEdit={onEdit}
         />
       )}
     </div>

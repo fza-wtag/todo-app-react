@@ -4,8 +4,8 @@ import Task from "components/Task";
 import "styles/todos.css";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "components/EmptyTaskList";
-import LoadMoreBtn from "components/LoadMoreBtn";
-import { LOAD_MORE, SHOW_LESS, PER_PAGE } from "constants";
+import PaginatorButton from "components/PaginatorButton";
+import { LOAD_MORE, SHOW_LESS, PER_PAGE, ALL, INCOMPLETE } from "constants";
 import spinner from "icons/spinner.svg";
 import { getCurrentTodos } from "supabaseData";
 
@@ -20,12 +20,15 @@ function Todos() {
   );
   const searchValue = useSelector((state) => state.searchReducers.searchValue);
 
-  const filteredTodos =
-    filter === "all"
-      ? list
-      : filter === "incomplete"
-      ? list.filter((todo) => !todo.isCompleted)
-      : list.filter((todo) => todo.isCompleted);
+  let filteredTodos;
+  if (filter === ALL) {
+    filteredTodos = list;
+  } else if (filter === INCOMPLETE) {
+    filteredTodos = list.filter((todo) => !todo.isCompleted);
+  } else {
+    filteredTodos = list.filter((todo) => todo.isCompleted);
+  }
+
   const searchedTodos = filteredTodos.filter((elem) =>
     elem.data.toLowerCase().includes(searchValue.toLowerCase())
   );
@@ -33,14 +36,23 @@ function Todos() {
   const loadingState = useSelector(
     (state) => state.loadingReducers.loadingState
   );
-
-  const showEmptyListIcon = displayedTodoList.length === 0 && !isAddTaskVisible;
-  const lessThanfilteredTodos = currentPage * PER_PAGE < filteredTodos.length;
-  const lessThansearchedTodos = currentPage * PER_PAGE < searchedTodos.length;
-
   const addCardLoadingState = useSelector(
     (state) => state.loadingReducers.addCardLoadingState
   );
+
+  const showEmptyListIcon =
+    displayedTodoList.length === 0 && !isAddTaskVisible && !addCardLoadingState;
+
+  let showLoadMore;
+  let showShowLess;
+
+  if (searchValue.length === 0) {
+    showLoadMore = currentPage * PER_PAGE < filteredTodos.length;
+    showShowLess = filteredTodos.length > PER_PAGE;
+  } else {
+    showLoadMore = currentPage * PER_PAGE < searchedTodos.length;
+    showShowLess = searchedTodos.length > PER_PAGE;
+  }
 
   getCurrentTodos();
 
@@ -66,16 +78,9 @@ function Todos() {
         <img className="spinner" src={spinner} alt="loading.."></img>
       )}
       {showEmptyListIcon && <EmptyTaskList />}
-      {searchValue.length === 0 ? (
-        lessThanfilteredTodos ? (
-          <LoadMoreBtn type={LOAD_MORE} />
-        ) : (
-          filteredTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
-        )
-      ) : lessThansearchedTodos ? (
-        <LoadMoreBtn type={LOAD_MORE} />
-      ) : (
-        searchedTodos.length > PER_PAGE && <LoadMoreBtn type={SHOW_LESS} />
+      {!loadingState && showLoadMore && <PaginatorButton type={LOAD_MORE} />}
+      {!loadingState && !showLoadMore && showShowLess && (
+        <PaginatorButton type={SHOW_LESS} />
       )}
     </div>
   );

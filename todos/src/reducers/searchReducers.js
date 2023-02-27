@@ -1,5 +1,5 @@
 const initialState = {
-  iconState: "false",
+  iconState: false,
   searchValue: "",
 };
 

@@ -1,7 +1,7 @@
 export const LOAD_MORE = "Load More";
 export const SHOW_LESS = "Show Less";
 export const PER_PAGE = 12;
-export const TASK_ADDED_MESSAGE = "New Task Added";
+export const ADD_TASK_MESSAGE = "New Task Added";
 export const EMPTY_TITLE_MESSAGE = "Please Enter the Task Title";
 export const CREATE_CANCEL_MESSAGE = "Task Creating Cancelled";
 export const EDIT_CANCEL_MESSAGE = "Task Editing Canceled";
@@ -10,3 +10,6 @@ export const STATE_CHANGE_MESSAGE = "Task Completed";
 export const EDIT_SUCCESS_MESSAGE = "Task Edited";
 export const SEARCH_DATA_MESSAGE = "Search Data Shown";
 export const WENT_WRONG_MESSAGE = "Something went wrong!";
+export const ALL = "all";
+export const COMPLETE = "complete";
+export const INCOMPLETE = "incomplete";
