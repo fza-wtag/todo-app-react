@@ -17,18 +17,19 @@ function CompletedTask({ loading, id, date, isCompleted, completedDate }) {
     dispatch(deleteTodo(id));
   };
 
+  let completedText;
+  if (differenceInDay === 0) {
+    completedText = "Completed in a day";
+  } else {
+    completedText = `Completed in ${differenceInDay+1} days`;
+  }
+
   return (
     <div className="todo-del-duration">
       <button className="todo__icon-btn" onClick={handleDelete}>
         <img src={del} alt="icon"></img>
       </button>
-      {differenceInDay === 0 ? (
-        <span className="todo__completed-time">Completed in a day</span>
-      ) : (
-        <span className="todo__completed-time">
-          Completed in {differenceInDay} days
-        </span>
-      )}
+      <span className="todo__completed-time">{completedText}</span>
     </div>
   );
 }
