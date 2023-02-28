@@ -12,6 +12,7 @@ import {
 import spinner from "icons/spinner.svg";
 import { infoMessage } from "toastMethods";
 import { EDIT_CANCEL_MESSAGE } from "constants";
+import classNames from "classnames";
 
 const EditTask = ({
   id,
@@ -67,13 +68,12 @@ const EditTask = ({
   const currentSelectedId = useSelector(
     (state) => state.loadingReducers.currentSelectedId
   );
+  const mainDivClassname = classNames("todo__wrapper", {
+    "todo--off": currentSelectedId === id && editCardLoadingState,
+  });
 
   return (
-    <div
-      className={`todo__wrapper ${
-        currentSelectedId === id && editCardLoadingState && "todo--off"
-      }`}
-    >
+    <div className={mainDivClassname}>
       <div>
         {currentSelectedId === id && editCardLoadingState && (
           <img
@@ -86,9 +86,6 @@ const EditTask = ({
           className="textarea__edit-text"
           value={inputData}
           onChange={(event) => setInputData(event.target.value)}
-          placeholder={
-            "addCardLoadingState" ? "Please wait..." : "Add new task..."
-          }
           onKeyUp={handleKeyUp}
           ref={textAreaRef}
         ></textarea>

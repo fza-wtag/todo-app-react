@@ -7,7 +7,7 @@ import { parse, differenceInDays } from "date-fns";
 function CompletedTask({ loading, id, date, isCompleted, completedDate }) {
   const dispatch = useDispatch();
 
-  // //Calculating the completation duration in days
+  // Calculating the completation duration in days
   const startingDate = parse(date, "dd/MM/yyyy", new Date());
   const endingDate = parse(completedDate, "dd/MM/yyyy", new Date());
   const differenceInDay = differenceInDays(endingDate, startingDate);

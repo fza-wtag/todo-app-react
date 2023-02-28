@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import del from "icons/delete.svg";
 import "styles/addTask.css";
-import { addTodo } from "actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addTodo,
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
   setFilter,
@@ -17,6 +17,7 @@ import {
   LONG_TITLE_MESSAGE,
 } from "constants";
 import spinner from "icons/spinner.svg";
+import classNames from "classnames";
 
 const AddTask = () => {
   const isAddTaskVisible = useSelector(
@@ -80,8 +81,16 @@ const AddTask = () => {
     infoMessage(CREATE_CANCEL_MESSAGE);
   };
 
+  const mainDivClassName = classNames("todo__wrapper", {
+    "todo--off": addCardLoadingState,
+  });
+
+  const placeholderText = addCardLoadingState
+    ? "Please wait..."
+    : "Add new task.. [3-50 characters]";
+
   return (
-    <div className={`todo__wrapper ${addCardLoadingState && "todo--off"}`}>
+    <div className={mainDivClassName}>
       <div>
         {addCardLoadingState && (
           <img
@@ -94,11 +103,7 @@ const AddTask = () => {
           className="textarea__edit-text"
           value={inputData}
           onChange={(event) => setInputData(event.target.value)}
-          placeholder={
-            addCardLoadingState
-              ? "Please wait..."
-              : "Add new task.. [3-50 characters]"
-          }
+          placeholder={placeholderText}
           onKeyUp={handleKeyUp}
           ref={textAreaRef}
         ></textarea>
