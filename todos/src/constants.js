@@ -3,6 +3,8 @@ export const SHOW_LESS = "Show Less";
 export const PER_PAGE = 12;
 export const ADD_TASK_MESSAGE = "New Task Added";
 export const EMPTY_TITLE_MESSAGE = "Please Enter the Task Title";
+export const SHORT_TITLE_MESSAGE = "Title must be at least 3 characters long!";
+export const LONG_TITLE_MESSAGE = "Title cannot exceed 55 characters!";
 export const CREATE_CANCEL_MESSAGE = "Task Creating Cancelled";
 export const EDIT_CANCEL_MESSAGE = "Task Editing Canceled";
 export const TASK_DELETE_MESSAGE = "Task Deleted";
@@ -13,3 +15,6 @@ export const WENT_WRONG_MESSAGE = "Something went wrong!";
 export const ALL = "all";
 export const COMPLETE = "complete";
 export const INCOMPLETE = "incomplete";
+export const INPUT_DATA_MIN_LENGTH= 3;
+export const INPUT_DATA_MAX_LENGTH = 55;
+

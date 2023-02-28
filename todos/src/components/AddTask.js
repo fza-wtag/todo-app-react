@@ -6,11 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
-  setFilter
-
+  setFilter,
 } from "actions/index";
-import { infoMessage, warningMessage } from "toastMethods";
-import { EMPTY_TITLE_MESSAGE, CREATE_CANCEL_MESSAGE, ALL } from "constants";
+import { infoMessage, warningMessage, dangerMessage } from "toastMethods";
+import {
+  EMPTY_TITLE_MESSAGE,
+  CREATE_CANCEL_MESSAGE,
+  ALL,
+  SHORT_TITLE_MESSAGE,
+  LONG_TITLE_MESSAGE,
+} from "constants";
 import spinner from "icons/spinner.svg";
 
 const AddTask = () => {
@@ -28,6 +33,7 @@ const AddTask = () => {
 
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
+  const userInputData = inputData.trim();
 
   const handleStateChange = () => {
     dispatch(toggleAddTaskButtonVisibility(!isCreateButtonDisabled));
@@ -36,32 +42,39 @@ const AddTask = () => {
   };
   const currentDate = new Date().toLocaleDateString();
 
-  const handleKeyUp = (event) => {
-    event.preventDefault();
-    if (event.key === "Enter") {
-      if (inputData.trim() !== "") {
-        dispatch(addTodo(inputData.trim(), currentDate));
-        setInputData("");
-        handleStateChange();
-      } else {
-        warningMessage(EMPTY_TITLE_MESSAGE);
-        setInputData("");
-      }
-    }
-  };
   const textAreaRef = useRef(null);
   useEffect(() => {
     textAreaRef.current.focus();
   }, []);
 
-  const handleAddTaskButtonClick = () => {
-    if (inputData !== "") {
-      dispatch(addTodo(inputData, currentDate), setInputData(""));
+  const addTaskEventHelper = () => {
+    if (userInputData.length === 0) {
+      dangerMessage(EMPTY_TITLE_MESSAGE);
+      setInputData(userInputData);
+    } else if (userInputData.length < 3) {
+      warningMessage(SHORT_TITLE_MESSAGE);
+      setInputData(userInputData);
+    } else if (userInputData.length > 2 && userInputData.length < 56) {
+      dispatch(addTodo(userInputData, currentDate), setInputData(""));
       handleStateChange();
     } else {
-      warningMessage(EMPTY_TITLE_MESSAGE);
+      warningMessage(LONG_TITLE_MESSAGE);
+      setInputData(userInputData);
     }
   };
+
+  const handleKeyUp = (event) => {
+    event.preventDefault();
+    if (event.key === "Enter") {
+      addTaskEventHelper();
+    }
+  };
+
+  const handleAddTaskButtonClick = () => {
+    addTaskEventHelper();
+    textAreaRef.current.focus();
+  };
+
   const handleDelButton = () => {
     handleStateChange();
     infoMessage(CREATE_CANCEL_MESSAGE);
@@ -82,7 +95,9 @@ const AddTask = () => {
           value={inputData}
           onChange={(event) => setInputData(event.target.value)}
           placeholder={
-            addCardLoadingState ? "Please wait..." : "Add new task..."
+            addCardLoadingState
+              ? "Please wait..."
+              : "Add new task.. [3-50 characters]"
           }
           onKeyUp={handleKeyUp}
           ref={textAreaRef}
