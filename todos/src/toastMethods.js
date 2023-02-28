@@ -1,4 +1,4 @@
-import { toast, Zoom } from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const commonStyles = {
@@ -10,7 +10,7 @@ const commonStyles = {
   draggable: true,
   progress: undefined,
   theme: "colored",
-  transition: Zoom,
+  transition: Bounce,
   style: {
     minHeight: "15px",
     fontSize: "13px",
