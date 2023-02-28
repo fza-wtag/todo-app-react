@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import EditTask from "components/EditTask";
 import ShowTask from "components/ShowTask";
 
-const Task = ({ key, id, title, isCompleted, date, completedDate, onEdit }) => {
+const Task = ({ id, title, isCompleted, date, completedDate, onEdit }) => {
   const myList = useSelector((state) => state.todoReducers.list).find(
     (task) => task.id === id
   );
