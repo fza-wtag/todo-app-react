@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
+  setFilter
+
 } from "actions/index";
 import { infoMessage, warningMessage } from "toastMethods";
-import { EMPTY_TITLE_MESSAGE, CREATE_CANCEL_MESSAGE } from "constants";
+import { EMPTY_TITLE_MESSAGE, CREATE_CANCEL_MESSAGE, ALL } from "constants";
 import spinner from "icons/spinner.svg";
 
 const AddTask = () => {
@@ -30,6 +32,7 @@ const AddTask = () => {
   const handleStateChange = () => {
     dispatch(toggleAddTaskButtonVisibility(!isCreateButtonDisabled));
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
+    dispatch(setFilter(ALL));
   };
   const currentDate = new Date().toLocaleDateString();
 
