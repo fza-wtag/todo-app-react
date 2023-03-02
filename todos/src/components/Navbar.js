@@ -31,7 +31,7 @@ const Navbar = () => {
         <h4>Todos</h4>
       </div>
       <div className="navbar__search">
-        {!searchIconState && (
+        {searchIconState && (
           <input
             type="search"
             placeholder="Search"

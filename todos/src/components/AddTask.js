@@ -7,6 +7,9 @@ import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
   setFilter,
+  setIconVisibility,
+  setSearchValue,
+  updateCurrentPage,
 } from "actions/index";
 import { infoMessage, warningMessage, dangerMessage } from "toastMethods";
 import {
@@ -40,6 +43,9 @@ const AddTask = () => {
     dispatch(toggleAddTaskButtonVisibility(!isCreateButtonDisabled));
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
     dispatch(setFilter(ALL));
+    dispatch(setIconVisibility(false));
+    dispatch(setSearchValue(""));
+    dispatch(updateCurrentPage(1));
   };
   const currentDate = new Date().toLocaleDateString();
 
