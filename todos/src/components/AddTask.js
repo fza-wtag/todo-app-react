@@ -38,12 +38,15 @@ const AddTask = () => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
   const userInputData = inputData.trim();
+  const searchIconState = useSelector(
+    (state) => state.searchReducers.iconState
+  );
 
   const handleStateChange = () => {
     dispatch(toggleAddTaskButtonVisibility(!isCreateButtonDisabled));
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
     dispatch(setFilter(ALL));
-    dispatch(setIconVisibility(false));
+    dispatch(setIconVisibility(!searchIconState));
     dispatch(setSearchValue(""));
     dispatch(updateCurrentPage(1));
   };

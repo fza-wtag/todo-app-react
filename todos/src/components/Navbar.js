@@ -13,6 +13,7 @@ const Navbar = () => {
   );
   const handleSearchIconClick = () => {
     dispatch(setIconVisibility(!searchIconState));
+    dispatch(setSearchValue(""));
   };
   const handleInputChange = (event) => {
     dispatch(setLoadingState(true));
