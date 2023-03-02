@@ -9,6 +9,7 @@ import {
   changeEditState,
   selectedCardId,
 } from "actions/index";
+import classNames from "classnames";
 
 function IncompleteTask({
   loading,
@@ -33,9 +34,12 @@ function IncompleteTask({
     dispatch(selectedCardId(id));
     dispatch(changeEditState(id, onEdit));
   };
+  const mainDivClassname = classNames("todo__done-edit-del", {
+    "todo__done-edit-del--off": loading,
+  });
 
   return (
-    <div className="todo__done-edit-del">
+    <div className={mainDivClassname}>
       <button className="todo__icon-btn" onClick={handleDone}>
         <img src={done} alt="icon"></img>
       </button>

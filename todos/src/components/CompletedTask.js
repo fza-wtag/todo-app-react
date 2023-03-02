@@ -3,6 +3,7 @@ import del from "icons/delete.svg";
 import { useDispatch } from "react-redux";
 import { deleteTodo, selectedCardId } from "actions/index";
 import { parse, differenceInDays } from "date-fns";
+import classNames from "classnames";
 
 function CompletedTask({ loading, id, date, isCompleted, completedDate }) {
   const dispatch = useDispatch();
@@ -21,11 +22,13 @@ function CompletedTask({ loading, id, date, isCompleted, completedDate }) {
   if (differenceInDay === 0) {
     completedText = "Completed in a day";
   } else {
-    completedText = `Completed in ${differenceInDay+1} days`;
+    completedText = `Completed in ${differenceInDay + 1} days`;
   }
-
+  const mainDivClassname = classNames("todo-del-duration", {
+    "todo-del-duration--off": loading,
+  });
   return (
-    <div className="todo-del-duration">
+    <div className={mainDivClassname}>
       <button className="todo__icon-btn" onClick={handleDelete}>
         <img src={del} alt="icon"></img>
       </button>
