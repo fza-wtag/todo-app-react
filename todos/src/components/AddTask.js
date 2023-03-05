@@ -99,7 +99,7 @@ const AddTask = () => {
     : "Add new task.. [3-50 characters]";
 
   return (
-    <div className={mainDivClassName}>
+    <div className={mainDivClassName} data-testid="main-div">
       <div>
         {addCardLoadingState && (
           <img
