@@ -109,6 +109,7 @@ const AddTask = () => {
           ></img>
         )}
         <textarea
+          data-testid="text-area"
           className="textarea__edit-text"
           value={inputData}
           onChange={(event) => setInputData(event.target.value)}
@@ -122,7 +123,7 @@ const AddTask = () => {
           className="btn btn__save_button"
           onClick={handleAddTaskButtonClick}
         >
-          AddTask
+          Add Task
         </button>
         <button className="todo__icon-btn" onClick={handleDelButton}>
           <img src={del} alt="icon"></img>

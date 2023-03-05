@@ -13,8 +13,8 @@ const MockAddTask = () => {
   );
 };
 
-describe("AddTask Unit Tests", () => {
-  it("renders the main div of AddTask", () => {
+describe("AddTask Fields Tests", () => {
+  it("renders the AddTask card", () => {
     render(<MockAddTask />);
     const mainDiv = screen.getByTestId("main-div");
     expect(mainDiv).toBeInTheDocument();
@@ -27,6 +27,18 @@ describe("AddTask Unit Tests", () => {
     );
     const userInput = "New task";
     fireEvent.change(textarea, { target: { value: userInput } });
+    expect(textarea.value).toBe(userInput);
+  });
+});
+
+describe("Add task button click tests", () => {
+  it("Text box will remain empty after Add Task buttonclick with empty userinput", () => {
+    render(<MockAddTask />);
+    const textarea = screen.queryByTestId("text-area");
+    const userInput = "";
+    const buttonElement = screen.getByRole("button", { name: /Add Task/i });
+    fireEvent.change(textarea, { target: { value: userInput } });
+    fireEvent.click(buttonElement);
     expect(textarea.value).toBe(userInput);
   });
 });
