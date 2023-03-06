@@ -13,7 +13,7 @@ const MockAddTask = () => {
   );
 };
 
-describe("<AddTask/>>", () => {
+describe("<AddTask/>", () => {
   it("renders the AddTask card", () => {
     render(<MockAddTask />);
     const mainDiv = screen.getByTestId("main-div");
