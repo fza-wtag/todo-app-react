@@ -32,7 +32,7 @@ function CompletedTask({ loading, id, date, isCompleted, completedDate }) {
       <button
         className="todo__icon-btn"
         onClick={handleDelete}
-        data-testid="com-del-btn"
+        data-testid="com-delete-btn"
       >
         <img src={del} alt="icon"></img>
       </button>

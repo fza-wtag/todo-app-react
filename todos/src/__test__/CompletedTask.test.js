@@ -30,7 +30,7 @@ describe("<CompletedTask/>", () => {
         </CompletedTask>
       </Provider>
     );
-    const buttonElement = screen.getByTestId("com-del-btn");
+    const buttonElement = screen.getByTestId("com-delete-btn");
     fireEvent.click(buttonElement);
     expect(mockOnClick).toHaveBeenCalledTimes(1);
   });

@@ -39,14 +39,26 @@ function IncompleteTask({
   });
 
   return (
-    <div className={mainDivClassname}>
-      <button className="todo__icon-btn" onClick={handleDone}>
+    <div className={mainDivClassname} data-testid="main-div">
+      <button
+        className="todo__icon-btn"
+        onClick={handleDone}
+        data-testid="incom-done-btn"
+      >
         <img src={done} alt="icon"></img>
       </button>
-      <button className="todo__icon-btn" onClick={handleEdit}>
+      <button
+        className="todo__icon-btn"
+        onClick={handleEdit}
+        data-testid="incom-edit-btn"
+      >
         <img src={edit} alt="icon"></img>
       </button>
-      <button className="todo__icon-btn" onClick={handleDelete}>
+      <button
+        className="todo__icon-btn"
+        onClick={handleDelete}
+        data-testid="incom-delete-btn"
+      >
         <img src={del} alt="icon"></img>
       </button>
     </div>
