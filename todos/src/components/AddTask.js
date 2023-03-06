@@ -125,7 +125,11 @@ const AddTask = () => {
         >
           Add Task
         </button>
-        <button className="todo__icon-btn" onClick={handleDelButton}>
+        <button
+          className="todo__icon-btn"
+          onClick={handleDelButton}
+          data-testid="del-btn"
+        >
           <img src={del} alt="icon"></img>
         </button>
       </div>
