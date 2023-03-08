@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import Navbar from "components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { setIconVisibility, setSearchValue } from "actions";
+import { setIconVisibility, setSearchValue, setLoadingState } from "actions";
 
 jest.mock("react-redux", () => ({
   useDispatch: jest.fn(),
@@ -43,5 +43,22 @@ describe("<Navbar/>", () => {
     expect(dispatch).toHaveBeenCalledTimes(2);
     expect(dispatch).toHaveBeenCalledWith(setIconVisibility(true));
     expect(dispatch).toHaveBeenCalledWith(setSearchValue(""));
+  });
+
+  it("handleInputChange dispatches the correct action", () => {
+    const dispatch = jest.fn();
+    useDispatch.mockReturnValue(dispatch);
+    useSelector.mockReturnValue(true);
+    render(<Navbar />);
+    const SearchButtonElement = screen.getByTestId("search-button");
+    fireEvent.click(SearchButtonElement);
+    const SearchInputElement = screen.queryByPlaceholderText("Search");
+    const event = {
+      target: {
+        value: "test",
+      },
+    };
+    fireEvent.change(SearchInputElement, event);
+    expect(dispatch).toHaveBeenCalledWith(setLoadingState(true));
   });
 });
