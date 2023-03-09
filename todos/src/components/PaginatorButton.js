@@ -10,9 +10,11 @@ function PaginatorButton({ type }) {
   const currentPage = useSelector(
     (state) => state.currentPageReducer.currentPage
   );
+
   const handleLoadMore = () => {
     dispatch(updateCurrentPage(currentPage + 1));
   };
+
   const handleShowLess = () => {
     dispatch(updateCurrentPage(1));
   };
@@ -23,13 +25,21 @@ function PaginatorButton({ type }) {
   return (
     <div className="load-more">
       {typeLoadMore && (
-        <button className="load-more__button" onClick={handleLoadMore}>
-          {type}
+        <button
+          className="load-more__button"
+          onClick={handleLoadMore}
+          data-testid="load-more-button"
+        >
+          {LOAD_MORE}
         </button>
       )}
       {typeShowLess && (
-        <button className="load-more__button" onClick={handleShowLess}>
-          {type}
+        <button
+          className="load-more__button"
+          onClick={handleShowLess}
+          data-testid="show-less-button"
+        >
+          {SHOW_LESS}
         </button>
       )}
     </div>
