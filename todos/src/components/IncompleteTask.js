@@ -39,7 +39,7 @@ function IncompleteTask({
   });
 
   return (
-    <div className={mainDivClassname} data-testid="main-div">
+    <div className={mainDivClassname} data-testid="incomplete-task-component">
       <button
         className="todo__icon-btn"
         onClick={handleDone}

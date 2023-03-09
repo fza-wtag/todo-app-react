@@ -16,7 +16,7 @@ const MockAddTask = () => {
 describe("<IncompletTask/>", () => {
   it("renders the Completed Task card", () => {
     render(<MockAddTask />);
-    const mainDiv = screen.getByTestId("main-div");
+    const mainDiv = screen.getByTestId("incomplete-task-component");
     expect(mainDiv).toBeInTheDocument();
   });
 

@@ -16,7 +16,7 @@ const MockAddTask = () => {
 describe("<CompletedTask/>", () => {
   it("renders the Completed Task card", () => {
     render(<MockAddTask />);
-    const mainDiv = screen.getByTestId("main-div");
+    const mainDiv = screen.getByTestId("completed-task-component");
     expect(mainDiv).toBeInTheDocument();
   });
 
@@ -47,7 +47,7 @@ describe("<CompletedTask/>", () => {
         />
       </Provider>
     );
-    expect(screen.getByTestId("main-div")).toHaveTextContent(
+    expect(screen.getByTestId("completed-task-component")).toHaveTextContent(
       "Completed in a day"
     );
   });
@@ -64,7 +64,7 @@ describe("<CompletedTask/>", () => {
         />
       </Provider>
     );
-    expect(screen.getByTestId("main-div")).toHaveTextContent(
+    expect(screen.getByTestId("completed-task-component")).toHaveTextContent(
       "Completed in 3 day"
     );
   });

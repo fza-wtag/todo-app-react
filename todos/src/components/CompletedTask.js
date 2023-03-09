@@ -28,7 +28,7 @@ function CompletedTask({ loading, id, date, isCompleted, completedDate }) {
     "todo-del-duration--off": loading,
   });
   return (
-    <div className={mainDivClassname} data-testid="main-div">
+    <div className={mainDivClassname} data-testid="completed-task-component">
       <button
         className="todo__icon-btn"
         onClick={handleDelete}
