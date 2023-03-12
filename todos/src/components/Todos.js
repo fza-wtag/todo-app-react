@@ -57,8 +57,11 @@ function Todos() {
   getCurrentTodos();
 
   return (
-    <div>
-      <div className={`all-todos ${loadingState && "all-todos--off"}`}>
+    <div data-testid="todos">
+      <div
+        className={`all-todos ${loadingState && "all-todos--off"}`}
+        data-testid="task-list"
+      >
         {(isAddTaskVisible || addCardLoadingState) && <AddTask />}
         {displayedTodoList.map((elem) => {
           return (
