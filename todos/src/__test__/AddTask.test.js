@@ -16,7 +16,7 @@ const MockAddTask = () => {
 describe("<AddTask/>", () => {
   it("renders the AddTask card", () => {
     render(<MockAddTask />);
-    const mainDiv = screen.getByTestId("main-div");
+    const mainDiv = screen.getByTestId("add-task");
     expect(mainDiv).toBeInTheDocument();
   });
 
