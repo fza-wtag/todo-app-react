@@ -1,12 +1,13 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import "@testing-library/jest-dom/extend-expect";
 import Todos from "components/Todos";
 import configureStore from "redux-mock-store";
-import { waitFor } from "@testing-library/react";
+import { ALL } from "constants";
 
 describe("<Todos/>", () => {
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const mockStore = configureStore([]);
   let store;
   beforeEach(() => {
@@ -14,25 +15,113 @@ describe("<Todos/>", () => {
       todoReducers: {
         list: [
           {
-            id: 1,
-            data: "Buy groceries",
+            id: 898,
+            data: "task 2",
             isCompleted: false,
-            date: "2022-03-10",
+            date: "12/03/2023",
             completedDate: null,
             onEdit: false,
           },
           {
-            id: 2,
-            data: "Do laundry",
+            id: 897,
+            data: "TASK 1",
+            isCompleted: true,
+            date: "12/03/2023",
+            completedDate: "12/03/2023",
+            onEdit: false,
+          },
+          {
+            id: 896,
+            data: "aas",
+            isCompleted: true,
+            date: "12/03/2023",
+            completedDate: "12/03/2023",
+            onEdit: false,
+          },
+          {
+            id: 895,
+            data: "dfgdfg",
+            isCompleted: true,
+            date: "12/03/2023",
+            completedDate: "12/03/2023",
+            onEdit: false,
+          },
+          {
+            id: 894,
+            data: "fdgdfg",
+            isCompleted: true,
+            date: "12/03/2023",
+            completedDate: "12/03/2023",
+            onEdit: false,
+          },
+          {
+            id: 893,
+            data: "hjkhjk fgh",
             isCompleted: false,
-            date: "2022-03-11",
+            date: "12/03/2023",
             completedDate: null,
+            onEdit: false,
+          },
+          {
+            id: 891,
+            data: "fgdfg",
+            isCompleted: true,
+            date: "12/03/2023",
+            completedDate: "12/03/2023",
+            onEdit: false,
+          },
+          {
+            id: 890,
+            data: "asasfg",
+            isCompleted: true,
+            date: "12/03/2023",
+            completedDate: "12/03/2023",
+            onEdit: false,
+          },
+          {
+            id: 888,
+            data: "asas",
+            isCompleted: true,
+            date: "12/03/2023",
+            completedDate: "12/03/2023",
+            onEdit: false,
+          },
+          {
+            id: 887,
+            data: "asas",
+            isCompleted: true,
+            date: "09/03/2023",
+            completedDate: "09/03/2023",
+            onEdit: false,
+          },
+          {
+            id: 886,
+            data: "sdsddfdf",
+            isCompleted: true,
+            date: "06/03/2023",
+            completedDate: "12/03/2023",
+            onEdit: false,
+          },
+          {
+            id: 885,
+            data: "sdklfnsbjdkf",
+            isCompleted: true,
+            date: "06/03/2023",
+            completedDate: "06/03/2023",
+            onEdit: false,
+          },
+          {
+            id: 884,
+            data: "dfbhjdf hdhhd sdsd",
+            isCompleted: true,
+            date: "06/03/2023",
+            completedDate: "09/03/2023",
             onEdit: false,
           },
         ],
       },
       filterReducer: {
-        filter: "ALL",
+        filter: ALL,
       },
       toggleReducers: {
         isAddTaskVisible: false,
@@ -71,4 +160,19 @@ describe("<Todos/>", () => {
     expect(addTaskComponent).toBeNull();
   });
 
+  it("renders the correct amount of card", () => {
+    render(<MockTodos />);
+    const tasks = screen.getAllByTestId("task");
+    expect(tasks).toHaveLength(12);
+  });
+
+  it("pagination works perfectly", () => {
+    store.dispatch({
+      type: "UPDATE_CURRENT_PAGE",
+      payload: { currentPage: 2 },
+    });
+    render(<MockTodos />);
+    const tasks = screen.getAllByTestId("task");
+    expect(tasks).toHaveLength(12);
+  });
 });
