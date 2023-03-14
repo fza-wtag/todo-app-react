@@ -27,7 +27,7 @@ const TopContent = () => {
   }`;
 
   return (
-    <div className="top-content">
+    <div className="top-content" data-testid="top-content">
       <h1>Add Tasks</h1>
       <div className="top-content__buttons">
         <button
