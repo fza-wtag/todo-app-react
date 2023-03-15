@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import TopContent from "components/TopContent";
 import store from "store";
@@ -17,5 +17,10 @@ describe("<TopConent/>", () => {
     render(<MockTodos />);
     const mainDiv = screen.getByTestId("top-content");
     expect(mainDiv).toBeInTheDocument();
+  });
+  it("renders the header properly", () => {
+    render(<MockTodos />);
+    const header = screen.getByText("Add Tasks");
+    expect(header).toBeInTheDocument();
   });
 });
