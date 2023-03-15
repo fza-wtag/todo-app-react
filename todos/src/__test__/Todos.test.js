@@ -154,7 +154,7 @@ describe("<Todos/>", () => {
     expect(mainDiv).toBeInTheDocument();
   });
 
-  it("Doesn't renders AddTask card when isAddTaskVisible and addCardLoadingState is false", () => {
+  it("doesn't renders AddTask card when isAddTaskVisible and addCardLoadingState is false", () => {
     render(<MockTodos />);
     const addTaskComponent = screen.queryByTestId("add-task");
     expect(addTaskComponent).toBeNull();

@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import store from "store";
 import { Provider } from "react-redux";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 import FilterButtons from "components/FilterButtons";
 
 const MockEmptyTaskList = () => {
@@ -20,7 +20,7 @@ describe("<EmptyTaskList/>", () => {
     expect(mainDiv).toBeInTheDocument();
   });
 
-  it("Invokes the handleAllTodos function on All button click", () => {
+  it("invokes the handleAllTodos function on All button click", () => {
     const mockOnClick = jest.fn();
     render(
       <Provider store={store}>
@@ -35,7 +35,7 @@ describe("<EmptyTaskList/>", () => {
     expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
 
-  it("Invokes the handleIncompleteTodos function on Incomplete button click", () => {
+  it("invokes the handleIncompleteTodos function on Incomplete button click", () => {
     const mockOnClick = jest.fn();
     render(
       <Provider store={store}>
@@ -50,7 +50,7 @@ describe("<EmptyTaskList/>", () => {
     expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
 
-  it("Invokes the handleCompleteTodos function on complete button click", () => {
+  it("invokes the handleCompleteTodos function on complete button click", () => {
     const mockOnClick = jest.fn();
     render(
       <Provider store={store}>

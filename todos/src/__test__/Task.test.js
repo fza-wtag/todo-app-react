@@ -8,7 +8,7 @@ import "@testing-library/jest-dom";
 
 const mockStore = configureStore([]);
 
-describe("Task component", () => {
+describe("<Task/>", () => {
   let store;
   let initialList = [
     {

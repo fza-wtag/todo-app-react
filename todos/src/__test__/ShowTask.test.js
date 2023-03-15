@@ -7,7 +7,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 const mockStore = configureStore([]);
 
-describe("ShowTask", () => {
+describe("<ShowTask/>", () => {
   let store;
   const testProps = {
     loading: false,
@@ -24,7 +24,7 @@ describe("ShowTask", () => {
     store = mockStore({});
   });
 
-  it("Renders the title and created date correctly", () => {
+  it("renders the title and created date correctly", () => {
     render(
       <Provider store={store}>
         <ShowTask {...testProps} />
@@ -37,7 +37,7 @@ describe("ShowTask", () => {
     expect(createdDate).toHaveTextContent("01.01.2022");
   });
 
-  it("Renders the completed task component if the task is completed", () => {
+  it("renders the completed task component if the task is completed", () => {
     const completedProps = { ...testProps, isCompleted: true };
     render(
       <Provider store={store}>
@@ -48,7 +48,7 @@ describe("ShowTask", () => {
     expect(completedComponent).toBeInTheDocument();
   });
 
-  it("Renders the incomplete task component if the task is not completed", () => {
+  it("renders the incomplete task component if the task is not completed", () => {
     const incompleteProps = { ...testProps, isCompleted: false };
     render(
       <Provider store={store}>
@@ -59,7 +59,7 @@ describe("ShowTask", () => {
     expect(incompleteComponent).toBeInTheDocument();
   });
 
-  it("Displays a spinner when loading prop is true", () => {
+  it("displays a spinner when loading prop is true", () => {
     const loadingProps = { ...testProps, loading: true };
     render(
       <Provider store={store}>

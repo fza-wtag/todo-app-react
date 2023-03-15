@@ -9,7 +9,7 @@ import "@testing-library/jest-dom";
 
 const mockStore = configureStore([]);
 
-describe("PaginatorButton", () => {
+describe("<PaginatorButton/>", () => {
   let store;
 
   beforeEach(() => {
@@ -20,7 +20,7 @@ describe("PaginatorButton", () => {
     });
   });
 
-  it("Renders the Load More button", () => {
+  it("renders the Load More button", () => {
     render(
       <Provider store={store}>
         <PaginatorButton type={LOAD_MORE} />
@@ -30,7 +30,7 @@ describe("PaginatorButton", () => {
     expect(button).toBeInTheDocument();
   });
 
-  it("Renders the Show Less button", () => {
+  it("renders the Show Less button", () => {
     render(
       <Provider store={store}>
         <PaginatorButton type={SHOW_LESS} />
@@ -40,7 +40,7 @@ describe("PaginatorButton", () => {
     expect(button).toBeInTheDocument();
   });
 
-  it("Dispatches the correct action when Load More button is clicked", () => {
+  it("dispatches the correct action when Load More button is clicked", () => {
     render(
       <Provider store={store}>
         <PaginatorButton type={LOAD_MORE} />
@@ -52,7 +52,7 @@ describe("PaginatorButton", () => {
     expect(actions).toEqual([updateCurrentPage(2)]);
   });
 
-  it("Dispatches the correct action when Show Less button is clicked", () => {
+  it("dispatches the correct action when Show Less button is clicked", () => {
     render(
       <Provider store={store}>
         <PaginatorButton type={SHOW_LESS} />

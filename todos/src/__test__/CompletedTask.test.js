@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import store from "store";
 import { Provider } from "react-redux";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 import CompletedTask from "components/CompletedTask";
 
 const MockAddTask = () => {
@@ -20,7 +20,7 @@ describe("<CompletedTask/>", () => {
     expect(mainDiv).toBeInTheDocument();
   });
 
-  it("Invokes the handleDelete function on delete icon button click", () => {
+  it("invokes the handleDelete function on delete icon button click", () => {
     const mockOnClick = jest.fn();
     render(
       <Provider store={store}>

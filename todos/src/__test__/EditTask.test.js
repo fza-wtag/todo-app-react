@@ -7,7 +7,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 const mockStore = configureMockStore([thunk]);
 
-describe("EditTask", () => {
+describe("<EditTask/>", () => {
   let store;
   const id = "123";
   const date = "2022-03-12";

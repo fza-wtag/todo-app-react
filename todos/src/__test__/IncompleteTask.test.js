@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import store from "store";
 import { Provider } from "react-redux";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 import IncompleteTask from "components/IncompleteTask";
 
 const MockAddTask = () => {
@@ -20,7 +20,7 @@ describe("<IncompletTask/>", () => {
     expect(mainDiv).toBeInTheDocument();
   });
 
-  it("Invokes the handleDelete function on delete icon button click", () => {
+  it("invokes the handleDelete function on delete icon button click", () => {
     const mockOnClick = jest.fn();
     render(
       <Provider store={store}>
@@ -35,7 +35,7 @@ describe("<IncompletTask/>", () => {
     expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
 
-  it("Invokes the handleDone function on done icon button click", () => {
+  it("invokes the handleDone function on done icon button click", () => {
     const mockOnClick = jest.fn();
     render(
       <Provider store={store}>
@@ -50,7 +50,7 @@ describe("<IncompletTask/>", () => {
     expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
 
-  it("Invokes the handleEdit function on edit icon button click", () => {
+  it("invokes the handleEdit function on edit icon button click", () => {
     const mockOnClick = jest.fn();
     render(
       <Provider store={store}>

@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import AddTask from "components/AddTask";
 import store from "store";
 import { Provider } from "react-redux";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 
 const MockAddTask = () => {
   return (
@@ -30,7 +30,7 @@ describe("<AddTask/>", () => {
     expect(textarea.value).toBe(userInput);
   });
 
-  it("Text box will remain empty after Add Task buttonclick with empty userinput", () => {
+  it("text box will remain empty after Add Task buttonclick with empty userinput", () => {
     render(<MockAddTask />);
     const textarea = screen.queryByTestId("text-area");
     const userInput = "";
@@ -40,7 +40,7 @@ describe("<AddTask/>", () => {
     expect(textarea.value).toBe(userInput);
   });
 
-  it("Invokes the handleAddTaskButtonClick function on button click", () => {
+  it("invokes the handleAddTaskButtonClick function on button click", () => {
     const mockOnClick = jest.fn();
     render(
       <Provider store={store}>
@@ -72,7 +72,7 @@ describe("<AddTask/>", () => {
     expect(mockOnKeyUp).toHaveBeenCalledTimes(1);
   });
 
-  it("Invokes the handleDelButton function on del icon button click", () => {
+  it("invokes the handleDelButton function on del icon button click", () => {
     const mockOnClick = jest.fn();
     render(
       <Provider store={store}>
