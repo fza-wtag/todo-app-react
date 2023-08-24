@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      <TopContent2 />
+      <TopContent />
       <Todos />
       <LoadMoreBtn />
     </div>
