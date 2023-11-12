@@ -1,8 +1,28 @@
 import logo from "icons/logo.svg";
 import search from "icons/searchIcon.svg";
-import "styles/navbar.css"
+import "styles/navbar.css";
+import { useSelector, useDispatch } from "react-redux";
+import { setIconVisibility, setSearchValue, setLoadingState } from "actions";
+import "styles/loading.css";
+import { debounce } from "utils";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const searchIconState = useSelector((state) => state.searchReducer.iconState);
+  
+  const handleSearchIconClick = () => {
+    dispatch(setIconVisibility(!searchIconState));
+  };
+  const handleInputChange = (event) => {
+    dispatch(setLoadingState(true));
+    handleSearch(event);
+  };
+  const handleSearchInput = (event) => {
+    dispatch(setSearchValue(event.target.value));
+    dispatch(setLoadingState(false));
+  };
+  const handleSearch = debounce(handleSearchInput);
+
   return (
     <nav className="navbar">
       <div className="navbar__logo">
@@ -10,8 +30,14 @@ const Navbar = () => {
         <h4>Todos</h4>
       </div>
       <div className="navbar__search">
-        <input type="search" placeholder="Search" />
-        <button type="submit">
+        {!searchIconState && (
+          <input
+            type="search"
+            placeholder="Search"
+            onChange={handleInputChange}
+          />
+        )}
+        <button type="submit" onClick={handleSearchIconClick}>
           <img src={search} alt="icon"></img>
         </button>
       </div>

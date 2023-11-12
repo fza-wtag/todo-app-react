@@ -93,3 +93,24 @@ export const setFilter = (filter) => {
     filter,
   };
 };
+
+export const setIconVisibility = (iconState) => {
+  return {
+    type: "SET_ICON_VISIBIlITY",
+    iconState,
+  };
+};
+
+export const setSearchValue = (searchValue) => {
+  return {
+    type: "SET_SEARCH_VALUE",
+    searchValue,
+  };
+};
+
+export const setLoadingState = (loadingState) => {
+  return {
+    type: "SET_LOADING_STATE",
+    loadingState,
+  };
+};

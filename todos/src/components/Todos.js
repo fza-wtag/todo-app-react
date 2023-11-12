@@ -4,9 +4,9 @@ import Task from "components/Task";
 import "styles/todos.css";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "components/EmptyTaskList";
-import LoadMoreBtn from "components/LoadMoreBtn";
+import PaginatorButton from "components/PaginatorButton";
 import { LOAD_MORE, SHOW_LESS, PER_PAGE, ALL, INCOMPLETE } from "constants";
-
+import spinner from "icons/spinner.svg";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);
@@ -18,6 +18,8 @@ function Todos() {
     (state) => state.currentPageReducer.currentPage
   );
 
+  const searchValue = useSelector((state) => state.searchReducer.searchValue);
+
   let filteredTodos;
   if (filter === ALL) {
     filteredTodos = list;
@@ -26,19 +28,33 @@ function Todos() {
   } else {
     filteredTodos = list.filter((todo) => todo.isCompleted);
   }
+  const searchedTodos = filteredTodos.filter((elem) =>
+    elem.data.toLowerCase().includes(searchValue.toLowerCase())
+  );
+  const displayedTodoList = searchedTodos.slice(0, PER_PAGE * currentPage);
+  const loadingState = useSelector(
+    (state) => state.loadingReducer.loadingState
+  );
 
-  const displayedTodoList = filteredTodos.slice(0, PER_PAGE * currentPage);
-  
-  const showEmptyListIcon = list.length === 0 && !isAddTaskVisible;
-  const lessThanListLength = currentPage * PER_PAGE < filteredTodos.length;
-  const listGreaterThanPerPage = filteredTodos.length > PER_PAGE;
+  const showEmptyListIcon = displayedTodoList.length === 0 && !isAddTaskVisible;
+
+  let showLoadMore;
+  let showShowLess;
+
+  if (searchValue.length === 0) {
+    showLoadMore = currentPage * PER_PAGE < filteredTodos.length;
+    showShowLess = filteredTodos.length > PER_PAGE;
+  } else {
+    showLoadMore = currentPage * PER_PAGE < searchedTodos.length;
+    showShowLess = searchedTodos.length > PER_PAGE;
+  }
 
   return (
     <div>
-      <div className="all-todos">
+      <div className={`all-todos ${loadingState && "all-todos--off"}`}>
         {isAddTaskVisible && <AddTask />}
         {displayedTodoList.map((elem) => {
-          return elem.data &&
+          return (
             <Task
               key={elem.id}
               id={elem.id}
@@ -48,13 +64,16 @@ function Todos() {
               completedDate={elem.completedDate}
               onEdit={elem.onEdit}
             />
+          );
         })}
       </div>
+      {loadingState && (
+        <img className="spinner" src={spinner} alt="Loading.."></img>
+      )}
       {showEmptyListIcon && <EmptyTaskList />}
-      {lessThanListLength ? (
-        <LoadMoreBtn type={LOAD_MORE} />
-      ) : (
-        listGreaterThanPerPage && <LoadMoreBtn type={SHOW_LESS} />
+      {!loadingState && showLoadMore && <PaginatorButton type={LOAD_MORE} />}
+      {!loadingState && !showLoadMore && showShowLess && (
+        <PaginatorButton type={SHOW_LESS} />
       )}
     </div>
   );
