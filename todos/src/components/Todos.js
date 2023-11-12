@@ -5,27 +5,40 @@ import "styles/todos.css";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "components/EmptyTaskList";
 import LoadMoreBtn from "components/LoadMoreBtn";
-import { PER_PAGE, LOAD_MORE, SHOW_LESS } from "constants";
+import { LOAD_MORE, SHOW_LESS, PER_PAGE, ALL, INCOMPLETE } from "constants";
+
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);
+  const filter = useSelector((state) => state.filterReducer.filter);
   const isAddTaskVisible = useSelector(
     (state) => state.toggleReducers.isAddTaskVisible
   );
   const currentPage = useSelector(
     (state) => state.currentPageReducer.currentPage
   );
-  const displayedTodoList = list.slice(0, PER_PAGE * currentPage);
+
+  let filteredTodos;
+  if (filter === ALL) {
+    filteredTodos = list;
+  } else if (filter === INCOMPLETE) {
+    filteredTodos = list.filter((todo) => !todo.isCompleted);
+  } else {
+    filteredTodos = list.filter((todo) => todo.isCompleted);
+  }
+
+  const displayedTodoList = filteredTodos.slice(0, PER_PAGE * currentPage);
+  
   const showEmptyListIcon = list.length === 0 && !isAddTaskVisible;
-  const lessThanListLength = currentPage * PER_PAGE < list.length;
-  const listGreaterThanPerPage = list.length > PER_PAGE;
+  const lessThanListLength = currentPage * PER_PAGE < filteredTodos.length;
+  const listGreaterThanPerPage = filteredTodos.length > PER_PAGE;
 
   return (
     <div>
       <div className="all-todos">
         {isAddTaskVisible && <AddTask />}
         {displayedTodoList.map((elem) => {
-          return (
+          return elem.data &&
             <Task
               key={elem.id}
               id={elem.id}
@@ -35,7 +48,6 @@ function Todos() {
               completedDate={elem.completedDate}
               onEdit={elem.onEdit}
             />
-          );
         })}
       </div>
       {showEmptyListIcon && <EmptyTaskList />}

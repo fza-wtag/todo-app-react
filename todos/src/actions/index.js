@@ -84,6 +84,12 @@ export const updateCurrentPage = (page) => {
   return {
     type: "UPDATE_CURRENT_PAGE",
     page,
-    
+  };
+};
+
+export const setFilter = (filter) => {
+  return {
+    type: "SET_FILTER",
+    filter,
   };
 };
