@@ -16,7 +16,7 @@ const TopContent = () => {
   );
   const dispatch = useDispatch();
   const handleCreateButtonClick = () => {
-    dispatch(toggleAddTaskButtonVisibility(isCreateButtonDisabled));
+    dispatch(toggleAddTaskButtonVisibility(!isCreateButtonDisabled));
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
   };
   const loadingState = useSelector(
@@ -27,10 +27,11 @@ const TopContent = () => {
   }`;
 
   return (
-    <div className="top-content">
+    <div className="top-content" data-testid="top-content">
       <h1>Add Tasks</h1>
       <div className="top-content__buttons">
         <button
+          data-testid="add-button"
           className={createButtonClassNameLogic}
           onClick={handleCreateButtonClick}
         >

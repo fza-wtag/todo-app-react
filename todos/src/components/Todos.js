@@ -32,7 +32,7 @@ function Todos() {
   const searchedTodos = filteredTodos.filter((elem) =>
     elem.data.toLowerCase().includes(searchValue.toLowerCase())
   );
-  const displayedTodoList = searchedTodos.slice(0, PER_PAGE * currentPage);
+  const displayedTodoList = searchedTodos.slice(0, 12 * currentPage);
   const loadingState = useSelector(
     (state) => state.loadingReducers.loadingState
   );
@@ -57,8 +57,11 @@ function Todos() {
   getCurrentTodos();
 
   return (
-    <div>
-      <div className={`all-todos ${loadingState && "all-todos--off"}`}>
+    <div data-testid="todos">
+      <div
+        className={`all-todos ${loadingState && "all-todos--off"}`}
+        data-testid="task-list"
+      >
         {(isAddTaskVisible || addCardLoadingState) && <AddTask />}
         {displayedTodoList.map((elem) => {
           return (

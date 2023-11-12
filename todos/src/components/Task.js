@@ -27,7 +27,7 @@ const Task = ({ id, title, isCompleted, date, completedDate, onEdit }) => {
   const isCurrentSelected = currentSelectedId === id;
 
   return (
-    <div>
+    <div data-testid="task">
       {isLoading && isCurrentSelected ? (
         <ShowTask
           loading={true}
