@@ -8,6 +8,12 @@ import {
   toggleAddTaskVisibility,
   toggleAddTaskButtonVisibility,
 } from "actions/index";
+import { infoMessage, successMessage, warningMessage } from "toastMethods";
+import {
+  ADD_TASK_MESSAGE,
+  EMPTY_TITLE_MESSAGE,
+  CREATE_CANCEL_MESSAGE,
+} from "constants";
 
 const AddTask = () => {
   const isAddTaskVisible = useSelector(
@@ -21,7 +27,7 @@ const AddTask = () => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleStateChange = () => {
     dispatch(toggleAddTaskButtonVisibility(!isCreateButtonDisabled));
     dispatch(toggleAddTaskVisibility(!isAddTaskVisible));
   };
@@ -30,7 +36,8 @@ const AddTask = () => {
       //to get the job done with enter button
       dispatch(addTodo(inputData.slice(0, -1)), setInputData(""));
       if (inputData !== "") {
-        handleClick();
+        successMessage(ADD_TASK_MESSAGE);
+        handleStateChange();
       }
     }
   };
@@ -40,10 +47,17 @@ const AddTask = () => {
   }, []);
 
   const handleAddTaskButtonClick = () => {
-    dispatch(addTodo(inputData), setInputData(""));
     if (inputData !== "") {
-      handleClick();
+      handleStateChange();
+      successMessage(ADD_TASK_MESSAGE);
+      dispatch(addTodo(inputData), setInputData(""));
+    } else {
+      warningMessage(EMPTY_TITLE_MESSAGE);
     }
+  };
+  const handleDelButton = () => {
+    handleStateChange();
+    infoMessage(CREATE_CANCEL_MESSAGE);
   };
 
   return (
@@ -65,7 +79,7 @@ onClick={handleAddTaskButtonClick}
         >
           AddTask
         </button>
-        <button className="todo__icon-btn" onClick={handleClick}>
+        <button className="todo__icon-btn" onClick={handleDelButton}>
           <img src={del} alt="icon"></img>
         </button>
       </div>

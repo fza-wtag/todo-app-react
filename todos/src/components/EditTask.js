@@ -3,6 +3,12 @@ import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import "styles/addTask.css";
 import { useDispatch } from "react-redux";
+import { successMessage, infoMessage } from "toastMethods";
+import {
+  CREATE_SUCCESS_MESSAGE,
+  EDIT_CANCEL_MESSAGE,
+  EDIT_SUCCESS_MESSAGE,
+} from "constants";
 import { markCompletedOnEdit, updatedTodo } from "actions/index";
 
 const EditTask = ({
@@ -29,13 +35,15 @@ const EditTask = ({
 
   const handleDone = () => {
     dispatch(markCompletedOnEdit(id, true, date, completedDate, onEdit));
-
+    successMessage(CREATE_SUCCESS_MESSAGE);
   };
   const handleDelete = () => {
     dispatch(updatedTodo(id, currentData, onEdit), setInputData(""));
+    infoMessage(EDIT_CANCEL_MESSAGE);
   };
   const handleSave = () => {
     dispatch(updatedTodo(id, inputData, onEdit), setInputData(""));
+    successMessage(EDIT_SUCCESS_MESSAGE);
   };
 
   return (
