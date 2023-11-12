@@ -29,6 +29,7 @@ const EditTask = ({
 
   const handleDone = () => {
     dispatch(markCompletedOnEdit(id, true, date, completedDate, onEdit));
+
   };
   const handleDelete = () => {
     dispatch(updatedTodo(id, currentData, onEdit), setInputData(""));
