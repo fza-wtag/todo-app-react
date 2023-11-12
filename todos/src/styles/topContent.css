@@ -36,6 +36,12 @@
   font-size: 14px;
 }
 
+.btn__create_button--blur {
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+}
+
 .btn__create_button:hover {
   background: #4c5fcd;
   color: white;

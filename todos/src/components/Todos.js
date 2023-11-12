@@ -1,25 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import AddTask from "components/AddTask";
 import Task from "components/Task";
-import "styles/todos.css"
-
+import "styles/todos.css";
+import { TopContentContext } from "components/TopContent";
+import { useSelector } from "react-redux";
+import EmptyTaskList from "./EmptyTaskList";
 function Todos() {
+  const { isAddTaskVisible, setIsAddTaskVisible } =
+    useContext(TopContentContext);
+  const list = useSelector((state) => state.todoReducers.list);
   return (
-    <div className="all-todos">
-      <AddTask />
-      <Task name="My Task 1" date="22.01.23" isCompleted={false} />
-      <Task name="My Task 2" date="22.01.23" isCompleted={true} />
-      <Task name="My Task 3" date="22.01.23" isCompleted={true} />
-      <Task name="My Task 4" date="22.01.23" isCompleted={false} />
-      <Task name="My Task 5" date="22.01.23" isCompleted={true} />
-      <Task name="My Task 6" date="22.01.23" isCompleted={true} />
-      <Task name="My Task 7" date="22.01.23" isCompleted={true} />
-      <Task name="My Task 8" date="22.01.23" isCompleted={false} />
-      <Task name="My Task 9" date="22.01.23" isCompleted={false} />
-      <Task name="My Task 10" date="23.01.23" isCompleted={false} />
-      <Task name="My Task 11" date="23.01.23" isCompleted={true} />
+    <div>
+      <div className="all-todos">
+        {isAddTaskVisible && <AddTask />}
+        {list.map(
+          (elem) =>
+            elem.data && (
+              <Task
+                key={elem.id}
+                id={elem.id}
+                name={elem.data}
+                date={elem.date}
+                isCompleted={elem.isCompleted}
+              />
+            )
+        )}
+      </div>
+      {list.length === 0 && !isAddTaskVisible ? <EmptyTaskList /> : null}
     </div>
   );
 }
-
 export default Todos;

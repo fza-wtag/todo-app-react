@@ -1,17 +1,21 @@
 import "App.css";
 import Navbar from "components/Navbar";
-import TopContent from "components/TopContent";
 import Todos from "components/Todos";
-import LoadMoreBtn from "components/LoadMoreBtn";
+import TopContentContext from "./components/TopContent";
+import { Provider } from "react-redux";
+import store from "store";
+import { Fragment } from "react";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <TopContent />
-      <Todos />
-      <LoadMoreBtn />
-    </div>
+    <Fragment>
+      <Provider store={store}>
+        <Navbar />
+        <TopContentContext>
+          <Todos />
+        </TopContentContext>
+      </Provider>
+    </Fragment>
   );
 }
 
