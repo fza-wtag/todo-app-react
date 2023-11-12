@@ -13,7 +13,7 @@ function EmptyTaskList() {
   });
 
   return (
-    <div className={mainDivClassname} data-testid="main-div">
+    <div className={mainDivClassname}>
       <img src={add} alt="icon"></img>
       <div>
         <p className="zero-task__text">

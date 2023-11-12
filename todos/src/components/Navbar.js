@@ -26,7 +26,7 @@ const Navbar = () => {
   const handleSearch = debounce(handleSearchInput);
 
   return (
-    <nav className="navbar" data-testid="main-div">
+    <nav className="navbar">
       <div className="navbar__logo">
         <img src={logo} alt="logo" />
         <h4>Todos</h4>
@@ -39,11 +39,7 @@ const Navbar = () => {
             onChange={handleInputChange}
           />
         )}
-        <button
-          type="submit"
-          onClick={handleSearchIconClick}
-          data-testid="search-button"
-        >
+        <button type="submit" onClick={handleSearchIconClick}>
           <img src={search} alt="icon"></img>
         </button>
       </div>

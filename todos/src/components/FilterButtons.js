@@ -38,26 +38,17 @@ const FilterButtons = () => {
   });
 
   return (
-    <div className={mainDivClassName} data-testid="main-div">
-      <button
-        className={AllButtonClassName}
-        onClick={handleAllTodos}
-        data-testid="all-button"
-      >
+    <div className={mainDivClassName}>
+      <button className={AllButtonClassName} onClick={handleAllTodos}>
         All
       </button>
       <button
         className={IncompleteButtonClassName}
         onClick={handleIncompleteTodos}
-        data-testid="incomplete-button"
       >
         Incomplete
       </button>
-      <button
-        className={CompleteButtonClassName}
-        onClick={handleCompleteTodos}
-        data-testid="complete-button"
-      >
+      <button className={CompleteButtonClassName} onClick={handleCompleteTodos}>
         Complete
       </button>
     </div>

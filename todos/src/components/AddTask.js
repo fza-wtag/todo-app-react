@@ -99,7 +99,7 @@ const AddTask = () => {
     : "Add new task.. [3-50 characters]";
 
   return (
-    <div className={mainDivClassName} data-testid="add-task">
+    <div className={mainDivClassName}>
       <div>
         {addCardLoadingState && (
           <img
@@ -109,7 +109,6 @@ const AddTask = () => {
           ></img>
         )}
         <textarea
-          data-testid="text-area"
           className="textarea__edit-text"
           value={inputData}
           onChange={(event) => setInputData(event.target.value)}
@@ -123,13 +122,9 @@ const AddTask = () => {
           className="btn btn__save_button"
           onClick={handleAddTaskButtonClick}
         >
-          Add Task
+          AddTask
         </button>
-        <button
-          className="todo__icon-btn"
-          onClick={handleDelButton}
-          data-testid="del-btn"
-        >
+        <button className="todo__icon-btn" onClick={handleDelButton}>
           <img src={del} alt="icon"></img>
         </button>
       </div>

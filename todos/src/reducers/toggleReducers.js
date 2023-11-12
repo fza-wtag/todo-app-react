@@ -7,12 +7,12 @@ const toggleReducers = (state = initialData, action) => {
     case "TOGGLE_ADD_TASK_VISIBILITY":
       return {
         ...state,
-        isAddTaskVisible: action.isAddTaskVisible,
+        isAddTaskVisible: !state.isAddTaskVisible,
       };
     case "TOGGLE_ADD_TASK_BUTTON_VISIBILITY":
       return {
         ...state,
-        isCreateButtonDisabled: action.isCreateButtonDisabled,
+        isCreateButtonDisabled: !state.isCreateButtonDisabled,
       };
     default:
       return state;

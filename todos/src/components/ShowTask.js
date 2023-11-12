@@ -23,7 +23,7 @@ function ShowTask({
   });
 
   return (
-    <div className="todo__wrapper" data-testid="show-task">
+    <div className="todo__wrapper">
       {loading && (
         <img
           className="spinner spinner--small"

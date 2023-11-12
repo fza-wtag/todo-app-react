@@ -73,7 +73,7 @@ const EditTask = ({
   });
 
   return (
-    <div className={mainDivClassname} data-testid="edit-task">
+    <div className={mainDivClassname}>
       <div>
         {currentSelectedId === id && editCardLoadingState && (
           <img

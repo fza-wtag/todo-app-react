@@ -4,7 +4,7 @@ import "styles/splashScreen.css";
 
 function SplashScreen() {
   return (
-    <div className="splash-screen" data-testid="splash-screen">
+    <div className="splash-screen">
       <div className="loading-bar"></div>
       <img src={splashLogo} alt="icon"></img>
     </div>
