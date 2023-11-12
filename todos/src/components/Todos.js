@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import AddTask from "components/AddTask";
 import Task from "components/Task";
 import "styles/todos.css";
-import { TopContentContext } from "components/TopContent";
 import { useSelector } from "react-redux";
 import EmptyTaskList from "./EmptyTaskList";
 
 function Todos() {
-  const { isAddTaskVisible, setIsAddTaskVisible } =
-    useContext(TopContentContext);
   const list = useSelector((state) => state.todoReducers.list);
+  const isAddTaskVisible = useSelector(
+    (state) => state.toggleReducers.isAddTaskVisible
+  );
 
   return (
     <div>
