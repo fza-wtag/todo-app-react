@@ -3,7 +3,7 @@ import AddTask from "components/AddTask";
 import Task from "components/Task";
 import "styles/todos.css";
 import { useSelector } from "react-redux";
-import EmptyTaskList from "./EmptyTaskList";
+import EmptyTaskList from "components/EmptyTaskList";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);
@@ -14,20 +14,20 @@ function Todos() {
   return (
     <div>
       <div className="all-todos">
-        {isAddTaskVisible && <AddTask />}
-        {list.map(
-          (element) =>
-            element.data && (
-              <Task
-                key={element.id}
-                id={element.id}
-                title={element.data}
-                isCompleted={element.isCompleted}
-                date={element.date}
-                completedDate={element.completedDate}
-              />
-            )
-        )}
+        {isAddTaskVisible && <AddTask/>}
+        {list.map((elem) => {
+          return elem.data ? (
+            <Task
+              key={elem.id}
+              id={elem.id}
+              title={elem.data}
+              isCompleted={elem.isCompleted}
+              date={elem.date}
+              completedDate={elem.completedDate}
+              onEdit={elem.onEdit}
+            />
+          ) : null;
+        })}
       </div>
       {list.length === 0 && !isAddTaskVisible && <EmptyTaskList />}
     </div>

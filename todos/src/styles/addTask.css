@@ -24,3 +24,11 @@
   font-size: 12px;
   font-weight: 600;
 }
+
+.todo__save_done_del {
+  align-items: center;
+  max-width: 10.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

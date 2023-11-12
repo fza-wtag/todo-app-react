@@ -1,43 +1,36 @@
 import React from "react";
 import "styles/task.css";
-import IncompleteTask from "components/IncompleteTask";
-import CompletedTask from "components/CompletedTask";
+import { useSelector } from "react-redux";
+import EditTask from "components/EditTask";
+import ShowTask from "components/ShowTask";
 
-const Task = ({key, id, title, isCompleted, date, completedDate}) => {
-
-  const [day, month, year] = date.split("/");
-  const formartedDate = `${day}.${month}.${year}`;
+const Task = (props) => {
+  const myList = useSelector((state) => state.todoReducers.list).find(
+    (task) => task.id === props.id
+  );
+  const currentData = myList.data;
+  const onEdit = myList.onEdit;
 
   return (
-    <div className="todo__wrapper" key={key}>
-      <div>
-        <div>
-          <span
-            className={`todo__name ${
-              isCompleted
-                ? "todo__name--completed"
-                : "todo__name--incomplete"
-            }`}
-
-          >
-            {title}
-          </span>
-        </div>
-        <span className="todo__date">Created At: {formartedDate}</span>
-      </div>
-      {isCompleted ? (
-        <CompletedTask
-          id={id}
-          date={date}
-          isCompleted={isCompleted}
-          completedDate={completedDate}
+    <div>
+      {onEdit ? (
+        <EditTask
+          id={props.id}
+          date={props.date}
+          isCompleted={props.isCompleted}
+          completedDate={props.completedDate}
+          onEdit={props.onEdit}
+          currentData={currentData}
         />
       ) : (
-        <IncompleteTask
-          id={id}
-          date={date}
-          isCompleted={isCompleted}
-          completedDate={completedDate}
+        <ShowTask
+          id={props.id}
+          date={props.date}
+          title={props.title}
+          isCompleted={props.isCompleted}
+          completedDate={props.completedDate}
+          onEdit={props.onEdit}
+          currentData={currentData}
         />
       )}
     </div>

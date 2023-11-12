@@ -28,7 +28,7 @@ const AddTask = () => {
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
       //to get the job done with enter button
-      dispatch(addTodo(inputData), setInputData(""));
+      dispatch(addTodo(inputData.slice(0, -1)), setInputData(""));
       if (inputData !== "") {
         handleClick();
       }
@@ -63,7 +63,7 @@ const AddTask = () => {
           className="btn btn__save_button"
 onClick={handleAddTaskButtonClick}
         >
-          Add Task
+          AddTask
         </button>
         <button className="todo__icon-btn" onClick={handleClick}>
           <img src={del} alt="icon"></img>
