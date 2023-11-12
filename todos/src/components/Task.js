@@ -2,27 +2,43 @@ import React from "react";
 import "styles/task.css";
 import IncompleteTask from "components/IncompleteTask";
 import CompletedTask from "components/CompletedTask";
-import classNames from "classnames";
-const Task = (props) => {
+
+const Task = ({key, id, title, isCompleted, date, completedDate}) => {
+
+  const [day, month, year] = date.split("/");
+  const formartedDate = `${day}.${month}.${year}`;
+
   return (
-    <div className="todo__wrapper" key={props.myKey}>
+    <div className="todo__wrapper" key={key}>
       <div>
         <div>
           <span
-            className={classNames("todo__name", {
-              "todo__name--completed": props.isCompleted,
-              "todo__name--incomple": !props.isCompleted,
-            })}
+            className={`todo__name ${
+              isCompleted
+                ? "todo__name--completed"
+                : "todo__name--incomplete"
+            }`}
+
           >
-            {props.name}
+            {title}
           </span>
         </div>
-        <span className="todo__date">Created At: {props.date}</span>
+        <span className="todo__date">Created At: {formartedDate}</span>
       </div>
-      {props.isCompleted ? (
-        <CompletedTask id={props.id} />
+      {isCompleted ? (
+        <CompletedTask
+          id={id}
+          date={date}
+          isCompleted={isCompleted}
+          completedDate={completedDate}
+        />
       ) : (
-        <IncompleteTask id={props.id} />
+        <IncompleteTask
+          id={id}
+          date={date}
+          isCompleted={isCompleted}
+          completedDate={completedDate}
+        />
       )}
     </div>
   );
