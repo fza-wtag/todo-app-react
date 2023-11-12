@@ -7,6 +7,7 @@ import EmptyTaskList from "components/EmptyTaskList";
 import PaginatorButton from "components/PaginatorButton";
 import { LOAD_MORE, SHOW_LESS, PER_PAGE, ALL, INCOMPLETE } from "constants";
 import spinner from "icons/spinner.svg";
+import { getCurrentTodos } from "supabaseData";
 
 function Todos() {
   const list = useSelector((state) => state.todoReducers.list);
@@ -17,8 +18,7 @@ function Todos() {
   const currentPage = useSelector(
     (state) => state.currentPageReducer.currentPage
   );
-
-  const searchValue = useSelector((state) => state.searchReducer.searchValue);
+  const searchValue = useSelector((state) => state.searchReducers.searchValue);
 
   let filteredTodos;
   if (filter === ALL) {
@@ -28,15 +28,20 @@ function Todos() {
   } else {
     filteredTodos = list.filter((todo) => todo.isCompleted);
   }
+
   const searchedTodos = filteredTodos.filter((elem) =>
     elem.data.toLowerCase().includes(searchValue.toLowerCase())
   );
   const displayedTodoList = searchedTodos.slice(0, PER_PAGE * currentPage);
   const loadingState = useSelector(
-    (state) => state.loadingReducer.loadingState
+    (state) => state.loadingReducers.loadingState
+  );
+  const addCardLoadingState = useSelector(
+    (state) => state.loadingReducers.addCardLoadingState
   );
 
-  const showEmptyListIcon = displayedTodoList.length === 0 && !isAddTaskVisible;
+  const showEmptyListIcon =
+    displayedTodoList.length === 0 && !isAddTaskVisible && !addCardLoadingState;
 
   let showLoadMore;
   let showShowLess;
@@ -49,10 +54,12 @@ function Todos() {
     showShowLess = searchedTodos.length > PER_PAGE;
   }
 
+  getCurrentTodos();
+
   return (
     <div>
       <div className={`all-todos ${loadingState && "all-todos--off"}`}>
-        {isAddTaskVisible && <AddTask />}
+        {(isAddTaskVisible || addCardLoadingState) && <AddTask />}
         {displayedTodoList.map((elem) => {
           return (
             <Task
@@ -68,7 +75,7 @@ function Todos() {
         })}
       </div>
       {loadingState && (
-        <img className="spinner" src={spinner} alt="Loading.."></img>
+        <img className="spinner" src={spinner} alt="loading.."></img>
       )}
       {showEmptyListIcon && <EmptyTaskList />}
       {!loadingState && showLoadMore && <PaginatorButton type={LOAD_MORE} />}

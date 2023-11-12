@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateCurrentPage } from "actions";
 import { LOAD_MORE, SHOW_LESS } from "constants";
 
-function PaginatorButton({type}) {
+function PaginatorButton({ type }) {
   const dispatch = useDispatch();
 
   const currentPage = useSelector(

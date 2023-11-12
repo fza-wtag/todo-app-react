@@ -1,36 +1,38 @@
 import React from "react";
 import del from "icons/delete.svg";
 import { useDispatch } from "react-redux";
-import { deleteTodo } from "actions/index";
-import { dangerMessage } from "toastMethods";
-import { TASK_DELETE_MESSAGE } from "constants";
+import { deleteTodo, selectedCardId } from "actions/index";
 import { parse, differenceInDays } from "date-fns";
+import classNames from "classnames";
 
-function CompletedTask(props) {
+function CompletedTask({ loading, id, date, isCompleted, completedDate }) {
   const dispatch = useDispatch();
 
-  // //Calculating the completation duration in days
-  const startingDate = parse(props.date, "dd/MM/yyyy", new Date());
-  const endingDate = parse(props.completedDate, "dd/MM/yyyy", new Date());
+  // Calculating the completation duration in days
+  const startingDate = parse(date, "dd/MM/yyyy", new Date());
+  const endingDate = parse(completedDate, "dd/MM/yyyy", new Date());
   const differenceInDay = differenceInDays(endingDate, startingDate);
 
   const handleDelete = () => {
-    dispatch(deleteTodo(props.id));
-    dangerMessage(TASK_DELETE_MESSAGE);
+    dispatch(selectedCardId(id));
+    dispatch(deleteTodo(id));
   };
 
+  let completedText;
+  if (differenceInDay === 0) {
+    completedText = "Completed in a day";
+  } else {
+    completedText = `Completed in ${differenceInDay + 1} days`;
+  }
+  const mainDivClassname = classNames("todo-del-duration", {
+    "todo-del-duration--off": loading,
+  });
   return (
-    <div className="todo-del-duration">
+    <div className={mainDivClassname}>
       <button className="todo__icon-btn" onClick={handleDelete}>
         <img src={del} alt="icon"></img>
       </button>
-      {differenceInDay === 0 ? (
-        <span className="todo__completed-time">Completed in a day</span>
-      ) : (
-        <span className="todo__completed-time">
-          Completed in {differenceInDay} days
-        </span>
-      )}
+      <span className="todo__completed-time">{completedText}</span>
     </div>
   );
 }

@@ -1,9 +1,11 @@
 import React from "react";
 import IncompleteTask from "components/IncompleteTask";
 import CompletedTask from "components/CompletedTask";
+import spinner from "icons/spinner.svg";
 import classNames from "classnames";
 
 function ShowTask({
+  loading,
   id,
   date,
   title,
@@ -19,10 +21,17 @@ function ShowTask({
     "todo__name--completed": isCompleted,
     "todo__name--incomple": !isCompleted,
   });
-  
+
   return (
     <div className="todo__wrapper">
-      <div>
+      {loading && (
+        <img
+          className="spinner spinner--small"
+          src={spinner}
+          alt="loading.."
+        ></img>
+      )}
+      <div className={`${loading && "todo--off"}`}>
         <div>
           <span className={spanClassName}>{title}</span>
         </div>
@@ -30,6 +39,7 @@ function ShowTask({
       </div>
       {isCompleted ? (
         <CompletedTask
+          loading={loading}
           id={id}
           date={date}
           isCompleted={isCompleted}
@@ -37,6 +47,7 @@ function ShowTask({
         />
       ) : (
         <IncompleteTask
+          loading={loading}
           id={id}
           date={date}
           isCompleted={isCompleted}

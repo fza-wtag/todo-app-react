@@ -3,29 +3,43 @@ import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import edit from "icons/edit.svg";
 import { useDispatch } from "react-redux";
-import { deleteTodo, markAsCompleted, changeEditState } from "actions/index";
-import { dangerMessage, successMessage } from "toastMethods";
-import { TASK_DELETE_MESSAGE, CREATE_SUCCESS_MESSAGE } from "constants";
+import {
+  deleteTodo,
+  markAsCompleted,
+  changeEditState,
+  selectedCardId,
+} from "actions/index";
+import classNames from "classnames";
 
-function IncompleteTask(props) {
+function IncompleteTask({
+  loading,
+  id,
+  date,
+  isCompleted,
+  completedDate,
+  onEdit,
+}) {
   const dispatch = useDispatch();
-
-  const handleDelete = (event) => {
-    dispatch(deleteTodo(props.id));
-    dangerMessage(TASK_DELETE_MESSAGE);
-  };
+  const currentDate = new Date().toLocaleDateString();
 
   const handleDone = () => {
-    dispatch(markAsCompleted(props.id, true, props.date, props.completedDate));
-    successMessage(CREATE_SUCCESS_MESSAGE);
+    dispatch(selectedCardId(id));
+    dispatch(markAsCompleted(id, true, date, currentDate));
   };
-
+  const handleDelete = () => {
+    dispatch(selectedCardId(id));
+    dispatch(deleteTodo(id));
+  };
   const handleEdit = () => {
-    dispatch(changeEditState(props.id, props.onEdit));
+    dispatch(selectedCardId(id));
+    dispatch(changeEditState(id, onEdit));
   };
+  const mainDivClassname = classNames("todo__done-edit-del", {
+    "todo__done-edit-del--off": loading,
+  });
 
   return (
-    <div className="todo__done-edit-del">
+    <div className={mainDivClassname}>
       <button className="todo__icon-btn" onClick={handleDone}>
         <img src={done} alt="icon"></img>
       </button>

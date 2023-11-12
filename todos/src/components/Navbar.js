@@ -4,16 +4,16 @@ import "styles/navbar.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setIconVisibility, setSearchValue, setLoadingState } from "actions";
 import "styles/loading.css";
-import { successMessage } from "toastMethods";
-import { SEARCH_DATA_MESSAGE } from "constants";
 import { debounce } from "utils";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const searchIconState = useSelector((state) => state.searchReducer.iconState);
-  
+  const searchIconState = useSelector(
+    (state) => state.searchReducers.iconState
+  );
   const handleSearchIconClick = () => {
     dispatch(setIconVisibility(!searchIconState));
+    dispatch(setSearchValue(""));
   };
   const handleInputChange = (event) => {
     dispatch(setLoadingState(true));
@@ -32,7 +32,7 @@ const Navbar = () => {
         <h4>Todos</h4>
       </div>
       <div className="navbar__search">
-        {!searchIconState && (
+        {searchIconState && (
           <input
             type="search"
             placeholder="Search"

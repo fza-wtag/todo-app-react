@@ -2,14 +2,17 @@ import { useState, useRef, useEffect } from "react";
 import del from "icons/delete.svg";
 import done from "icons/done.svg";
 import "styles/addTask.css";
-import { useDispatch } from "react-redux";
-import { successMessage, infoMessage } from "toastMethods";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  CREATE_SUCCESS_MESSAGE,
-  EDIT_CANCEL_MESSAGE,
-  EDIT_SUCCESS_MESSAGE,
-} from "constants";
-import { markCompletedOnEdit, updatedTodo } from "actions/index";
+  changeEditState,
+  markCompletedOnEdit,
+  updateTodo,
+  selectedCardId,
+} from "actions/index";
+import spinner from "icons/spinner.svg";
+import { infoMessage } from "toastMethods";
+import { EDIT_CANCEL_MESSAGE } from "constants";
+import classNames from "classnames";
 
 const EditTask = ({
   id,
@@ -21,9 +24,19 @@ const EditTask = ({
 }) => {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
+
+  const doneHandlerHelper = (data) => {
+    dispatch(selectedCardId(id));
+    if (data !== currentData) {
+      dispatch(updateTodo(id, data, onEdit, true), setInputData(""));
+    } else {
+      dispatch(updateTodo(id, currentData, onEdit, false), setInputData(""));
+    }
+  };
+
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
-      dispatch(updatedTodo(id, inputData, onEdit), setInputData(""));
+      doneHandlerHelper(inputData.slice(0, -1));
     }
   };
   const textAreaRef = useRef(null);
@@ -33,25 +46,44 @@ const EditTask = ({
     textAreaRef.current.focus();
   }, [currentData]);
 
+  const currentDate = new Date().toLocaleDateString();
+
   const handleDone = () => {
-    dispatch(markCompletedOnEdit(id, true, date, completedDate, onEdit));
-    successMessage(CREATE_SUCCESS_MESSAGE);
+    dispatch(selectedCardId(id));
+    dispatch(markCompletedOnEdit(id, true, date, currentDate, onEdit));
   };
   const handleDelete = () => {
-    dispatch(updatedTodo(id, currentData, onEdit), setInputData(""));
+    dispatch(selectedCardId(id));
+    dispatch(changeEditState(id, onEdit), setInputData(""));
     infoMessage(EDIT_CANCEL_MESSAGE);
   };
   const handleSave = () => {
-    dispatch(updatedTodo(id, inputData, onEdit), setInputData(""));
-    successMessage(EDIT_SUCCESS_MESSAGE);
+    dispatch(selectedCardId(id));
+    doneHandlerHelper(inputData);
   };
 
+  const editCardLoadingState = useSelector(
+    (state) => state.loadingReducers.editCardLoadingState
+  );
+  const currentSelectedId = useSelector(
+    (state) => state.loadingReducers.currentSelectedId
+  );
+  const mainDivClassname = classNames("todo__wrapper", {
+    "todo--off": currentSelectedId === id && editCardLoadingState,
+  });
+
   return (
-    <div className="todo__wrapper">
+    <div className={mainDivClassname}>
       <div>
+        {currentSelectedId === id && editCardLoadingState && (
+          <img
+            className="spinner spinner--small"
+            src={spinner}
+            alt="loading.."
+          ></img>
+        )}
         <textarea
           className="textarea__edit-text"
-          placeholder="Add new task..."
           value={inputData}
           onChange={(event) => setInputData(event.target.value)}
           onKeyUp={handleKeyUp}
@@ -62,7 +94,6 @@ const EditTask = ({
         <button className="btn btn__save_button" onClick={handleSave}>
           Save
         </button>
-
         <button className="todo__icon-btn" onClick={handleDone}>
           <img src={done} alt="icon"></img>
         </button>

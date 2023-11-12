@@ -3,7 +3,6 @@ import { setFilter } from "actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 import { ALL, INCOMPLETE, COMPLETE } from "constants";
-import classNames from "classnames";
 
 const FilterButtons = () => {
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ const FilterButtons = () => {
   };
 
   const loadingState = useSelector(
-    (state) => state.loadingReducer.loadingState
+    (state) => state.loadingReducers.loadingState
   );
 
   const mainDivClassName = classnames("btn__progress_button", {

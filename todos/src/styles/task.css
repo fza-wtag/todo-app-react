@@ -3,6 +3,10 @@
   justify-content: space-between;
 }
 
+.todo-del-duration--off {
+  pointer-events: none;
+}
+
 .todo__completed-time {
   align-items: center;
   background: #7a8dfd;
@@ -18,8 +22,10 @@
   padding: 5px;
 }
 
-.todo-done-edit-del {
+.todo__done-edit-del {
   display: flex;
-  justify-content: space-between;
-  width: 10rem;
+}
+
+.todo__done-edit-del--off {
+  pointer-events: none;
 }

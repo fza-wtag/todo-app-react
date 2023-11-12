@@ -4,8 +4,15 @@ const initialData = {
 
 const todoReducers = (state = initialData, action) => {
   switch (action.type) {
+    case "ADD_INITIAL_DATA":
+      const { payload } = action;
+      return {
+        ...state,
+        list: [...payload].sort((a, b) => b.id - a.id),
+      };
+
     case "ADD_TODO":
-      const { id, data, isCompleted, date, completedDate, dateNow, onEdit } =
+      const { id, data, isCompleted, date, completedDate, onEdit } =
         action.payload;
       return {
         ...state,
@@ -17,10 +24,9 @@ const todoReducers = (state = initialData, action) => {
             isCompleted: isCompleted,
             date: date,
             completedDate: completedDate,
-            dateNow: dateNow,
             onEdit: onEdit,
           },
-        ].sort((a, b) => b.dateNow - a.dateNow),
+        ].sort((a, b) => b.id - a.id),
       };
 
     case "DELETE_TODO":
@@ -30,8 +36,8 @@ const todoReducers = (state = initialData, action) => {
         list: newList,
       };
 
-    case "UPDATE_AS_COMPLETED":
-      const updatedAsCompletedList = state.list.map((todo) => {
+    case "MARK_AS_COMPLETED":
+      const markedAsCompletedList = state.list.map((todo) => {
         if (todo.id === action.id) {
           return {
             ...todo,
@@ -45,7 +51,7 @@ const todoReducers = (state = initialData, action) => {
 
       return {
         ...state,
-        list: updatedAsCompletedList,
+        list: markedAsCompletedList,
       };
     case "CHANGE_EDIT_STATE":
       const changedStateList = state.list.map((todo) => {
@@ -63,7 +69,7 @@ const todoReducers = (state = initialData, action) => {
         list: changedStateList,
       };
 
-    case "UPDATED_TODO":
+    case "UPDATE_TODO":
       const updatedList = state.list.map((todo) => {
         if (todo.id === action.id) {
           return {
@@ -79,7 +85,7 @@ const todoReducers = (state = initialData, action) => {
         list: updatedList,
       };
 
-    case "MAKE_COMPLETED_ON_EDIT":
+    case "MARK_COMPLETED_ON_EDIT":
       const completedTodoList = state.list.map((todo) => {
         if (todo.id === action.id) {
           return {

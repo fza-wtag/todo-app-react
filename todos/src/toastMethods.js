@@ -1,20 +1,19 @@
-import { toast, Zoom } from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const commonStyles = {
   position: "top-center",
-  autoClose: 1200,
+  autoClose: 400,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
   theme: "colored",
-  transition: Zoom,
+  transition: Bounce,
   style: {
     minHeight: "15px",
     fontSize: "13px",
-    maxWidth: "300px",
   },
 };
 
